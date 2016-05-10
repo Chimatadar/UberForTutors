@@ -70,11 +70,6 @@ Login</div>
  
 </div>
                    
-=======
-<body>
 
-<div><p>Prachi</p></div>
-
->>>>>>> branch 'master' of https://github.com/Chimatadar/UFT.git
 </body>
 </html>
