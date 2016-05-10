@@ -6,13 +6,11 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<link href="style1.css" rel="stylesheet">
+<link href="style1.css" rel="stylesheet"></head>
 
-</head>
-<<<<<<< HEAD
 <body style="background: black">
 
-<div class = "hero-unit span15" style = "text-align:center;color:red;padding-bottom:0px;background:black">
+<div class = "hero-unit" style = "text-align:center;color:red;padding-bottom:0px;background:black">
 Login</div>
 
 <div class = "hero-unit span15" style = "padding:0px;background:black">
@@ -21,7 +19,7 @@ Login</div>
 <div class = "span5"></div>
    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container-fluid">
+            <div class="container-fluid" >
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
