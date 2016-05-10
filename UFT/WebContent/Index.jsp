@@ -9,6 +9,7 @@
 <link href="style1.css" rel="stylesheet">
 
 </head>
+<<<<<<< HEAD
 <body style="background: black">
 
 <div class = "hero-unit span15" style = "text-align:center;color:red;padding-bottom:0px;background:black">
@@ -69,5 +70,11 @@ Login</div>
  
 </div>
                    
+=======
+<body>
+
+<div><p>Prachi</p></div>
+
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UFT.git
 </body>
 </html>
