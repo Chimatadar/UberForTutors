@@ -5,5 +5,5 @@ public class UserSkillRatingsModel {
 	public int UserId;
 	public int SkillId;
 	public int RatingId;
-	public int Taught;
+	public byte Taught;
 }
