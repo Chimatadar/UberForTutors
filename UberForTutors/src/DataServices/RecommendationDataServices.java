@@ -73,6 +73,7 @@ public class RecommendationDataServices {
 				resultSet.beforeFirst();
 			while(resultSet.next())
 			{
+				
 				characteristics.add(resultSet.getInt("CharacterId"));
 			}
 			}
@@ -88,16 +89,16 @@ public class RecommendationDataServices {
 		}
 	}
 
-	public static ArrayList<Integer> getAllSkills() {
+	public ArrayList<Integer> getAllSkillsByCategory(int categoryId) {
 		Connection connection=null;
 		String query=null;
 		ResultSet resultSet=null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			query="select * from skills";
+			query="select * from skills where CategoryId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
-			
+			preparedStmt.setInt(1, categoryId);
 			
 			resultSet = preparedStmt.executeQuery();
 			ArrayList<Integer> skills=new ArrayList<Integer>();

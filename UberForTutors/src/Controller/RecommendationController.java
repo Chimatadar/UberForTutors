@@ -72,7 +72,7 @@ public class RecommendationController extends HttpServlet {
 						skillsWithCategory.add(skilllist);
 					}
 				}
-				
+				//System.out.println(skillsWithCategory.size());//1
 				
 				//Get the characteristics weight
 				
@@ -81,6 +81,8 @@ public class RecommendationController extends HttpServlet {
 				for(RecoCategoryDataContract skillWithCategory:skillsWithCategory){
 				characteristicsList.addAll(recommendationDataServices.getCharacteristicsBySkill(skillWithCategory.skillId));
 				}
+				//System.out.println(characteristicsList.size()); //3
+				
 				HashMap<Integer, Integer> characteristicsWieght=new HashMap<Integer,Integer>();
 				for(Integer chInteger:characteristicsList)
 				{
@@ -105,13 +107,16 @@ public class RecommendationController extends HttpServlet {
 		            }
 		        } );
 		        
+		        
+		        
+		        
 		        int weight=10;
 		        TreeMap<Integer, Integer> weightedCharacteristics=new TreeMap<Integer, Integer>();
 		        for(Map.Entry<Integer, Integer> entry:list){
 		        	
 		        	weightedCharacteristics.put(entry.getKey(), weight);
 		        	weight--;
-		            //System.out.println(entry.getKey()+" ==> "+entry.getValue());
+		            //System.out.println(weightedCharacteristics.get(entry.getKey()));
 		        }
 		        
 		      //Rank the characteristics
@@ -121,10 +126,15 @@ public class RecommendationController extends HttpServlet {
 		        	removeSkills.add(skillList.skillId);
 		        }
 		        
-		        ArrayList<Integer> skills=recommendationDataServices.getAllSkills();
+		        ArrayList<Integer> skills=recommendationDataServices.getAllSkillsByCategory(highestCategoryId);
 		        if(skills!=null)
 		        {
 		        	skills.removeAll(removeSkills);
+		        	
+		        	
+		        	
+		        	
+		        	
 		        	HashMap<Integer, Integer> rankSkills=new HashMap<Integer, Integer>();
 			        for(Integer skill:skills)
 			        {
@@ -148,13 +158,15 @@ public class RecommendationController extends HttpServlet {
 			        {
 			            public int compare( Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2 )
 			            {
+			            	
 			                return (o2.getValue()).compareTo( o1.getValue() );
 			            }
 			        } );
 			        
+			        
 			        for(Map.Entry<Integer, Integer> entry:list1){
-			        	
-			            System.out.println(entry.getKey());
+			        	System.out.println(entry.getKey());
+			            
 			        }
 		        }
 		        
