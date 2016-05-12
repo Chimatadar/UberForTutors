@@ -2,28 +2,33 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataServices.SignupDataServices;
+
+
+import DataServices.LoginDataServices;
+
+import Model.UserModel;
 
 /**
- * Servlet implementation class SignupController
+ * Servlet implementation class LoginController
  */
-@WebServlet("/SignupController")
-public class SignupController extends HttpServlet {
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public SignupController() {
+    public LoginController() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -32,6 +37,7 @@ public class SignupController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -39,24 +45,28 @@ public class SignupController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doGet(request, response);
+		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String location = request.getParameter("location");
-        String language = request.getParameter("language");
         
-        List<String> languageList=null;
-        SignupDataServices signupDataServices = new SignupDataServices();
+        LoginDataServices loginDataServices=new LoginDataServices();
+        UserModel userModel=loginDataServices.authenticateUser(email,password);
         
-        
-        try {
-			int result = signupDataServices.signupUser(email, password, location, languageList);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-        
+        if(userModel.UserId>0)
+        {
+        	RequestDispatcher rs = request.getRequestDispatcher("HomeController");
+            rs.forward(request, response);
+        }
+        else
+        {
+        out.println("<p>User name or Password is incorrect</p>");  
+
+        }
+
 	}
 
 }
