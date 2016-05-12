@@ -1,73 +1,96 @@
-<html>
-<head>
-<title>---</title>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<link href="style1.css" rel="stylesheet">
 
-</head>
-<body style="background: black">
+<!DOCTYPE html>
+<html lang="en">
 
-<div class = "hero-unit span15" style = "text-align:center;color:red;padding-bottom:0px;background:black">
-Login</div>
+    <head>
 
-<div class = "hero-unit span15" style = "padding:0px;background:black">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login</title>
 
-<form method="post" action="LoginController" >
-<div class = "span5"></div>
-   <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
 
-                </a>
-                <a class="brand" > Uber <span style = "color:red">for Tutors</span></a>
-              
-            </div>
-        </div>
-    </div>
-          
-          <div style = "text-align:center" class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="navbar-inner"><a class="brand" href="aboutus.jsp">About us</a>
-            <div>
-            <ul class="nav">
-                
-                <li><a href="PrivacyPolicy.jsp">Privacy Policy</a>
-                </li>
-                </ul>
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Uber</strong> For Tutors</h1>
+                            <div class="description">
+                            	<p>
+	                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Login to our site</h3>
+                            		<p>Enter your username and password to log on:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="LoginController" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="email" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="fpassword" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">Sign in!</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>New User? </h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-2" href="signUp.jsp">
+	                        		<i class="fa fa-user-plus"></i> Sign Up Here
+	                        	</a>
+	                        	
+                        	</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="pull-right">
-                <ul class = "nav">
-                <li><a href="#top">Back to Top</a>
-                </li>
-                
-            </ul>
             </div>
+            
         </div>
-        </div>
-<div class = "span1"></div>
 
-<div style = "background-color:#17202A;color:#70DBDB;align:center" class="hero-unit span4">
-                        <br>
-                        Email: <input class="pull-right" style = "height:30px;weight:50px" type="text" placeholder="email" name="userName" >
-                        <br>
-                        <br>
-                        Password:<input class="pull-right" style = "height:30px;weight:50px" type="password" placeholder="password" name="password" >
-                        <br>
-                        <br>
-                        
-                        <input type="submit" value="Submit" style = "color:black" class="btn">
-                        <input type="reset" value="Reset" style = "color:black" class="btn">
-</div>
-<div class = "span4"></div>
-</form>	  
- 
-</div>
-                   
-</body>
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        
+
+    </body>
+
 </html>
