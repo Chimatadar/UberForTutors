@@ -50,6 +50,7 @@ public class SignupController extends HttpServlet {
         List<String> languageList=null;
         SignupDataServices signupDataServices = new SignupDataServices();
         
+        
         try {
 			int result = signupDataServices.signupUser(email, password, location, languageList);
 		} catch (SQLException e) {
