@@ -110,12 +110,10 @@ public class RecommendationController extends HttpServlet {
 		        
 		        
 		        
-		        int weight=10;
 		        TreeMap<Integer, Integer> weightedCharacteristics=new TreeMap<Integer, Integer>();
 		        for(Map.Entry<Integer, Integer> entry:list){
-		        	
+		        	int weight=(int) Math.pow(10, entry.getValue());
 		        	weightedCharacteristics.put(entry.getKey(), weight);
-		        	weight--;
 		            //System.out.println(weightedCharacteristics.get(entry.getKey()));
 		        }
 		        
