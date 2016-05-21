@@ -29,7 +29,7 @@ public class LoginDataServices {
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			connection=ds.getConnection();
 		
-			query="select * from user where UserId=? and Password=?";
+			query="select * from user where Email=? and Password=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
 			preparedStmt1.setString(1, email);
