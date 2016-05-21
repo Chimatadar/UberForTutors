@@ -7,31 +7,35 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import Model.ComplaintModel;
+import Model.SkillsModel;
+import Model.UserModel;
 
 public class HomeDataServices {
 	
-	public void updateComplaints(ComplaintModel complaintModel) {
+	public SkillsModel allSkills() {
 		Connection connection=null;
 		String query=null;
 		ResultSet resultSet=null;
+		SkillsModel skillsModel = new SkillsModel();
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ngss","root","myPassword");
-			query="Update complaint Set ID=?,DepartmentID=?,PhotoURL=?,Location=?,Caption=? where ID=?";
+			//to be changed
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			query="select * from skills";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
-			preparedStmt1.setString(1,complaintModel.complaintID );
-			preparedStmt1.setInt(2,complaintModel.DepartmentId);
-			preparedStmt1.setString(3, complaintModel.photoURL);
-			preparedStmt1.setString(4, complaintModel.location);
-			preparedStmt1.setString(5, complaintModel.caption);
+			resultSet = preparedStmt1.executeQuery();
 			
-			preparedStmt1.setString(6, complaintModel.complaintID);
 			
-			preparedStmt1.executeUpdate();
-
 			
+			if(resultSet.next())
+			{
+				//skillsModel.SkillId=resultSet.getInt("SkillId");
+				skillsModel.SkillName=resultSet.getString("SkillName");
+				//return skillsModel;
+			}
+			
+			//return skillsModel;
 		}
 		catch(Exception ex)
 		{
@@ -46,6 +50,7 @@ public class HomeDataServices {
 				e.printStackTrace();
 			}
 		}
+		return skillsModel;
 	
 	}
 
