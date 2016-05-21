@@ -1,6 +1,8 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +39,14 @@ public class HomeController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		
+		response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+		String searchSkill = request.getParameter("searchSkill");
+        String notification = request.getParameter("notification");
+        String logout = request.getParameter("logout");
+        
+        
 		
 	}
 
