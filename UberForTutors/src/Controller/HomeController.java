@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,24 +49,58 @@ public class HomeController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-		String searchSkill = request.getParameter("searchSkill");
+		//check the variable for search button
+        //this is value for search text
+        String searchSkill = request.getParameter("searchSkill");
         String notification = request.getParameter("notification");
-        String logout = request.getParameter("logout");
+        //logout is a button if it si true...i.e pressed
+        boolean logout = true;
         
         HomeDataServices homeDataServices=new HomeDataServices();
-        SkillsModel skillModel= homeDataServices.allSkills();
+        ArrayList<String> skillList= homeDataServices.allSkills();
         
-        if(skillModel != null)
+
+        if(skillList != null)
         {
-        	RequestDispatcher rs = request.getRequestDispatcher("ProfileController");
-            rs.forward(request, response);
+        	int size = skillList.size();
+        	
+        	while(size != 0){
+        		out.println(skillList.get(size));
+        		size--;
+        	}
+        	
         }
         else
         {
         out.println("<p>No Skills</p>");  
 
         }
-
+        
+        skillList= homeDataServices.searchSkills(searchSkill);
+        
+        if(skillList != null)
+        {
+        	int size = skillList.size();
+        	
+        	while(size != 0){
+        		out.println(skillList.get(size));
+        		size--;
+        	}
+        	
+        }
+        else
+        {
+        	out.println("<p>No Skills</p>");  
+        }
+        
+        if(logout){
+        	//to be changed if v change the entry page logic
+        	RequestDispatcher rs = request.getRequestDispatcher("SignupController");
+        	
+        }
+        
+        
+        //discuss for notification
         
 		
 	}
