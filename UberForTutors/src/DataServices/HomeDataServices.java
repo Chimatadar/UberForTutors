@@ -1,9 +1,11 @@
 package DataServices;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -12,11 +14,12 @@ import Model.UserModel;
 
 public class HomeDataServices {
 	
-	public SkillsModel allSkills() {
+	public ArrayList<String> allSkills() {
 		Connection connection=null;
 		String query=null;
 		ResultSet resultSet=null;
-		SkillsModel skillsModel = new SkillsModel();
+		ArrayList<String> skillList = new ArrayList<String>();
+		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			//to be changed
@@ -28,11 +31,11 @@ public class HomeDataServices {
 			
 			
 			
-			if(resultSet.next())
+			while(resultSet.next())
 			{
 				//skillsModel.SkillId=resultSet.getInt("SkillId");
-				skillsModel.SkillName=resultSet.getString("SkillName");
-				//return skillsModel;
+				skillList.add(resultSet.getString("SkillName"));
+				
 			}
 			
 			//return skillsModel;
@@ -50,7 +53,51 @@ public class HomeDataServices {
 				e.printStackTrace();
 			}
 		}
-		return skillsModel;
+		return skillList;
+	
+	}
+
+	
+	public ArrayList<String> searchSkills(String searchSkill) {
+		Connection connection=null;
+		String query=null;
+		ResultSet resultSet=null;
+		ArrayList<String> skillList = new ArrayList<String>();
+				
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			//to be changed
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			query="select * from skills where SkillName = ?";
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+			
+			preparedStmt1.setString(1, searchSkill);
+			resultSet = preparedStmt1.executeQuery();
+			
+			
+			
+			if(resultSet.next())
+			{
+				skillList.add(resultSet.getString("SkillName"));
+								
+			}
+			
+			//return skillsModel;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+//			return null;
+		}
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return skillList;
 	
 	}
 
