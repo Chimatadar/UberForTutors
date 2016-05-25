@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DataContracts.ReqNotificationDataContract;
 import DataServices.HomeDataServices;
 import DataServices.LoginDataServices;
+import Model.ActivityModel;
 import Model.SkillsModel;
 import Model.UserModel;
 
@@ -52,40 +55,37 @@ public class HomeController extends HttpServlet {
 		//check the variable for search button
         //this is value for search text
         String searchSkill = request.getParameter("searchSkill");
-        String notification = request.getParameter("notification");
+        //String notification = request.getParameter("notification");
+        int UserId = Integer.parseInt(request.getParameter("UserId"));
         //logout is a button if it si true...i.e pressed
         boolean logout = true;
         
         HomeDataServices homeDataServices=new HomeDataServices();
-        ArrayList<String> skillList= homeDataServices.allSkills();
+        ArrayList<String> categoryList = homeDataServices.allCategories();
         
 
-        if(skillList != null)
+        if(categoryList != null)
         {
-        	int size = skillList.size();
+        	request.setAttribute("categoryList", categoryList);
+            RequestDispatcher rs=request.getRequestDispatcher("Home.jsp");
+            
+            rs.forward(request, response);
         	
-        	while(size != 0){
-        		out.println(skillList.get(size));
-        		size--;
-        	}
         	
         }
-        else
-        {
-        out.println("<p>No Skills</p>");  
+        else{
+        	 out.println("<p>No Skills</p>");  
 
         }
         
-        skillList= homeDataServices.searchSkills(searchSkill);
+        ArrayList<String> skillList = homeDataServices.searchSkills(searchSkill);
         
         if(skillList != null)
         {
-        	int size = skillList.size();
-        	
-        	while(size != 0){
-        		out.println(skillList.get(size));
-        		size--;
-        	}
+        	request.setAttribute("categoryList", categoryList);
+            RequestDispatcher rs1=request.getRequestDispatcher("Home.jsp");
+            
+            rs1.forward(request, response);
         	
         }
         else
@@ -95,12 +95,22 @@ public class HomeController extends HttpServlet {
         
         if(logout){
         	//to be changed if v change the entry page logic
-        	RequestDispatcher rs = request.getRequestDispatcher("SignupController");
+        	RequestDispatcher rs2 = request.getRequestDispatcher("SignupController");
+        	rs2.forward(request, response);
         	
         }
         
         
-        //discuss for notification
+        //notification
+        ArrayList<ReqNotificationDataContract> notifications = new ArrayList<>();
+        notifications= homeDataServices.checkNotification(UserId);
+        
+        request.setAttribute("notificationNo", notifications.size());
+        request.setAttribute("notifications", notifications);
+        RequestDispatcher rs3=request.getRequestDispatcher("Home.jsp");
+        rs3.forward(request, response);
+        
+        
         
 		
 	}
