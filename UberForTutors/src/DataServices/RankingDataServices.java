@@ -20,7 +20,7 @@ public class RankingDataServices {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			query="select * from userskillratings where SkillId=? and Taught=1";
+			query="select * from userskillratings where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
 			

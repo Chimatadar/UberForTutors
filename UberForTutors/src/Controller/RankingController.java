@@ -55,18 +55,28 @@ public class RankingController extends HttpServlet {
         
         
         //categorise by rating of the skill
-		int skillId = Integer.parseInt(request.getParameter("skillId"));
-        ArrayList<UserSkillRatingsModel> userSkillRatings=RankingDataServices.getUserSkillRatingsBySkillId(skillId);
+		//int skillId = Integer.parseInt(request.getParameter("skillId"));
+        ArrayList<UserSkillRatingsModel> userSkillRatings=RankingDataServices.getUserSkillRatingsBySkillId(1);
+        
+        
+        
+        if(userSkillRatings!=null){
         Collections.sort(userSkillRatings, new Comparator<UserSkillRatingsModel>() {
             public int compare(UserSkillRatingsModel obj1, UserSkillRatingsModel obj2) {
             	Integer ob1=obj1.RatingId;
             	Integer ob2=obj2.RatingId;
-                return ob1.compareTo(ob2);
+                return ob2.compareTo(ob1);
             }
         });
         
-        ArrayList<UserSkillRatingsModel> topUsers=(ArrayList<UserSkillRatingsModel>) userSkillRatings.subList(0, 4);
+       
         
+        
+        
+        ArrayList<UserSkillRatingsModel> topUsers= new ArrayList<UserSkillRatingsModel>(userSkillRatings.subList(0, 5));
+        
+        
+       
         //categorise by rating of the common skill set and language
         ArrayList<UserSkillRatingsModel> userSkillRatingsCurrentUser=RankingDataServices.getUserSkillRatingsByUserId(userId);
         ArrayList<UserLanguageModel> currentUserLanguage=RankingDataServices.getUserLanguage(userId);
@@ -74,22 +84,29 @@ public class RankingController extends HttpServlet {
         for(int i=0;i<topUsers.size();i++)
         {
         	ArrayList<UserSkillRatingsModel> userSkillRatingsUser=RankingDataServices.getUserSkillRatingsByUserId(topUsers.get(i).UserId);
-        	int count=0;
+        	int count=1;
+        	if(userSkillRatingsUser!=null){
         	for(UserSkillRatingsModel userSkill:userSkillRatingsUser)
         	{
         		if(userSkillRatingsCurrentUser.contains(userSkill))
         		{
-        			count*=10;
+        			count=count*10;
+        			
         		}
         	}
+        	}
         	ArrayList<UserLanguageModel> userLanguages=RankingDataServices.getUserLanguage(topUsers.get(i).UserId);
+        	if(userLanguages!=null){
         	for(UserLanguageModel userLanguage:userLanguages)
         	{
         		if(currentUserLanguage.contains(userLanguage))
         		{
-        			count*=5;
+        			count=count*5;
+        			
         		}
         	}
+        	}
+        	//System.out.println(topUsers.get(i).UserId+" "+count);
         	userRank.put(topUsers.get(i).UserId, count);
         }
         
@@ -106,9 +123,10 @@ public class RankingController extends HttpServlet {
         
         
         for(Map.Entry<Integer, Integer> entry:list1){
-        	System.out.println(entry.getKey());
+        	System.out.println(entry.getKey()+" "+ entry.getValue());
             
         }
+	}
 	}
 
 }
