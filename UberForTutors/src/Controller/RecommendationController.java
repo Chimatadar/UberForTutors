@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DataContracts.RecoCategoryDataContract;
 import DataServices.RecommendationDataServices;
@@ -161,11 +162,13 @@ public class RecommendationController extends HttpServlet {
 			            }
 			        } );
 			        
-			        
+			        ArrayList<Integer> recommendedSkillIds=new ArrayList<Integer>();
 			        for(Map.Entry<Integer, Integer> entry:list1){
-			        	System.out.println(entry.getKey());
-			            
+			        	recommendedSkillIds.add(entry.getKey());
 			        }
+			        
+			        HttpSession session=request.getSession();
+			        session.setAttribute("recommendedSkillIds", recommendedSkillIds);
 		        }
 		        
 		        
