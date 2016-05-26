@@ -11,11 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DataContracts.ReqNotificationDataContract;
 import DataServices.HomeDataServices;
 import DataServices.LoginDataServices;
 import Model.ActivityModel;
+import Model.CategoriesModel;
 import Model.SkillsModel;
 import Model.UserModel;
 
@@ -51,24 +53,51 @@ public class HomeController extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        HttpSession session=request.getSession();
 		//check the variable for search button
         //this is value for search text
         String searchSkill = request.getParameter("searchSkill");
+        HomeDataServices homeDataServices=new HomeDataServices();
+        if(searchSkill!=null){
+        
+        ArrayList<String> skillList = homeDataServices.searchSkills(searchSkill);
+        
+        request.setAttribute("skillList", skillList);
+        RequestDispatcher rs1=request.getRequestDispatcher("skills.jsp");
+            
+         rs1.include(request, response);
+         return;
+        
+        
+        }
+        
+        
         //String notification = request.getParameter("notification");
-        int UserId = Integer.parseInt(request.getParameter("UserId"));
+        int UserId = (int) session.getAttribute("UserId");
         //logout is a button if it si true...i.e pressed
         boolean logout = true;
         
-        HomeDataServices homeDataServices=new HomeDataServices();
-        ArrayList<String> categoryList = homeDataServices.allCategories();
         
-
+        ArrayList<CategoriesModel> categoryList = homeDataServices.allCategories();
+        
+        ArrayList<Integer> recommendedSkillIds=(ArrayList<Integer>) session.getAttribute("recommendedSkillIds");
+        ArrayList<SkillsModel> skillsModels=new ArrayList<SkillsModel>();
+        for(Integer recommendedSkillId:recommendedSkillIds)
+        {
+        	SkillsModel skillsModel=new SkillsModel();
+        	String skillName = homeDataServices.getSkillName(recommendedSkillId);
+        	skillsModel.SkillId=recommendedSkillId;
+        	skillsModel.SkillName=skillName;
+        	skillsModels.add(skillsModel);
+        }
+        request.setAttribute("recommendedSkillIds", skillsModels);
+        
         if(categoryList != null)
         {
         	request.setAttribute("categoryList", categoryList);
-            RequestDispatcher rs=request.getRequestDispatcher("Home.jsp");
-            
+        	
+            RequestDispatcher rs=request.getRequestDispatcher("home.jsp");
+          
             rs.forward(request, response);
         	
         	
@@ -78,20 +107,7 @@ public class HomeController extends HttpServlet {
 
         }
         
-        ArrayList<String> skillList = homeDataServices.searchSkills(searchSkill);
-        
-        if(skillList != null)
-        {
-        	request.setAttribute("categoryList", categoryList);
-            RequestDispatcher rs1=request.getRequestDispatcher("Home.jsp");
-            
-            rs1.forward(request, response);
-        	
-        }
-        else
-        {
-        	out.println("<p>No Skills</p>");  
-        }
+     
         
         if(logout){
         	//to be changed if v change the entry page logic
@@ -107,7 +123,7 @@ public class HomeController extends HttpServlet {
         
         request.setAttribute("notificationNo", notifications.size());
         request.setAttribute("notifications", notifications);
-        RequestDispatcher rs3=request.getRequestDispatcher("Home.jsp");
+        RequestDispatcher rs3=request.getRequestDispatcher("home.jsp");
         rs3.forward(request, response);
         
         

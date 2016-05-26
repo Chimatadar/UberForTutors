@@ -13,21 +13,24 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import sun.util.BuddhistCalendar;
+
 import com.mysql.jdbc.PreparedStatement;
 
 import DataContracts.ReqNotificationDataContract;
 import Model.ActivityModel;
+import Model.CategoriesModel;
 import Model.SkillsModel;
 import Model.UserModel;
 //import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 public class HomeDataServices {
 	
-	public ArrayList<String> allCategories() {
+	public ArrayList<CategoriesModel> allCategories() {
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
-		ArrayList<String> categoryList=new ArrayList<String>();
+		ArrayList<CategoriesModel> categoryList=new ArrayList<CategoriesModel>();
 		try{
 			
 
@@ -40,20 +43,21 @@ public class HomeDataServices {
 			
 			resultSet = preparedStmt1.executeQuery();
 			
-			
-			
 			while(resultSet.next())
 			{
-				categoryList.add(resultSet.getString("CategoryName"));
+				CategoriesModel categoriesModel=new CategoriesModel();
+				categoriesModel.CategoryName=resultSet.getString("CategoryName");
+				categoriesModel.CategoryId=resultSet.getInt("CategoryId");
+				categoryList.add(categoriesModel);
 				
 			}
-			
+			return categoryList;
 			//return skillsModel;
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-//			return null;
+			return null;
 		}
 		finally{
 			try {
@@ -63,7 +67,7 @@ public class HomeDataServices {
 				e.printStackTrace();
 			}
 		}
-		return categoryList;
+		
 	
 	}
 
@@ -71,7 +75,7 @@ public class HomeDataServices {
 	
 	public ArrayList<String> searchSkills(String searchSkill) {
 		ArrayList<String> skillList = new ArrayList<String>();
-		
+		System.out.println("in search");
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
@@ -173,6 +177,51 @@ public class HomeDataServices {
 		
 		return requests;  
 	
+	}
+
+
+
+	public String getSkillName(Integer recommendedSkillId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
+			query = "select * from skills where SkillId=?";
+			
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+			
+			preparedStmt1.setInt(1, recommendedSkillId);
+			resultSet = preparedStmt1.executeQuery();
+			
+			if(resultSet.next())
+			{
+				return resultSet.getString("SkillName");
+			}
+			return null;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
 	}
 	
 	

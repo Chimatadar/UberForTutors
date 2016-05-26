@@ -56,8 +56,8 @@ public class LoginController extends HttpServlet {
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
-        
-        
+        System.out.println("ia m here");
+        if(userModel!=null){
         if(userModel.UserId>0)
         {
         	session.setAttribute("UserId", userModel.UserId);
@@ -72,5 +72,5 @@ public class LoginController extends HttpServlet {
         }
 
 	}
-
+	}
 }

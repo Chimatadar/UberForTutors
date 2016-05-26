@@ -1,3 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.*"%>
+
+<%@ page import="java.sql.*"%>
+
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,6 +59,11 @@
 </head>
 
 <body>
+
+<%
+		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
+		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkillIds");
+	%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -108,8 +119,8 @@
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                         <li>
-                        <form class="navbar-form" action="" method="post">
-                        <input class="span5" type="text" placeholder="search a skill">
+                        <form class="navbar-form" action="HomeController" method="post">
+                        <input class="span5" type="text" placeholder="search a skill" name="searchSkill">
                         <button type="submit" class="btn">Search</button>
                     </form>
                         </li>
