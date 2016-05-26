@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
         }
         else
         {
-        out.println("<p>User name or Password is incorrect</p>");  
+            out.println("<p>User name or Password is incorrect</p>");  
 
         }
 
