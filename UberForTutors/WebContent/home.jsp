@@ -124,7 +124,7 @@
             <div class="span3">
                 <div class="well sidebar-nav" style = "background-color:#17202A;color:white">
                     <ul class="nav nav-list">
-                        <li class="nav-header">Sidebar</li>
+                        <li class="nav-header">Most Popular</li>
                         <li class="active">
                             <a href="#">Link</a>
                         </li>

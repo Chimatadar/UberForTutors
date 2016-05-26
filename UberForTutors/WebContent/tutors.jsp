@@ -122,7 +122,7 @@
     </div>
 <div class="row-fluid">
                     <div class="span4 hero-unit">
-                        <h2>Skill 1</h2>
+                        <h2>Based on Rating</h2>
 
                         <p></p>
                         <p>
@@ -131,7 +131,7 @@
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                        <h2>Skill 2</h2>
+                        <h2>Based on Common Skill Set</h2>
 
                         <p></p>
                         <p>
@@ -140,7 +140,7 @@
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                        <h2>Skill 3</h2>
+                        <h2>Based on Language</h2>
 
                         <p></p>
                         <p>
@@ -148,10 +148,6 @@
                         </p>
                     </div>
                     <!--/span-->
-                </div>
-                
-            </div>
-            <!--/span-->
-        </div>
+</div>
 </body>
 </html>

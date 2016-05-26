@@ -11,7 +11,94 @@
     <!-- TODO: make sure bootstrap.min.css points to BootTheme generated file
         -->
     <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    
     <style type="text/css">
+    
+    /* USER PROFILE PAGE */
+ .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+    
         body {
             padding-top: 60px;
             padding-bottom: 40px;
@@ -36,7 +123,7 @@
 		   border-radius:50%;
 		   box-shadow:0 0 1px #333;
 		}
-		form, .subscribe:hover>div {
+		 .form2 ,.subscribe:hover>div {
 	    display: none;
 	}
 	
@@ -129,15 +216,27 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span3">
-                <div class="well sidebar-nav" style = "background-color:#17202A;color:white">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Sidebar</li>
-                        <li class="active">
-                            <a href="#">Link</a>
-                        </li>
-                        
-                    </ul>
-                </div>
+                <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
+        </div>
+        <div class="useravatar">
+            <img alt="" 
+            src="
+<!--             http://lorempixel.com/100/100/people/9/ -->
+            "
+            >
+        </div>
+        <div class="card-info"> <span class="card-title">Username</span>
+        </div>
+        
+    </div>
+    <form method='post' action=''>
+			<div class="hero-unit" style = "background-color:white;padding:5px;">
+			<input type='submit' value='Request' name='update' class="btn btn-primary btn-medium ">
+			</div>
+			</form>
                 <!--/.well -->
             </div>
             <!--/span-->
@@ -161,27 +260,37 @@
                         <h2>Skills user knows</h2>
 
                         <p></p>
-                        <p>
-                            <a class="btn" href="#">    &raquo;</a>
-                        </p>
+                        
+                        <div class="subscribe">
+    <div class="btn">Add a skil</div>
+    <form class = "form2" action="" method="post" >
+    <p>
+            <input type="text" class="email_field" name="skill" size="18" placeholder="enter a skill" />
+            <input class="email_btn" name="submit" type="submit" value="Enter" />
+        </p>
+    </form>
+</div>
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
                         <h2>Skills user learnt</h2>
 
                         <p></p>
-                        <p>
-                            <a class="btn" href="skills.jsp">Add a skill &raquo;</a>
-                        </p>
+                        
+                       <p>
+                            <a class="btn" href="skills.jsp"> Learn a new skill &raquo;</a>
+                        </p> 
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                        <h2>Skills user taught</h2>
-
+                       <h2>Skills user taught</h2>
                         <p></p>
-                        <p>
-                            <a class="btn" href="#">Teach a new Skill &raquo;</a>
-                        </p>
+                        Skill -
+                        
+                         <% for(int i = 0; i < 5; i++) { %>
+          					<i class="fa fa-star"></i>
+    					<% } %>
+                      
                     </div>
                     <!--/span-->
                 </div>
