@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import org.apache.catalina.User;
 import org.apache.jasper.tagplugins.jstl.core.Catch;
 
+import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
 import Model.SkillsTaught;
 import Model.UserSkillRatingsModel;
@@ -143,6 +144,53 @@ public class ProfileDataServices {
 		{
 			ex.printStackTrace();
 			return new ArrayList<SkillsLearntWithActivityId>();
+		}
+		finally {
+			connection.close();
+			
+		}
+	}
+	
+	public List<Notifications> getNotifications(int userId) throws SQLException{
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			connection=ds.getConnection();
+			
+			List<Notifications> skillsLearnt = new ArrayList<Notifications>();
+			
+			query = "select UserSkillRatings.UserId, Activity.ActivityId, Skills.SkillName, User.Email  from UserSkillRatings "
+					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=? "
+					+ "and UserSkillRatings.taught=? inner join on Activity UserSkillRatings.UserId=Activity.FromUser "
+					+ "and Skills.SkillId=Activity.SkillId inner join User on Activity.FromUser=User.UserId";
+			
+			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
+			preparedStmt1.setInt(1, userId);
+			preparedStmt1.setInt(2, 3);
+			resultSet = preparedStmt1.executeQuery();
+			
+			while(resultSet.next()){
+				
+				Notifications notifications = new Notifications();
+				notifications.userId=resultSet.getInt(1);
+				notifications.activityId=resultSet.getInt(2);
+				notifications.skill=resultSet.getString(3);
+				notifications.tuteeEmail=resultSet.getString(4);
+						
+			}
+			
+			
+			return skillsLearnt;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return new ArrayList<Notifications>();
 		}
 		finally {
 			connection.close();
