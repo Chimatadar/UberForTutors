@@ -29,11 +29,8 @@ public class SignupDataServices {
 		
 		try{
 			
-			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 						
 			query = "select email from User where email=?";
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);

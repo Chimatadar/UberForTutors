@@ -24,13 +24,13 @@ public class LoginDataServices {
 		
 		try{
 
-			//Class.forName("com.mysql.jdbc.Driver");
-			//connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
-			Context initContext = new InitialContext();
+		/*	Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection = ds.getConnection();
+			connection = ds.getConnection();*/
 			
 
 			
