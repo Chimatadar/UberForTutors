@@ -34,7 +34,7 @@ public class HomeDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			
+			connection=ds.getConnection();
 			query="select * from categories";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -82,6 +82,7 @@ public class HomeDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			connection=ds.getConnection();
 			query="select * from skills where SkillName = ?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -129,7 +130,7 @@ public class HomeDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			
+			connection=ds.getConnection();
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select activity.FromUser,activity.SkillId,activity.Time,skills.SkillName,user.Email "
 					+ "from activity "
