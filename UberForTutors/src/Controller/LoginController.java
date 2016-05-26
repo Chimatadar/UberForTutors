@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		//response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
 		String email = request.getParameter("email");
@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
         
-        
+        if(userModel!=null){
         if(userModel.UserId>0)
         {
         	session.setAttribute("UserId", userModel.UserId);
@@ -76,5 +76,5 @@ public class LoginController extends HttpServlet {
         }
 
 	}
-
+   }
 }
