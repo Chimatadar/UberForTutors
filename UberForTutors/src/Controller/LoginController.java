@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import DataServices.LoginDataServices;
 
 import Model.UserModel;
@@ -63,7 +61,7 @@ public class LoginController extends HttpServlet {
         }
         else
         {
-        out.println("<p>User name or Password is incorrect</p>");  
+        	out.println("<p>User name or Password is incorrect</p>");  
 
         }
 
