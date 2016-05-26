@@ -25,10 +25,8 @@ public class RankingDataServices {
 		try{
 			
 			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			query="select * from userskillratings where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -68,12 +66,8 @@ public class RankingDataServices {
 		String query=null;
 		
 		try{
-			
-			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			query="select * from userskillratings where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -114,10 +108,8 @@ public class RankingDataServices {
 		try{
 			
 			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			query="select * from userlanguage where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);

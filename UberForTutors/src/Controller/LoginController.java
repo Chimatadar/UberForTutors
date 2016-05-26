@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
         if(userModel.UserId>0)
         {
         	session.setAttribute("UserId", userModel.UserId);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Status.jsp");
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("home.jsp");
              
              requestDispatcher.forward(request, response);
         }

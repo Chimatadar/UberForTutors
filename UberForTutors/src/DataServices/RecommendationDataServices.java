@@ -22,12 +22,8 @@ public class RecommendationDataServices {
 		
 		try{
 			
-			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			query="select userskillratings.UserId,userskillratings.SkillId,userskillratings.RatingId,skills.SkillName,skills.CategoryId "
 					+ "from userskillratings "
 					+ "Inner Join skills "
@@ -70,11 +66,8 @@ public class RecommendationDataServices {
 		
 		try{
 			
-			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			query="select * from skillcharacteristics where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
@@ -108,11 +101,8 @@ public class RecommendationDataServices {
 		
 		try{
 			
-			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			query="select * from skills where CategoryId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, categoryId);
