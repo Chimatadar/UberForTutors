@@ -63,11 +63,15 @@ public class RankingDataServices {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			query="select * from userskillratings where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, userId);
@@ -101,11 +105,15 @@ public class RankingDataServices {
 	public static ArrayList<UserLanguageModel> getUserLanguage(int userId) {
 		// TODO Auto-generated method stub
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			query="select * from userlanguage where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, userId);

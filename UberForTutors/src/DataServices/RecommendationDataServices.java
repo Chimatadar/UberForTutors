@@ -65,11 +65,15 @@ public class RecommendationDataServices {
 
 	public ArrayList<Integer> getCharacteristicsBySkill(int skillId) {
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			query="select * from skillcharacteristics where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
@@ -98,11 +102,15 @@ public class RecommendationDataServices {
 
 	public ArrayList<Integer> getAllSkillsByCategory(int categoryId) {
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			query="select * from skills where CategoryId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, categoryId);

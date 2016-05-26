@@ -70,15 +70,18 @@ public class HomeDataServices {
 
 	
 	public ArrayList<String> searchSkills(String searchSkill) {
-		Connection connection=null;
-		String query=null;
-		ResultSet resultSet=null;
 		ArrayList<String> skillList = new ArrayList<String>();
-				
+		
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			query="select * from skills where SkillName = ?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -115,16 +118,17 @@ public class HomeDataServices {
 	
 	
 	public ArrayList<ReqNotificationDataContract> checkNotification(int UserId){
-	
-		Connection connection=null;
-		String query=null;
-		ResultSet resultSet=null;
 		ArrayList<ReqNotificationDataContract> requests = new ArrayList<>();
-				
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select activity.FromUser,activity.SkillId,activity.Time,skills.SkillName,user.Email "

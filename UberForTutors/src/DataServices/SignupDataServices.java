@@ -84,10 +84,7 @@ public class SignupDataServices {
 			ex.printStackTrace();
 			return 1;
 		}
-		finally {
-			connection.close();
-			
-		}
+		
 		return 0;
 	}
 }
