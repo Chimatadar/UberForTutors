@@ -10,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpSession;
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
 import DataServices.LoginDataServices;
 
@@ -43,7 +47,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -51,17 +55,26 @@ public class LoginController extends HttpServlet {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         
+        
         LoginDataServices loginDataServices=new LoginDataServices();
+        HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
+        
         
         if(userModel.UserId>0)
         {
-        	RequestDispatcher rs = request.getRequestDispatcher("HomeController");
-            rs.forward(request, response);
+        	session.setAttribute("UserId", userModel.UserId);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Status.jsp");
+             
+             requestDispatcher.forward(request, response);
         }
         else
         {
+<<<<<<< HEAD
         	out.println("<p>User name or Password is incorrect</p>");  
+=======
+            out.println("<p>User name or Password is incorrect</p>");  
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
         }
 

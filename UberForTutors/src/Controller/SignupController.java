@@ -47,6 +47,8 @@ public class SignupController extends HttpServlet {
         String location = request.getParameter("location");
         String language = request.getParameter("language");
         
+        
+        
         List<String> languageList=null;
         SignupDataServices signupDataServices = new SignupDataServices();
         

@@ -35,7 +35,7 @@ public class SignupDataServices {
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			connection=ds.getConnection();
-			
+						
 			query = "select email from User where email=?";
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setString(1, email);
@@ -85,10 +85,7 @@ public class SignupDataServices {
 			ex.printStackTrace();
 			return 1;
 		}
-		finally {
-			connection.close();
-			
-		}
+		
 		return 0;
 	}
 }
