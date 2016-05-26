@@ -59,12 +59,12 @@
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Password</label>
-			                        	<input type="password" name="fpassword" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Sign in!</button>
 			                    </form>
 		                    </div>
-                        </div>
+                        </div> 
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 social-login">
