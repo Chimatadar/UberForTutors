@@ -26,7 +26,7 @@ public class RecommendationDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			
+			connection=ds.getConnection();
 			connection=ds.getConnection();
 			query="select userskillratings.UserId,userskillratings.SkillId,userskillratings.RatingId,skills.SkillName,skills.CategoryId "
 					+ "from userskillratings "
@@ -74,6 +74,7 @@ public class RecommendationDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			connection=ds.getConnection();
 			query="select * from skillcharacteristics where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
@@ -111,6 +112,7 @@ public class RecommendationDataServices {
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			connection=ds.getConnection();
 			query="select * from skills where CategoryId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, categoryId);

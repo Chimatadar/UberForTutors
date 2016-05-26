@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="RankingController" >
+<form method="post" action="LoginController" >
 <div class = "span5"></div>
    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">

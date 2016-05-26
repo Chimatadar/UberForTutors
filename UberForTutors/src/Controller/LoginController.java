@@ -52,15 +52,18 @@ public class LoginController extends HttpServlet {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         
+        
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
-        session.setAttribute("UserId", userModel.UserId);
+        
         
         if(userModel.UserId>0)
         {
-        	RequestDispatcher rs = request.getRequestDispatcher("HomeController");
-            rs.forward(request, response);
+        	session.setAttribute("UserId", userModel.UserId);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Status.jsp");
+             
+             requestDispatcher.forward(request, response);
         }
         else
         {

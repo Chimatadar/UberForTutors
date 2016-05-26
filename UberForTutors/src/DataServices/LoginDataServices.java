@@ -23,6 +23,7 @@ public class LoginDataServices {
 		String query=null;
 		
 		try{
+
 			//Class.forName("com.mysql.jdbc.Driver");
 			//connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
@@ -31,16 +32,22 @@ public class LoginDataServices {
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			connection = ds.getConnection();
 			
+
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+
 			query="select * from user where Email=? and Password=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
 			preparedStmt1.setString(1, email);
 			preparedStmt1.setString(2, password);
 			resultSet = preparedStmt1.executeQuery();
-			
+			System.out.println(email+" "+password);
 			UserModel userModel=new UserModel();
 			if(resultSet.next())
 			{
+				System.out.println("Entered");
 				userModel.UserId=resultSet.getInt("UserId");
 				userModel.Password=resultSet.getString("Password");
 				return userModel;
@@ -53,14 +60,14 @@ public class LoginDataServices {
 			ex.printStackTrace();
 			return null;
 		}
-		finally{
+		/*finally{
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		
 	}
