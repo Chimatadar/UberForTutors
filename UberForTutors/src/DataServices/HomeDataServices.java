@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import javax.jws.soap.SOAPBinding.Use;
 import javax.management.NotificationBroadcasterSupport;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -22,14 +25,16 @@ public class HomeDataServices {
 	
 	public ArrayList<String> allCategories() {
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
-		ArrayList<String> categoryList = new ArrayList<String>();
-		
+		String query=null;
+		ArrayList<String> categoryList=new ArrayList<String>();
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			
 			query="select * from categories";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -73,7 +78,7 @@ public class HomeDataServices {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			query="select * from skills where SkillName = ?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -119,7 +124,7 @@ public class HomeDataServices {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select activity.FromUser,activity.SkillId,activity.Time,skills.SkillName,user.Email "

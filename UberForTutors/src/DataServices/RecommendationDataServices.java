@@ -4,23 +4,30 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import com.mysql.jdbc.PreparedStatement;
 
 import DataContracts.RecoCategoryDataContract;
-import Model.SkillsModel;
 
 public class RecommendationDataServices {
 
 	public ArrayList<RecoCategoryDataContract> getSkillsAndCategories(int userId) {
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
+			
+			connection=ds.getConnection();
 			query="select userskillratings.UserId,userskillratings.SkillId,userskillratings.RatingId,skills.SkillName,skills.CategoryId "
 					+ "from userskillratings "
 					+ "Inner Join skills "

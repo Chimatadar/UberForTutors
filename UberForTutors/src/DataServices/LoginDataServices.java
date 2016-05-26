@@ -24,10 +24,10 @@ public class LoginDataServices {
 		
 		try{
 			
+			
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
 		
 			query="select * from user where Email=? and Password=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+ <Resource name="jdbc/moviedb" auth="Container" 
+ type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="5000"
+               username="root" password="admin" 
+               
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/moviedb"/>
+               
+               
+           <Resource name="jdbc/moviedb1"
+      auth="Container"
+      type="javax.sql.DataSource"
+      driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql://172.31.24.70:3306/moviedb"
+      username="root"
+      password="admin"
+      maxActive="100"
+      maxIdle="30"
+      maxWait="5000"
+  />
+
+</Context>
