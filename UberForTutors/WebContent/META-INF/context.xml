@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 
- <Resource name="jdbc/moviedb" auth="Container" 
+ <Resource name="jdbc/uftdb" auth="Container" 
  type="javax.sql.DataSource"
                maxActive="100" maxIdle="30" maxWait="5000"
 
-               username="testuser" password="testpass" 
+             username="root" password="admin"
 
-               username="root" password="admin" 
+                
 
                
                driverClassName="com.mysql.jdbc.Driver"
-               url="jdbc:mysql://localhost:3306/moviedb"/>
+               url="jdbc:mysql://localhost:3306/uftdb"/>
                
                
-           <Resource name="jdbc/moviedb1"
-      auth="Container"
-      type="javax.sql.DataSource"
-      driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://172.31.24.70:3306/moviedb"
-
-      username="testuser"
-      password="testpass"
-
-      username="root"
-      password="admin"
-
-      maxActive="100"
-      maxIdle="30"
-      maxWait="5000"
-  />
-
+           
 </Context>
