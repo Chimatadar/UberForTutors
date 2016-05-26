@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import Model.UserLanguageModel;
 import Model.UserSkillRatingsModel;
 
@@ -15,11 +19,15 @@ public class RankingDataServices {
 	public static ArrayList<UserSkillRatingsModel> getUserSkillRatingsBySkillId(int skillId) {
 		// TODO Auto-generated method stub
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
+			
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
 			query="select * from userskillratings where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
@@ -54,11 +62,13 @@ public class RankingDataServices {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
 			query="select * from userskillratings where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, userId);
@@ -92,11 +102,15 @@ public class RankingDataServices {
 	public static ArrayList<UserLanguageModel> getUserLanguage(int userId) {
 		// TODO Auto-generated method stub
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
+			
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
 			query="select * from userlanguage where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, userId);

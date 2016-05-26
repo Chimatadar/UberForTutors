@@ -64,7 +64,7 @@
 			                        <button type="submit" class="btn">Sign in!</button>
 			                    </form>
 		                    </div>
-                        </div>
+                        </div> 
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 social-login">

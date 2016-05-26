@@ -1,6 +1,6 @@
 package DataServices;
 
-import java.awt.List;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import javax.jws.soap.SOAPBinding.Use;
 import javax.management.NotificationBroadcasterSupport;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -16,20 +19,22 @@ import DataContracts.ReqNotificationDataContract;
 import Model.ActivityModel;
 import Model.SkillsModel;
 import Model.UserModel;
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
+//import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 public class HomeDataServices {
 	
 	public ArrayList<String> allCategories() {
 		Connection connection=null;
-		String query=null;
 		ResultSet resultSet=null;
-		ArrayList<String> categoryList = new ArrayList<String>();
-		
+		String query=null;
+		ArrayList<String> categoryList=new ArrayList<String>();
 		try{
+			
+
+						
 			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+
 			query="select * from categories";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -65,15 +70,17 @@ public class HomeDataServices {
 
 	
 	public ArrayList<String> searchSkills(String searchSkill) {
-		Connection connection=null;
-		String query=null;
-		ResultSet resultSet=null;
 		ArrayList<String> skillList = new ArrayList<String>();
-				
+		
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
+			
+			
 			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			query="select * from skills where SkillName = ?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -110,17 +117,16 @@ public class HomeDataServices {
 	
 	
 	public ArrayList<ReqNotificationDataContract> checkNotification(int UserId){
-	
-		Connection connection=null;
-		String query=null;
-		ResultSet resultSet=null;
 		ArrayList<ReqNotificationDataContract> requests = new ArrayList<>();
-				
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			//to be changed
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/ubt","root","myPassword");
 			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select activity.FromUser,activity.SkillId,activity.Time,skills.SkillName,user.Email "
 					+ "from activity "
