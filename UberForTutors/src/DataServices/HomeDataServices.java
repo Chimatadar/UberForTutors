@@ -1,6 +1,6 @@
 package DataServices;
 
-import java.awt.List;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import DataContracts.ReqNotificationDataContract;
 import Model.ActivityModel;
 import Model.SkillsModel;
 import Model.UserModel;
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
+//import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 public class HomeDataServices {
 	
