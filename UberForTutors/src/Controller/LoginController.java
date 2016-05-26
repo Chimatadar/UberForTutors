@@ -10,10 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
 import javax.servlet.http.HttpSession;
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
 import DataServices.LoginDataServices;
 
@@ -70,11 +67,8 @@ public class LoginController extends HttpServlet {
         }
         else
         {
-<<<<<<< HEAD
         	out.println("<p>User name or Password is incorrect</p>");  
-=======
             out.println("<p>User name or Password is incorrect</p>");  
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
         }
 
