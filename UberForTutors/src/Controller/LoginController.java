@@ -10,11 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
-import javax.servlet.http.HttpSession;
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
+
+import javax.servlet.http.HttpSession;
 import DataServices.LoginDataServices;
 
 import Model.UserModel;
@@ -49,13 +47,13 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		response.setContentType("text/html;charset=UTF-8");
+		//response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        
+        System.out.println("Here");
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
@@ -70,11 +68,10 @@ public class LoginController extends HttpServlet {
         }
         else
         {
-<<<<<<< HEAD
+
         	out.println("<p>User name or Password is incorrect</p>");  
-=======
-            out.println("<p>User name or Password is incorrect</p>");  
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
+
+  
 
         }
 
