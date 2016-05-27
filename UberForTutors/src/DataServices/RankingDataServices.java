@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import Model.UserLanguageModel;
+import Model.UserModel;
 import Model.UserSkillRatingsModel;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -136,6 +137,36 @@ public class RankingDataServices {
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+
+	public String getUserById(Integer userID) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+		
+			query="select * from user where userId=?";
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+			
+			preparedStmt1.setInt(1, userID);
+			resultSet = preparedStmt1.executeQuery();
+			if(resultSet.next())
+			{
+				return resultSet.getString("Email");
+			}
+			
+			return null;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
 			return null;
 		}
 	}
