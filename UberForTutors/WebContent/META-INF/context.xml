@@ -5,7 +5,7 @@
  type="javax.sql.DataSource"
                maxActive="100" maxIdle="30" maxWait="5000"
 
-             username="root" password="admin"
+             username="rax" password="rax123"
 
                 
 

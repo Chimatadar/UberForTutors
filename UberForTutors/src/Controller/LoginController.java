@@ -53,28 +53,25 @@ public class LoginController extends HttpServlet {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        System.out.println("Here");
+        
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
         
-        if(userModel!=null){
         if(userModel.UserId>0)
         {
-        	session.setAttribute("UserId", userModel.UserId);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("home.jsp");
+        	        	
+             session.setAttribute("UserId", userModel.UserId);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
              
              requestDispatcher.forward(request, response);
         }
         else
         {
-
         	out.println("<p>User name or Password is incorrect</p>");  
-
-  
 
         }
 
 	}
-   }
+
 }

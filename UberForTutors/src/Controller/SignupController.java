@@ -3,6 +3,8 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,17 +46,29 @@ public class SignupController extends HttpServlet {
         
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String location = request.getParameter("location");
-        String language = request.getParameter("language");
+        String location = request.getParameter("address");
+        String[] languageArray = request.getParameterValues("language");
+        //String language = request.getParameter("language");
         
+        email=email.trim();
         
-        
-        List<String> languageList=null;
+        List<String> languageList=new ArrayList<String>(Arrays.asList(languageArray));
         SignupDataServices signupDataServices = new SignupDataServices();
         
         
         try {
+        	
 			int result = signupDataServices.signupUser(email, password, location, languageList);
+			
+			if(result==1){
+				out.println("This Email is already registered");
+				response.sendRedirect("signUp.jsp");
+			}else{
+				out.println("Sign up is successful");
+				response.sendRedirect("Index.jsp");
+			}
+        	
+        	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

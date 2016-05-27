@@ -64,11 +64,11 @@
 			                        	<input type="password" name="password" placeholder="Password..." class="form-control" >
 			                        </div>
 			                        <div class="form-group" style = "padding-left:0px">
-			                        	<select class="form-group col-sm-12 selectpicker" multiple >
+			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language" >
 										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>
-										  <option style = "background-color:#de615e;padding-bottom:10px">English</option>
-										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>
-									      <option style = "background-color:#de615e ;padding-bottom:10px">English</option>
+										  <option style = "background-color:#de615e;padding-bottom:10px">Gujurathi</option>
+										  <option style = "background-color:#de615e ;padding-bottom:10px">Hindi</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Kannada</option>
 										</select>
 										</div>
 			                        <div class="form-group">
