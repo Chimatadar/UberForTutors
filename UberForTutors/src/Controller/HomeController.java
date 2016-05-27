@@ -76,12 +76,13 @@ public class HomeController extends HttpServlet {
         int UserId = (int) session.getAttribute("UserId");
         //logout is a button if it si true...i.e pressed
         boolean logout = true;
-        
+        RecoController recoController=new RecoController();
         
         ArrayList<CategoriesModel> categoryList = homeDataServices.allCategories();
         
-        ArrayList<Integer> recommendedSkillIds=(ArrayList<Integer>) session.getAttribute("recommendedSkillIds");
-        ArrayList<SkillsModel> skillsModels=new ArrayList<SkillsModel>();
+        ArrayList<SkillsModel> recommendedSkills= recoController.RecoSkills(UserId);
+        		
+       /* ArrayList<SkillsModel> skillsModels=new ArrayList<SkillsModel>();
         for(Integer recommendedSkillId:recommendedSkillIds)
         {
         	SkillsModel skillsModel=new SkillsModel();
@@ -89,8 +90,8 @@ public class HomeController extends HttpServlet {
         	skillsModel.SkillId=recommendedSkillId;
         	skillsModel.SkillName=skillName;
         	skillsModels.add(skillsModel);
-        }
-        request.setAttribute("recommendedSkillIds", skillsModels);
+        }*/
+        request.setAttribute("recommendedSkillIds", recommendedSkills);
         
         if(categoryList != null)
         {

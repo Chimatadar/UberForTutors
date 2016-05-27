@@ -1,51 +1,24 @@
 package Controller;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DataContracts.RecoCategoryDataContract;
 import DataServices.RecommendationDataServices;
 import Model.SkillsModel;
 
-/**
- * Servlet implementation class RecommendationController
- */
-@WebServlet("/RecommendationController")
-public class RecommendationController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RecommendationController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			
-			HttpSession session=request.getSession();
-			int userId = (int) session.getAttribute("UserId");
-			
+public class RecoController {
+	public ArrayList<SkillsModel> RecoSkills(int userId){
+			try{
 			RecommendationDataServices recommendationDataServices=new RecommendationDataServices();
 			
 			//find category in which he has learnt maximum skills
@@ -170,19 +143,28 @@ public class RecommendationController extends HttpServlet {
 			        	recommendedSkillIds.add(entry.getKey());
 			        }
 			        
+			        ArrayList<SkillsModel> recommendedSkills=new ArrayList<SkillsModel>();
+			        for (Integer recoSkillId : recommendedSkillIds) {
+						SkillsModel recommendedSkill=new SkillsModel();
+						recommendedSkill.SkillName=recommendationDataServices.getSkillNameById(recoSkillId);
+						recommendedSkill.SkillId=recoSkillId;
+						recommendedSkills.add(recommendedSkill);
+					}
 			        
-			        session.setAttribute("recommendedSkillIds", recommendedSkillIds);
+			        return recommendedSkills;
+			        
 		        }
 		        
 		        
 		        		
 		        
 			}
+			return null;
 		}
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
+			return null;
 		}
 	}
-
 }

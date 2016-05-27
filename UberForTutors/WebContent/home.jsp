@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.*"%>
 
@@ -140,7 +140,11 @@
  					<% for(SkillsModel user : recommendedSkillModels) { %>
                         
                         <li class="active">
+<<<<<<< HEAD
                             <a href="SkillController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
+=======
+                            <a href="SkillController?sid="><%= user.SkillName %></a>
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
                         </li>
                         <% } %>
                     </ul>

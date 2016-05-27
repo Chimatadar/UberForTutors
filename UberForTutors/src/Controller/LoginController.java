@@ -10,8 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+
+import javax.servlet.http.HttpSession;
 import DataServices.LoginDataServices;
 
 import Model.UserModel;
@@ -56,22 +57,21 @@ public class LoginController extends HttpServlet {
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
-        System.out.println("ia m here");
-        if(userModel!=null){
+        
         if(userModel.UserId>0)
         {
-        	session.setAttribute("UserId", userModel.UserId);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("home.jsp");
+        	        	
+             session.setAttribute("UserId", userModel.UserId);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
              
              requestDispatcher.forward(request, response);
         }
         else
         {
         	out.println("<p>User name or Password is incorrect</p>");  
-            out.println("<p>User name or Password is incorrect</p>");  
 
         }
 
 	}
-	}
+
 }
