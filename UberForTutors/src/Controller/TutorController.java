@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import Model.SkillsModel;
 
 /**
  * Servlet implementation class TutorController
@@ -48,14 +51,14 @@ public class TutorController extends HttpServlet {
         String SkillId = request.getParameter("SkillId");
         HttpSession session = request.getSession();
         int UserId = (int)session.getAttribute("UserId");
+       
+        RankController rankController = new RankController();
         
-        request.setAttribute("SkillId", SkillId);
-        RequestDispatcher rs1=request.getRequestDispatcher("RankingController");
-        
-        rs1.include(request, response);
-        return;
+        //change functions
+        ArrayList<Integer> rankedTutors= rankController.giveTutor(SkillId);
         
         //for each tutor...if learn is clicked go to visit page..forward to request controller
+        
        
 	}
 
