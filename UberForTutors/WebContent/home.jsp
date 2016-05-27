@@ -140,11 +140,8 @@
  					<% for(SkillsModel user : recommendedSkillModels) { %>
                         
                         <li class="active">
-<<<<<<< HEAD
                             <a href="SkillController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
-=======
-                            <a href="SkillController?sid="><%= user.SkillName %></a>
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
+
                         </li>
                         <% } %>
                     </ul>
@@ -162,18 +159,63 @@
                 </div>
 <!--                 <div class="row-fluid">
  -->                    
- 				<% for(CategoriesModel user : categoryModels) { %>
- 					<div class="span3 hero-unit" style = "background-color:#17202A;color:white">
-                        <h2><%= user.CategoryName %></h2>
+ 				<div class="row-fluid">
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                        <h3><%= categoryModels.get(0).CategoryName %></h3>
 
                         <p></p>
                         <p>
-                            <a class="btn" href="skills.jsp?">View details &raquo;</a>
-                            <a href=SkillsController?cid=<%=user.CategoryId%>>
-					</a>
+                            <a class="btn" href="#">View details &raquo;</a>
                         </p>
                     </div>
-                    <% } %>
+                    <!--/span-->
+                    <div class="span4 hero-unit">
+                        <h3><%= categoryModels.get(1).CategoryName %></h3>
+                        <p></p>
+                        <p>
+                            <a class="btn" href="#">View details &raquo;</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span4 hero-unit">
+                        <h3><%= categoryModels.get(2).CategoryName %></h3>
+
+                        <p></p>
+                        <p>
+                            <a class="btn" href="#">View details &raquo;</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                </div>
+                <div class="row-fluid">
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                        <h3><%= categoryModels.get(3).CategoryName %></h3>
+
+                        <p></p>
+                        <p>
+                            <a class="btn" href="#">View details &raquo;</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span4 hero-unit">
+                        <h3><%= categoryModels.get(4).CategoryName %></h3>
+                        <p></p>
+                        <p>
+                            <a class="btn" href="#">View details &raquo;</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span4 hero-unit">
+                        <h3><%= categoryModels.get(5).CategoryName %></h3>
+
+                        <p></p>
+                        <p>
+                            <a class="btn" href="#">View details &raquo;</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                </div>
+                <!--/row-->
                     
                     
                     <!--/span-->
