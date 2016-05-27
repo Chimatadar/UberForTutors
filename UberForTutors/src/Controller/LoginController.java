@@ -10,10 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
 import javax.servlet.http.HttpSession;
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
 import DataServices.LoginDataServices;
 
@@ -63,18 +60,15 @@ public class LoginController extends HttpServlet {
         
         if(userModel.UserId>0)
         {
-        	session.setAttribute("UserId", userModel.UserId);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("home.jsp");
+        	        	
+             session.setAttribute("UserId", userModel.UserId);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Status.jsp");
              
              requestDispatcher.forward(request, response);
         }
         else
         {
-<<<<<<< HEAD
         	out.println("<p>User name or Password is incorrect</p>");  
-=======
-            out.println("<p>User name or Password is incorrect</p>");  
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 
         }
 
