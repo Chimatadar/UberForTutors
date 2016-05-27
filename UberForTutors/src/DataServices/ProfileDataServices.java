@@ -80,12 +80,11 @@ public class ProfileDataServices {
 			List<String> skillsKnown = new ArrayList<String>();
 			
 			query = "select Skills.SkillName from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=? "
-					+ "and UserSkillRatings.taught=?";
+					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=?";
+					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
-			preparedStmt1.setInt(2, 0);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
@@ -118,10 +117,10 @@ public class ProfileDataServices {
 			
 			List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 			
-			query = "select UserSkillRatings.UserId, Activity.ActivityId, Skills.SkillName, User.Email  from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=? "
-					+ "and UserSkillRatings.taught=? inner join on Activity UserSkillRatings.UserId=Activity.FromUser "
-					+ "and Skills.SkillId=Activity.SkillId inner join User on Activity.ToUser=User.UserId";
+			query = "select user.UserId, activity.ActivityId, skills.SkillName, user.Email  from userskillratings "
+					+ "inner join skills on userskillratings.SkillId=skills.SkillId and UserSkillRatings.UserId=? "
+					+ "and UserSkillRatings.taught=? inner join Activity on UserSkillRatings.UserId=Activity.FromUser "
+					+ "inner join User on Activity.ToUser=User.UserId";
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
@@ -130,7 +129,7 @@ public class ProfileDataServices {
 			
 			while(resultSet.next()){
 				SkillsLearntWithActivityId skillsLearntWithActivityId = new SkillsLearntWithActivityId();
-				skillsLearntWithActivityId.userId=resultSet.getInt(1);
+				skillsLearntWithActivityId.tutorId=resultSet.getInt(1);
 				skillsLearntWithActivityId.activityId=resultSet.getInt(2);
 				skillsLearntWithActivityId.skill=resultSet.getString(3);
 				skillsLearntWithActivityId.tutorEmail=resultSet.getString(4);
@@ -164,14 +163,14 @@ public class ProfileDataServices {
 			
 			List<Notifications> skillsLearnt = new ArrayList<Notifications>();
 			
-			query = "select UserSkillRatings.UserId, Activity.ActivityId, Skills.SkillName, User.Email  from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=? "
-					+ "and UserSkillRatings.taught=? inner join on Activity UserSkillRatings.UserId=Activity.FromUser "
-					+ "and Skills.SkillId=Activity.SkillId inner join User on Activity.FromUser=User.UserId";
+			query = "select user.UserId, Activity.ActivityId, Skills.SkillName, User.Email from UserSkillRatings "
+					+ "inner join skills on UserSkillRatings.SkillId=Skills.SkillId and UserSkillRatings.UserId=? "
+					+ "and UserSkillRatings.taught=? inner join activity on UserSkillRatings.UserId=Activity.ToUser "
+					+ "inner join user on Activity.FromUser=user.UserId";
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
-			preparedStmt1.setInt(2, 3);
+			preparedStmt1.setInt(2, 2);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){

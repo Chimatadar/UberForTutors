@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,6 +55,13 @@ public class ProfileController extends HttpServlet {
 			skillsKnown = profileDataServices.getSkillsKnown(userId);
 			skillsLearnt = profileDataServices.getSkillsLearnt(userId);
 			notifications = profileDataServices.getNotifications(userId);
+			
+			request.setAttribute("skillsTaught", skillsTaught);
+			request.setAttribute("skillsKnown", skillsKnown);
+			request.setAttribute("skillsLearnt", skillsLearnt);
+			request.setAttribute("notifications", notifications);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("profile.jsp");
+            requestDispatcher.forward(request, response);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
