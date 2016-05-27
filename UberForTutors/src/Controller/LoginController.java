@@ -10,8 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+
+import javax.servlet.http.HttpSession;
 import DataServices.LoginDataServices;
 
 import Model.UserModel;
@@ -56,7 +57,6 @@ public class LoginController extends HttpServlet {
         LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
-        
         
         if(userModel.UserId>0)
         {

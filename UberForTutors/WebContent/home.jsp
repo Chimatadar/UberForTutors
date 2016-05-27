@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.*"%>
+
+<%@ page import="java.sql.*"%>
+
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,6 +60,11 @@
 </head>
 
 <body>
+
+<%
+		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
+		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkillIds");
+	%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -108,8 +120,8 @@
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                         <li>
-                        <form class="navbar-form" action="" method="post">
-                        <input class="span5" type="text" placeholder="search a skill">
+                        <form class="navbar-form" action="HomeController" method="post">
+                        <input class="span5" type="text" placeholder="search a skill" name="searchSkill">
                         <button type="submit" class="btn">Search</button>
                     </form>
                         </li>
@@ -124,48 +136,13 @@
             <div class="span3">
                 <div class="well sidebar-nav" style = "background-color:#17202A;color:white">
                     <ul class="nav nav-list">
-                        <li class="nav-header">Most Popular</li>
+                        <li class="nav-header">Recommended Skills</li>
+ 					<% for(SkillsModel user : recommendedSkillModels) { %>
+                        
                         <li class="active">
-                            <a href="#">Link</a>
+                            <a href="SkillController?sid="><%= user.SkillId %></a>
                         </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li class="nav-header">Sidebar</li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li class="nav-header">Sidebar</li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
+                        <% } %>
                     </ul>
                 </div>
                 <!--/.well -->
@@ -179,66 +156,26 @@
                         <a class="btn btn-primary btn-large">Learn more &raquo;</a>
                     </p>
                 </div>
-                <div class="row-fluid">
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-                        <h2>Heading</h2>
+<!--                 <div class="row-fluid">
+ -->                    
+ 				<% for(CategoriesModel user : categoryModels) { %>
+ 					<div class="span3 hero-unit" style = "background-color:#17202A;color:white">
+                        <h2><%= user.CategoryName %></h2>
 
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skills.jsp?">View details &raquo;</a>
+                            <a href=SkillsController?cid=<%=user.CategoryId%>>
+					</a>
                         </p>
                     </div>
+                    <% } %>
+                    
+                    
                     <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Heading</h2>
+                    
+                    <!--/span-->
 
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">View details &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Heading</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">View details &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                </div>
-                <!--/row-->
-                <div class="row-fluid">
-                    <div class="span4 hero-unit">
-                        <h2>Heading</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">View details &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Heading</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">View details &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Heading</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">View details &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                </div>
-                <!--/row-->
             </div>
             <!--/span-->
         </div>
@@ -254,5 +191,6 @@
     </script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
+
 
 </html>

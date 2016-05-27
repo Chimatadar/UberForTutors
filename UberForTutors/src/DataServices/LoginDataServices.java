@@ -34,8 +34,6 @@ public class LoginDataServices {
 			
 
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 
 			query="select * from user where Email=? and Password=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
