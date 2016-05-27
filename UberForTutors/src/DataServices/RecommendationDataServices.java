@@ -128,4 +128,35 @@ public class RecommendationDataServices {
 		}
 	}
 
+	public String getSkillNameById(Integer recoSkillId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			query="select * from skills where SkillId=?";
+			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
+			preparedStmt.setInt(1, recoSkillId);
+			
+			resultSet = preparedStmt.executeQuery();
+			
+			if(resultSet.next()){
+				return resultSet.getString("SkillName");
+			}
+			else 
+				return null;
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			return null;
+		}
+		
+	}
+
 }

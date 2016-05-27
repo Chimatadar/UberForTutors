@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.*"%>
 
@@ -140,7 +140,7 @@
  					<% for(SkillsModel user : recommendedSkillModels) { %>
                         
                         <li class="active">
-                            <a href="SkillController?sid="><%= user.SkillId %></a>
+                            <a href="SkillController?sid="><%= user.SkillName %></a>
                         </li>
                         <% } %>
                     </ul>
