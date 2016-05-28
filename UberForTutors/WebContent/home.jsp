@@ -165,12 +165,12 @@
 
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(0).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(1).CategoryName %></h3>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(1).CategoryId %>">View details &raquo;</a>
                         <p></p>
                         <p>
                             <a class="btn" href="#">View details &raquo;</a>
@@ -178,7 +178,7 @@
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(2).CategoryName %></h3>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(2).CategoryId %>">View details &raquo;</a>
 
                         <p></p>
                         <p>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="row-fluid">
                     <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-                        <h3><%= categoryModels.get(3).CategoryName %></h3>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(3).CategoryId %>">View details &raquo;</a>
 
                         <p></p>
                         <p>
@@ -201,7 +201,7 @@
                         <h3><%= categoryModels.get(4).CategoryName %></h3>
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(4).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
@@ -210,7 +210,7 @@
 
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(5).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
