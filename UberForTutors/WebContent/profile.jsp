@@ -174,7 +174,7 @@ body {
 </head>
 
 <body>
-<%
+	<%
 		ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
 ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
 ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request.getAttribute("skillsLearnt");
@@ -280,9 +280,15 @@ ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getA
 					</form>
 				</div>
 				<div class="row-fluid">
+					<!-- 				ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown"); -->
+					<% if(skillsKnown.size()!=0) { %>
 					<div class="span4 hero-unit">
 						<h2>Skills user knows</h2>
-
+						<ul>
+							<% for(int i = 0; i <skillsKnown.size();i++) { %>
+							<li><%= skillsKnown.get(i)  %>></li>
+							<% } %>
+						</ul>
 						<p></p>
 
 						<div class="subscribe">
@@ -296,27 +302,45 @@ ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getA
 							</form>
 						</div>
 					</div>
+					<% } %>
 					<!--/span-->
+					<!-- 					ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request.getAttribute("skillsLearnt");
+ -->
+					<% if(skillsLearnt.size()!=0) { %>
 					<div class="span4 hero-unit">
 						<h2>Skills user learnt</h2>
-
+						<ul>
+							<% for(int i = 0; i <skillsLearnt.size();i++) { %>
+							<li><%= skillsLearnt.get(i)  %>></li>
+							<% } %>
+						</ul>
 						<p></p>
 
 						<p>
 							<a class="btn" href="skills.jsp"> Learn a new skill &raquo;</a>
 						</p>
 					</div>
+					<% } %>
 					<!--/span-->
+					<!-- 							ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
+ -->
+					<% if(rankedTutors.size()!=0) { %>
+
 					<div class="span4 hero-unit">
 						<h2>Skills user taught</h2>
 						<p></p>
-						Skill -
-
-						<% for(int i = 0; i < 5; i++) { %>
+						<ul>
+						<% for(SkillsTaught user : rankedTutors) { %>
+							<li><%= user.skill %> -</li>
+						<% for(int i = 0; i < user.rating; i++) { %>
 						<i class="fa fa-star"></i>
 						<% } %>
+						<%  } %> 
+						</ul>
+						
 
 					</div>
+					<% } %>
 					<!--/span-->
 				</div>
 
@@ -333,7 +357,8 @@ ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getA
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-    </script>
+		
+	</script>
 	<script
 		src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
