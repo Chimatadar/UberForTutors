@@ -68,6 +68,9 @@ body {
 	href="../assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="../assets/ico/apple-touch-icon-57-precomposed.png">
+<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	
 </head>
 <body>
 	<%
@@ -128,16 +131,19 @@ body {
 			</div>
 		</div>
 	</div>
-	
-    <% for(TutorDataContract user : rankedTutors ) {%>
-	
+
+	<% for(TutorDataContract user : rankedTutors ) {%>
+
 	<div class="row-fluid">
 		<div class="hero-unit">
 			<div class="span5">
 				<h4><%=user.Email%></h4>
 			</div>
-			<div class="span5"><%= user.SkillId%></div>
-
+			<div class="span5">
+				<% for(int i = 0; i < user.SkillId; i++) { %>
+				<i class="fa fa-star"></i>
+				<% } %>
+			</div>
 		</div>
 		<!--/span-->
 		<form method='post' action="">
