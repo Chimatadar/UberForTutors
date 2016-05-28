@@ -144,14 +144,14 @@ body {
 				<i class="fa fa-star"></i>
 				<% } %>
 			</div>
-		</div>
-		<!--/span-->
-		<form method='post' action="">
+			<form method='post' action="">
 			<div class="hero-unit" style="background-color: white; padding: 5px;">
-				<input type='submit' value='Request' name='update'
-					class="btn btn-primary btn-medium ">
+				<a href="ActivityController?userId=<%=user.UserId %>" class="btn btn-primary btn-medium ">Request</a>
 			</div>
 		</form>
+		</div>
+		<!--/span-->
+		
 	</div>
 	<%
 		}
