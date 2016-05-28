@@ -1,3 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.*"%>
+
+<%@ page import="java.sql.*"%>
+
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +60,10 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
+<%
+		ArrayList<UserModel> rankedTutors = (ArrayList<UserModel>) request.getAttribute("rankedTutors");
+		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
+	%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
