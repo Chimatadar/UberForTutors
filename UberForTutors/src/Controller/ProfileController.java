@@ -41,7 +41,7 @@ public class ProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		int userId = Integer.parseInt((String)session.getAttribute("UserId"));
+		int userId = 1;//Integer.parseInt((String)session.getAttribute("UserId"));
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 		List<String> skillsKnown = new ArrayList<String>();
 		List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
@@ -51,14 +51,19 @@ public class ProfileController extends HttpServlet {
 		
 		try {
 			
-			skillsTaught = profileDataServices.getSkillsTaught(userId);
-			skillsKnown = profileDataServices.getSkillsKnown(userId);
-			skillsLearnt = profileDataServices.getSkillsLearnt(userId);
-			notifications = profileDataServices.getNotifications(userId);
+			skillsTaught = profileDataServices.getSkillsTaught(userId); System.out.println(skillsTaught.size());
+			skillsKnown = profileDataServices.getSkillsKnown(userId); System.out.println(skillsTaught.size());
+			skillsLearnt = profileDataServices.getSkillsLearnt(userId); System.out.println(skillsTaught.size());
+			notifications = profileDataServices.getNotifications(userId); System.out.println(skillsTaught.size());
 			
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
-			request.setAttribute("skillsLearnt", skillsLearnt);
+			if(request.getAttribute("userId")==null){
+				request.setAttribute("skillsLearnt", skillsLearnt);
+			}else{
+				request.setAttribute("skillsLearnt", new ArrayList<SkillsLearntWithActivityId>());
+			}
+			
 			request.setAttribute("notifications", notifications);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("profile.jsp");
             requestDispatcher.forward(request, response);

@@ -31,10 +31,9 @@ public class ProfileDataServices {
 		
 		try{
 			
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
 			List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 			
 			query = "select Skills.SkillName, UserSkillRatings.RatingId from UserSkillRatings "
@@ -49,7 +48,7 @@ public class ProfileDataServices {
 			while(resultSet.next()){
 				SkillsTaught skillsTaughtRow = new SkillsTaught();
 				skillsTaughtRow.skill = resultSet.getString(1);
-				skillsTaughtRow.rating = resultSet.getInt(1);
+				skillsTaughtRow.rating = resultSet.getInt(2);
 				skillsTaught.add(skillsTaughtRow);
 			}
 			
@@ -72,10 +71,8 @@ public class ProfileDataServices {
 		String query=null;
 		
 		try{
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			List<String> skillsKnown = new ArrayList<String>();
 			
@@ -110,10 +107,9 @@ public class ProfileDataServices {
 		String query=null;
 		
 		try{
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 			
@@ -156,10 +152,9 @@ public class ProfileDataServices {
 		String query=null;
 		
 		try{
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			List<Notifications> skillsLearnt = new ArrayList<Notifications>();
 			
