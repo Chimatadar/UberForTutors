@@ -170,30 +170,30 @@
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(1).CategoryId %>">View details &raquo;</a>
+                        <h3><%= categoryModels.get(1).CategoryName %></h3>
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(1).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
                     <div class="span4 hero-unit">
-                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(2).CategoryId %>">View details &raquo;</a>
+                        <h3><%= categoryModels.get(2).CategoryName %></h3>
 
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(2).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
                 </div>
                 <div class="row-fluid">
                     <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(3).CategoryId %>">View details &raquo;</a>
+                        <h3><%= categoryModels.get(3).CategoryName %></h3>
 
                         <p></p>
                         <p>
-                            <a class="btn" href="#">View details &raquo;</a>
+                            <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(3).CategoryId %>">View details &raquo;</a>
                         </p>
                     </div>
                     <!--/span-->
