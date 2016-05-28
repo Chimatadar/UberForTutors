@@ -5,5 +5,4 @@ public class SkillsLearntWithActivityId {
 	public int tutorId;
 	public int activityId;
 	public String tutorEmail;
-	public int tutorId;
 }
