@@ -59,12 +59,13 @@ public class HomeController extends HttpServlet {
         HomeDataServices homeDataServices=new HomeDataServices();
         if(searchSkill!=null){
         
-        ArrayList<String> skillList = homeDataServices.searchSkills(searchSkill);
-        
-        request.setAttribute("skillList", skillList);
+        ArrayList<SkillsModel> skillList = homeDataServices.searchSkills(searchSkill);
+        if(skillList!=null){
+        request.setAttribute("skillsList", skillList);
+        }
         RequestDispatcher rs1=request.getRequestDispatcher("skills.jsp");
-            
-         rs1.include(request, response);
+        
+         rs1.forward(request, response);
          return;
         
         

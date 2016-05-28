@@ -25,10 +25,9 @@ public class TutorDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			query="select UserId from user where Email = ?";
+			query="select UserId from user where Email like '%"+searchTutor+"%'";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
-			preparedStmt1.setString(1, searchTutor);
 			resultSet = preparedStmt1.executeQuery();
 						
 			
