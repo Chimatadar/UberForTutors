@@ -110,7 +110,7 @@
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                         <li>
                         <form class="navbar-form" action="" method="post">
-                        <input class="span5" type="text" placeholder="search a skill">
+                        <input class="span5" type="text" placeholder="search a tutor" name = "searchTutor">
                         <button type="submit" class="btn">Search</button>
                     </form>
                         </li>

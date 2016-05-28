@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DataServices.HomeDataServices;
+import DataServices.TutorDataServices;
 import Model.SkillsModel;
+import Model.UserModel;
 
 /**
  * Servlet implementation class TutorController
@@ -48,14 +51,37 @@ public class TutorController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String SkillId = request.getParameter("SkillId");
+        int SkillId = Integer.parseInt(request.getParameter("SkillId"));
         HttpSession session = request.getSession();
         int UserId = (int)session.getAttribute("UserId");
-       
+        String searchTutor = request.getParameter("searchTutor");
+        //Learn logic to be handled in jsp
+       // String Learn =Integer.parseInt(request.getParameter("Learn"));
         RankController rankController = new RankController();
         
+        TutorDataServices tutorDataServices=new TutorDataServices();
+        if(searchTutor!=null){
+        
+        	ArrayList<UserModel> tutorList = tutorDataServices.searchTutors(searchTutor);
+        
+        	request.setAttribute("tutorList", tutorList);
+        	RequestDispatcher rs1=request.getRequestDispatcher("profile2Controller");
+            
+        	rs1.include(request, response);
+        	return;
+        
+        
+        }
+        
+        
         //change functions
-        ArrayList<Integer> rankedTutors= rankController.giveTutor(SkillId);
+        ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);
+        request.setAttribute("rankedTutors", rankedTutors);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
+        
+        
+        
         
         //for each tutor...if learn is clicked go to visit page..forward to request controller
         
