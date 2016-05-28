@@ -137,7 +137,7 @@ body {
 	<div class="row-fluid">
 		<div class="hero-unit">
 			<div class="span5">
-				<a href = "ProfileCOntroller?userId= <%=user.UserId %>>"><h4><%=user.Email%></h4></a>
+				<a href = "ProfileController?userId= <%=user.UserId %>>"><h4><%=user.Email%></h4></a>
 			</div>
 			<div class="span5">
 				<% for(int i = 0; i < user.RatingId; i++) { %>
