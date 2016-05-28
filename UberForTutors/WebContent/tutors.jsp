@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.*"%>
-
+<%@page import="DataContracts.*"%>
 <%@ page import="java.sql.*"%>
 
 <%@page import="java.util.List"%>
@@ -71,7 +71,7 @@ body {
 </head>
 <body>
 	<%
-		ArrayList<UserModel> rankedTutors = (ArrayList<UserModel>) request.getAttribute("rankedTutors");
+		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request.getAttribute("userSkillRatings");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
 	<div class="navbar navbar-fixed-bottom">
@@ -129,7 +129,7 @@ body {
 		</div>
 	</div>
 	<%
-		for (UserModel user : rankedTutors) {
+    <% for(TutorDataContract user : rankedTutors ) {%>
 	%>
 	<div class="row-fluid">
 

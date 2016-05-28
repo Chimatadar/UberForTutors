@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DataContracts.TutorDataContract;
 import DataServices.HomeDataServices;
+import DataServices.RankingDataServices;
 import DataServices.TutorDataServices;
 import Model.SkillsModel;
 import Model.UserModel;
+import Model.UserSkillRatingsModel;
 
 /**
  * Servlet implementation class TutorController
@@ -53,8 +56,12 @@ public class TutorController extends HttpServlet {
 		if(searchTutor!=null){
 
 			ArrayList<UserModel> tutorList = tutorDataServices.searchTutors(searchTutor);
-
-			request.setAttribute("tutorList", tutorList);
+			ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
+			for(UserModel tutModel:tutorList)
+			{
+				userSkillRatingsModels.add(tutorDataServices.getUserSkillRating(tutModel.UserId,SkillId));
+			}
+			request.setAttribute("userSkillRatingsModels", userSkillRatingsModels);
 			RequestDispatcher rs1=request.getRequestDispatcher("profile2Controller");
 
 			rs1.include(request, response);
@@ -64,7 +71,22 @@ public class TutorController extends HttpServlet {
 
 		//change functions
 		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);
-		request.setAttribute("rankedTutors", rankedTutors);
+		
+		ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
+		ArrayList<TutorDataContract> tutorDataContracts=new ArrayList<TutorDataContract>();
+		RankingDataServices rankingDataServices=new RankingDataServices();
+		HomeDataServices homeDataServices=new HomeDataServices();
+		for(UserModel tutModel:rankedTutors)
+		{
+			TutorDataContract tutorDataContract=new TutorDataContract();
+			tutorDataContract.RatingId= tutorDataServices.getUserSkillRating(tutModel.UserId,SkillId).RatingId;
+			tutorDataContract.SkillId=SkillId;
+			tutorDataContract.UserId=tutModel.UserId;
+			tutorDataContract.Email=rankingDataServices.getUserById(tutModel.UserId);
+			tutorDataContract.SkillName=homeDataServices.getSkillName(SkillId);
+			tutorDataContracts.add(tutorDataContract);
+		}
+		request.setAttribute("userSkillRatings", tutorDataContracts);
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
 
