@@ -146,7 +146,7 @@ body {
 			</div>
 			<form method='post' action="">
 			<div class="hero-unit" style="background-color: white; padding: 5px;">
-				<a href="ActivityController?userId=<%=user.UserId %>" class="btn btn-primary btn-medium ">Request</a>
+				<a href="ActivityController?userId=<%=user.UserId %>&skillId=<%=user.SkillId %>" class="btn btn-primary btn-medium ">Request</a>
 			</div>
 		</form>
 		</div>
