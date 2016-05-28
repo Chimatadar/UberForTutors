@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.*"%>
 
@@ -63,7 +62,7 @@
 
 <%
 		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
-		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkillIds");
+		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
@@ -137,13 +136,14 @@
                 <div class="well sidebar-nav" style = "background-color:#17202A;color:white">
                     <ul class="nav nav-list">
                         <li class="nav-header">Recommended Skills</li>
- 					<% for(SkillsModel user : recommendedSkillModels) { %>
+ 					<% if(recommendedSkillModels!=null){ 
+ 					for(SkillsModel user : recommendedSkillModels) { %>
                         
                         <li class="active">
                             <a href="SkillController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
 
                         </li>
-                        <% } %>
+                        <% } }%>
                     </ul>
                 </div>
                 <!--/.well -->

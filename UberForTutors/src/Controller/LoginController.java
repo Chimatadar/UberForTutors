@@ -58,6 +58,7 @@ public class LoginController extends HttpServlet {
         HttpSession session=request.getSession();
         UserModel userModel=loginDataServices.authenticateUser(email,password);
         
+        if(userModel!=null){
         if(userModel.UserId>0)
         {
         	        	
@@ -65,6 +66,7 @@ public class LoginController extends HttpServlet {
         	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
              
              requestDispatcher.forward(request, response);
+        }
         }
         else
         {

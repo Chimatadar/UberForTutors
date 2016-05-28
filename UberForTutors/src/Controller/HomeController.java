@@ -91,10 +91,13 @@ public class HomeController extends HttpServlet {
         	skillsModel.SkillName=skillName;
         	skillsModels.add(skillsModel);
         }*/
+        
+        
         request.setAttribute("recommendedSkills", recommendedSkills);
         
         if(categoryList != null)
         {
+        	
         	request.setAttribute("categoryList", categoryList);
         	
             RequestDispatcher rs=request.getRequestDispatcher("home.jsp");
