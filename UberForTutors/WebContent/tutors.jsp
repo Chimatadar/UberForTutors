@@ -130,34 +130,16 @@
             </div>
         </div>
     </div>
+    <% for(UserModel user : rankedTutors ) {%>
 <div class="row-fluid">
-                    <div class="span4 hero-unit">
-                        <h2>Based on Rating</h2>
+                    
+                    
+                    <div class="hero-unit">
+                        <h4><%= user.Email %></h4>
 
-                        <p></p>
-                        <p>
-                            <a class="btn" href="tutors.jsp">  Find Tutors  &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Based on Common Skill Set</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="skills.jsp">Find Tutors &raquo;</a>
-                        </p>
-                    </div>
-                    <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h2>Based on Language</h2>
-
-                        <p></p>
-                        <p>
-                            <a class="btn" href="#">Find Tutors &raquo;</a>
-                        </p>
                     </div>
                     <!--/span-->
 </div>
+<% } %>
 </body>
 </html>
