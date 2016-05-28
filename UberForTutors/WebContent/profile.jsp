@@ -232,11 +232,7 @@
         </div>
         
     </div>
-    <form method='post' action=''>
-			<div class="hero-unit" style = "background-color:white;padding:5px;">
-			<input type='submit' value='Request' name='update' class="btn btn-primary btn-medium ">
-			</div>
-			</form>
+    
                 <!--/.well -->
             </div>
             <!--/span-->
