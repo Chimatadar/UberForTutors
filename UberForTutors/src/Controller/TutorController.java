@@ -51,18 +51,30 @@ public class TutorController extends HttpServlet {
 		//Learn logic to be handled in jsp
 		// String Learn =Integer.parseInt(request.getParameter("Learn"));
 		RankController rankController = new RankController();
-
+		RankingDataServices rankingDataServices=new RankingDataServices();
+		HomeDataServices homeDataServices=new HomeDataServices();
+		
 		TutorDataServices tutorDataServices=new TutorDataServices();
 		if(searchTutor!=null){
 
 			ArrayList<UserModel> tutorList = tutorDataServices.searchTutors(searchTutor);
-			ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
+			
+			ArrayList<TutorDataContract> searchTutorDataContracts=new ArrayList<TutorDataContract>();
+			
 			for(UserModel tutModel:tutorList)
 			{
-				userSkillRatingsModels.add(tutorDataServices.getUserSkillRating(tutModel.UserId,SkillId));
+				TutorDataContract tutorDataContract=new TutorDataContract();
+				tutorDataContract.RatingId= tutorDataServices.getUserSkillRating(tutModel.UserId,SkillId).RatingId;
+				tutorDataContract.SkillId=SkillId;
+				tutorDataContract.UserId=tutModel.UserId;
+				tutorDataContract.Email=tutModel.Email;
+				tutorDataContract.SkillName=homeDataServices.getSkillName(SkillId);
+				searchTutorDataContracts.add(tutorDataContract);
 			}
-			request.setAttribute("userSkillRatingsModels", userSkillRatingsModels);
-			RequestDispatcher rs1=request.getRequestDispatcher("profile2Controller");
+			
+			
+			request.setAttribute("searchTutorDataContracts", searchTutorDataContracts);
+			RequestDispatcher rs1=request.getRequestDispatcher("tutors.jsp");
 
 			rs1.include(request, response);
 			return;
@@ -74,8 +86,7 @@ public class TutorController extends HttpServlet {
 		
 		ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
 		ArrayList<TutorDataContract> tutorDataContracts=new ArrayList<TutorDataContract>();
-		RankingDataServices rankingDataServices=new RankingDataServices();
-		HomeDataServices homeDataServices=new HomeDataServices();
+		
 		for(UserModel tutModel:rankedTutors)
 		{
 			TutorDataContract tutorDataContract=new TutorDataContract();

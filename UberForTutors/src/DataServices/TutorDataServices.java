@@ -25,7 +25,7 @@ public class TutorDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			query="select * from user where Email = ?";
+			query="select UserId from user where Email = ?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
 			preparedStmt1.setString(1, searchTutor);
@@ -36,7 +36,7 @@ public class TutorDataServices {
 			{
 				UserModel userModel = new UserModel();
 				userModel.UserId = resultSet.getInt("UserId");
-				userModel.Email = resultSet.getString("Email");
+				userModel.Email = searchTutor;
 				tutorList.add(userModel);
 								
 			}
