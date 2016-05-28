@@ -140,7 +140,7 @@
  					for(SkillsModel user : recommendedSkillModels) { %>
                         
                         <li class="active">
-                            <a href="SkillController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
+                            <a href="TutorController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
 
                         </li>
                         <% } }%>

@@ -49,7 +49,6 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -100,9 +99,9 @@ public class HomeController extends HttpServlet {
         	
         	request.setAttribute("categoryList", categoryList);
         	
-            RequestDispatcher rs=request.getRequestDispatcher("home.jsp");
+            //RequestDispatcher rs=request.getRequestDispatcher("home.jsp");
           
-            rs.forward(request, response);
+            //rs.forward(request, response);
         	
         	
         }
