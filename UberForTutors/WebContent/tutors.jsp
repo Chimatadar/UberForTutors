@@ -140,7 +140,7 @@ body {
 				<h4><%=user.Email%></h4>
 			</div>
 			<div class="span5">
-				<% for(int i = 0; i < user.SkillId; i++) { %>
+				<% for(int i = 0; i < user.RatingId; i++) { %>
 				<i class="fa fa-star"></i>
 				<% } %>
 			</div>
