@@ -72,6 +72,7 @@ body {
 <body>
 	<%
 ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribute("skillsList");
+	
 //ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 %>
 	<div class="navbar navbar-fixed-bottom">
@@ -129,7 +130,7 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 	</div>
 	<% for(SkillsModel user : skillsList) { %>
 	<div class="row-fluid">
-		<% for(int i = 0; i<3;i++) {%>
+		
 		<div class="span4 hero-unit">
 			<h2><%= user.SkillName %></h2>
 
@@ -139,7 +140,7 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 					Find Tutors &raquo;</a>
 			</p>
 		</div>
-		<% } %>
+		
 	</div>
 	<% } %>
 

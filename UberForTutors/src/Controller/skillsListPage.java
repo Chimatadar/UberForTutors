@@ -41,23 +41,24 @@ public class skillsListPage extends HttpServlet {
 		List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 		SkillsListPageDataServices skillsListPageDataServices = new SkillsListPageDataServices();
 		
-		if(request.getAttribute("fromProfilePage")!=null){
+		if(request.getParameter("fromProfilePage")!=null){
 			try {
 				skillsList = skillsListPageDataServices.getAllSkills();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(request.getAttribute("categoryId")!=null){
-			int categoryId = (int)request.getAttribute("categoryId");
+		}else if(request.getParameter("categoryId")!=null){
+			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+			System.out.println(categoryId);
 			try {
 				skillsList = skillsListPageDataServices.getAllSkillsByCategoryId(categoryId);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(request.getAttribute("searchSkill")!=null){
-			String searchSkill = (String)request.getAttribute("searchSkill");
+		}else if(request.getParameter("searchSkill")!=null){
+			String searchSkill = (String)request.getParameter("searchSkill");
 			try {
 				skillsList = skillsListPageDataServices.getAllSkillsBySearch(searchSkill);
 			} catch (SQLException e) {
