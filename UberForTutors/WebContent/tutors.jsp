@@ -128,17 +128,15 @@ body {
 			</div>
 		</div>
 	</div>
-	<%
+	
     <% for(TutorDataContract user : rankedTutors ) {%>
-	%>
+	
 	<div class="row-fluid">
-
-
 		<div class="hero-unit">
 			<div class="span5">
 				<h4><%=user.Email%></h4>
 			</div>
-			<div class="span5"><%=%></div>
+			<div class="span5"><%= user.SkillId%></div>
 
 		</div>
 		<!--/span-->
