@@ -1,3 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.*"%>
+<%@page import="DataContracts.*"%>
+<%@ page import="java.sql.*"%>
+
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -168,6 +174,13 @@ body {
 </head>
 
 <body>
+<%
+		ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
+ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
+ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request.getAttribute("skillsLearnt");
+ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
+		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
+	%>
 	<div class="navbar navbar-fixed-bottom">
 		<div class="navbar-inner">
 			<div class="container-fluid">
