@@ -91,10 +91,13 @@ public class HomeController extends HttpServlet {
         	skillsModel.SkillName=skillName;
         	skillsModels.add(skillsModel);
         }*/
-        request.setAttribute("recommendedSkillIds", recommendedSkills);
+        
+        
+        request.setAttribute("recommendedSkills", recommendedSkills);
         
         if(categoryList != null)
         {
+        	
         	request.setAttribute("categoryList", categoryList);
         	
             RequestDispatcher rs=request.getRequestDispatcher("home.jsp");
@@ -108,15 +111,7 @@ public class HomeController extends HttpServlet {
 
         }
         
-     
-        
-        if(logout){
-        	//to be changed if v change the entry page logic
-        	RequestDispatcher rs2 = request.getRequestDispatcher("SignupController");
-        	rs2.forward(request, response);
-        	
-        }
-        
+    
         
         //notification
         ArrayList<ReqNotificationDataContract> notifications = new ArrayList<>();
