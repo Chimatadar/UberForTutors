@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.PreparedStatement;
 
 import Model.UserModel;
+import Model.UserSkillRatingsModel;
 
 public class TutorDataServices {
 	
@@ -57,6 +58,47 @@ public class TutorDataServices {
 		}
 		return tutorList;
 	
+	}
+
+	public UserSkillRatingsModel getUserSkillRating(int userId, int skillId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			query="select * from userskillratings where SkillId=? and UserId=?";
+			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
+			preparedStmt.setInt(1, skillId);
+			preparedStmt.setInt(2, userId);
+			
+			resultSet = preparedStmt.executeQuery();
+			
+			if(resultSet.next()){
+				
+			
+				UserSkillRatingsModel userSkillRating=new UserSkillRatingsModel();
+				userSkillRating.UserId=resultSet.getInt("UserId");
+				userSkillRating.RatingId=resultSet.getInt("RatingId");
+				userSkillRating.SkillId=skillId;
+				return userSkillRating;
+			
+			}
+			else 
+				return null;
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			return null;
+		}
+		
 	}
 }
 
