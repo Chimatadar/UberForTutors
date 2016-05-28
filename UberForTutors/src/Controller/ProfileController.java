@@ -41,7 +41,7 @@ public class ProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		int userId = 1;//Integer.parseInt((String)session.getAttribute("UserId"));
+		
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 		List<String> skillsKnown = new ArrayList<String>();
 		List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
@@ -51,11 +51,18 @@ public class ProfileController extends HttpServlet {
 		
 		try {
 			
-			skillsTaught = profileDataServices.getSkillsTaught(userId); System.out.println(skillsTaught.size());
-			skillsKnown = profileDataServices.getSkillsKnown(userId); System.out.println(skillsTaught.size());
-			skillsLearnt = profileDataServices.getSkillsLearnt(userId); System.out.println(skillsTaught.size());
-			notifications = profileDataServices.getNotifications(userId); System.out.println(skillsTaught.size());
-			
+			if(request.getParameter("userId")==null){
+				int userId = Integer.parseInt((String)session.getAttribute("UserId"));
+				skillsTaught = profileDataServices.getSkillsTaught(userId);
+				skillsKnown = profileDataServices.getSkillsKnown(userId);
+				skillsLearnt = profileDataServices.getSkillsLearnt(userId);
+				notifications = profileDataServices.getNotifications(userId);
+			}else{
+				int userId = Integer.parseInt(request.getParameter("userId"));
+				skillsTaught = profileDataServices.getSkillsTaught(userId);
+				skillsKnown = profileDataServices.getSkillsKnown(userId);
+				notifications = profileDataServices.getNotifications(userId);
+			}
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
 			if(request.getAttribute("userId")==null){
