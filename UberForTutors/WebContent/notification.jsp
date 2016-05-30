@@ -77,42 +77,43 @@ body {
 
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
-		<%@include file="headerandfooter.jsp" %>
-	
+	<%@include file="headerandfooter.jsp"%>
+
 	<%
 		for (ReqNotificationDataContract activity : activityList) {
 	%>
+	<div class = "hero-unit" style = "background:white;padding-bottom:5px">Your Notifications<hr></div>
 
-	<div class="container-fluid" style="">
+	<div class="hero-unit" style="">
 		<%
 			if (activity.IsDeleted == 0 && activity.Status == 0) {
 		%>
-		You received a notification from
-		<h2><%=activity.Email%></h2>
-		<form action="" method="post">
+		<div class = "span5">You received a notification from
+		<%=activity.Email%></div>
+		<div class = "span5"><form action="" method="post">
 			<input type='submit' value='Accept' name='update'
 				class="btn btn-primary btn-medium "> <input type='submit'
 				value='Reject' name='remove' class="btn btn-primary btn-medium ">
-		</form>
+		</form></div>
 		<%
 			}
 		%>
-		<br>
+		
 		<%
 			if (activity.IsDeleted == 0 && activity.Status == 1) {
 		%>
-		You have already responded to
-		<h2><%=activity.Email%>'s
-		</h2>
-		request
+		<div class = "span5">You have already responded to
+		<%=activity.Email%>'s
+		
+		request</div>
 		<%
 			}
 		%>
-		<br>
+		
 		<%
 			if (activity.IsDeleted == 1 && activity.Status == 1) {
 		%>
-		You have been rated -
+		<div class = "span5">You have been rated -
 		<%
 			for (int i = 0; i < activity.RatingId; i++) {
 		%>
@@ -120,20 +121,19 @@ body {
 		<%
 			}
 		%>
+		</div>
 		<%
 			}
 		%>
-		<br>
 		<%
 			if (activity.IsDeleted == 1 && activity.Status == 2) {
 		%>
-		You have rejected
-		<h2><%=activity.Email%></h2>
-		's request
+		<div class = "span5">You have rejected
+		<%=activity.Email%>
+		's request</div>
 		<%
 			}
 		%>
-		<br>
 	</div>
 	<% } %>
 </body>

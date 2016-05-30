@@ -16,28 +16,28 @@ import Model.UserModel;
 public class LoginDataServices {
 
 	public UserModel authenticateUser(String email , String password){
-		
+
 
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
-		
+
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			
-		/*	Context initContext = new InitialContext();
+
+			/*	Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
 			connection = ds.getConnection();*/
-			
 
-			
+
+
 
 			query="select * from user where Email=? and Password=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
-			
+
 			preparedStmt1.setString(1, email);
 			preparedStmt1.setString(2, password);
 			resultSet = preparedStmt1.executeQuery();
@@ -50,7 +50,7 @@ public class LoginDataServices {
 				userModel.Password=resultSet.getString("Password");
 				return userModel;
 			}
-			
+
 			return null;
 		}
 		catch(Exception ex)
@@ -67,6 +67,6 @@ public class LoginDataServices {
 			}
 		}*/
 
-		
+
 	}
 }

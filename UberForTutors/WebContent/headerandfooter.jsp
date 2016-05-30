@@ -97,15 +97,15 @@
                 </a>
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">Logged in as                 
-                     <a href="ProfileController" class="badge1 navbar-link" data-badge="1">Username</a></p>
+                    <p class="navbar-text pull-right">                 
+                     <a href="NotificationController" class="badge1 navbar-link" data-badge="1">Notification</a></p>
                      
                     <ul class="nav">
                         <li class="active">
                             <a href="#">Home</a>
                         </li>
                         <li>
-                            <a href="NotificationController">Notification</a>
+                            <a href="ProfileController">Profile</a>
                         </li>
                         <li>
                             <a href="#contact">Contact</a>

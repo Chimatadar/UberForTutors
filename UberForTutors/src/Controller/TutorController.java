@@ -53,14 +53,14 @@ public class TutorController extends HttpServlet {
 		RankController rankController = new RankController();
 		RankingDataServices rankingDataServices=new RankingDataServices();
 		HomeDataServices homeDataServices=new HomeDataServices();
-		
+
 		TutorDataServices tutorDataServices=new TutorDataServices();
 		if(searchTutor!=null){
 
 			ArrayList<UserModel> tutorList = tutorDataServices.searchTutors(searchTutor);
-			
+
 			ArrayList<TutorDataContract> searchTutorDataContracts=new ArrayList<TutorDataContract>();
-			
+
 			for(UserModel tutModel:tutorList)
 			{
 				TutorDataContract tutorDataContract=new TutorDataContract();
@@ -71,8 +71,8 @@ public class TutorController extends HttpServlet {
 				tutorDataContract.SkillName=homeDataServices.getSkillName(SkillId);
 				searchTutorDataContracts.add(tutorDataContract);
 			}
-			
-			
+
+
 			request.setAttribute("searchTutorDataContracts", searchTutorDataContracts);
 			RequestDispatcher rs1=request.getRequestDispatcher("tutors.jsp");
 
@@ -85,10 +85,10 @@ public class TutorController extends HttpServlet {
 		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);//rankedTutors
 		ArrayList<UserModel> alreadyReqRaised=tutorDataServices.getActivityForUserSkill(SkillId,UserId);
 		rankedTutors.remove(alreadyReqRaised);
-		
+
 		ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
 		ArrayList<TutorDataContract> tutorDataContracts=new ArrayList<TutorDataContract>();
-		
+
 		for(UserModel tutModel:rankedTutors)
 		{
 			TutorDataContract tutorDataContract=new TutorDataContract();

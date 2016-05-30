@@ -23,14 +23,14 @@ import Model.UserModel;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LoginController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,33 +46,35 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
-		response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-		String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        
-        LoginDataServices loginDataServices=new LoginDataServices();
-        HttpSession session=request.getSession();
-        UserModel userModel=loginDataServices.authenticateUser(email,password);
-        
-        if(userModel!=null){
-        if(userModel.UserId>0)
-        {
-        	        	
-             session.setAttribute("UserId", userModel.UserId);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
-             
-             requestDispatcher.forward(request, response);
-        }
-        }
-        else
-        {
-        	out.println("<p>User name or Password is incorrect</p>");  
 
-        }
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+
+		LoginDataServices loginDataServices=new LoginDataServices();
+		HttpSession session=request.getSession();
+		UserModel userModel=loginDataServices.authenticateUser(email,password);
+
+		if(userModel!=null){
+			if(userModel.UserId>0)
+			{
+
+				session.setAttribute("UserId", userModel.UserId);
+				session.setAttribute("userName", email);
+
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
+
+				requestDispatcher.forward(request, response);
+			}
+		}
+		else
+		{
+			out.println("<p>User name or Password is incorrect</p>");  
+
+		}
 
 	}
 

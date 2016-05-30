@@ -76,14 +76,14 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 	
 //ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 %>
-	<%@include file="headerandfooter.jsp" %>
+	<%@include file="headerandfooter.jsp"%>
 
-	
+
 	<%int k =0; 
 	for(int i =0; i < Math.ceil(skillsList.size()/3.0);i+=1 ) { %>
 
 	<div class="row-fluid">
-	<% for(int j =0; j < 3;j+=1 ) { %>
+		<% for(int j =0; j < 3;j+=1 ) { %>
 
 		<div class="span4 hero-unit">
 			<h2><%= skillsList.get(k).SkillName %></h2>
@@ -98,11 +98,11 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 		<% k++;
 		if (k>=skillsList.size())
 		break;%>
-		
+
 		<% } %>
 
 	</div>
-	
+
 	<% } %>
 
 
