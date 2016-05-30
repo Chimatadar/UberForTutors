@@ -10,24 +10,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import javax.servlet.http.HttpSession;
-import DataServices.LoginDataServices;
 
-import Model.UserModel;
+import DataServices.AcceptRejectDataServices;
+import DataServices.HomeDataServices;
+import Model.CategoriesModel;
+import Model.SkillsModel;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class AcceptRejectController
  */
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/AcceptRejectController")
+public class AcceptRejectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public AcceptRejectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,36 +44,30 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-		String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        
-        LoginDataServices loginDataServices=new LoginDataServices();
         HttpSession session=request.getSession();
-        UserModel userModel=loginDataServices.authenticateUser(email,password);
+	
+        int ActivityId = Integer.parseInt(request.getParameter("ActivityId"));
+        String Accept = request.getParameter("Accept");
+        String Reject = request.getParameter("Reject");
         
-        if(userModel!=null){
-        if(userModel.UserId>0)
-        {
-        	        	
-             session.setAttribute("UserId", userModel.UserId);
-             session.setAttribute("userName", userModel.UserName);
-        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
-             requestDispatcher.forward(request, response);
+        
+        AcceptRejectDataServices acceptRejectDataServices = new AcceptRejectDataServices();
+        
+        
+        int UserId = (int) session.getAttribute("UserId");
+        
+        if(Accept != null){
+        	
+        	acceptRejectDataServices.updateActivity(ActivityId, 1);
+        	
+        }else if(Reject!=null){
+        	
+        	acceptRejectDataServices.updateActivity(ActivityId, 2);
         }
-        }
-        else
-        {
-        	out.println("<p>User name or Password is incorrect</p>");  
-
-        }
-
+		
 	}
 
 }

@@ -37,7 +37,7 @@ public class HomeDataServices {
 
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
 			query="select * from categories";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);

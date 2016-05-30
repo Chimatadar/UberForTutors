@@ -212,11 +212,12 @@ body {
 				
 				<div class="row-fluid">
 					<!-- 				ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown"); -->
-					<%
-						if (skillsKnown.size() != 0) {
-					%>
+					
 					<div class="span4 hero-unit">
 						<h2>Skills user knows</h2>
+						<%
+						if (skillsKnown.size() != 0) {
+					%>
 						<ul>
 							<%
 								for (int i = 0; i < skillsKnown.size(); i++) {
@@ -226,6 +227,9 @@ body {
 								}
 							%>
 						</ul>
+						<%
+						}
+					%>
 						<p></p>
 
 						<div class="subscribe">
@@ -239,9 +243,7 @@ body {
 							</form>
 						</div>
 					</div>
-					<%
-						}
-					%>
+					
 					<div class="span4 hero-unit">
 
 						<h2>Skills user learnt</h2>
@@ -262,7 +264,7 @@ body {
 						%>
 						<p></p>
 						<p>
-							<a class="btn" href="skills.jsp"> Learn a new skill &raquo;</a>
+							<a class="btn" href="skillsListPage?fromProfilePage=1"> Learn a new skill &raquo;</a>
 						</p>
 					</div>
 

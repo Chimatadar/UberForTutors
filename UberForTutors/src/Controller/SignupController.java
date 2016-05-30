@@ -47,6 +47,7 @@ public class SignupController extends HttpServlet {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         String location = request.getParameter("address");
+        String userName = request.getParameter("userName");
         String[] languageArray = request.getParameterValues("language");
         //String language = request.getParameter("language");
         
@@ -58,7 +59,7 @@ public class SignupController extends HttpServlet {
         
         try {
         	
-			int result = signupDataServices.signupUser(email, password, location, languageList);
+			int result = signupDataServices.signupUser(email, password, location, userName, languageList);
 			
 			if(result==1){
 				out.println("This Email is already registered");

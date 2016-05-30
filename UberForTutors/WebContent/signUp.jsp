@@ -70,7 +70,7 @@
 			                        <div class="form-group" style = "padding-left:0px">
 			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language"">
 										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>
-										  <option style = "background-color:#de615e;padding-bottom:10px">Gujurathi</option>
+										  <option style = "background-color:#de615e;padding-bottom:10px">Gujarati</option>
 										  <option style = "background-color:#de615e ;padding-bottom:10px">Hindi</option>
 									      <option style = "background-color:#de615e ;padding-bottom:10px">Kannada</option>
 									      <option style = "background-color:#de615e ;padding-bottom:10px">Chinese</option>

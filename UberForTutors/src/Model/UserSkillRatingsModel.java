@@ -4,6 +4,7 @@ public class UserSkillRatingsModel {
 	public int Id;
 	public int UserId;
 	public int SkillId;
+	public int TotalPeople;
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

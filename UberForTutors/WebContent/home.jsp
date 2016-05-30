@@ -64,7 +64,7 @@
 		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
 		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	String name1 = (String)session.getAttribute("userName");
-	String[] name = name1.split("@");
+	
 	%>
 <%@include file="headerandfooter.jsp" %>
     <div class="container-fluid">
@@ -89,7 +89,7 @@
             <!--/span-->
             <div class="span9">
                 <div class="hero-unit" style = "background-color:#17202A;color:white">
-                    <h1 >Hello, <%=  name[0]%></h1>
+                    <h1 >Hello, <%=  name1%></h1>
 
                     <p>Brief intro<p>
                         <a class="btn btn-primary btn-large">Learn more &raquo;</a>
