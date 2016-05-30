@@ -127,19 +127,20 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 			</div>
 		</div>
 	</div>
-	<% for(SkillsModel user : skillsList) { %>
+		<% for(int i =0; i < skillsList.size();i+=3 ) { %>
+	
 	<div class="row-fluid">
-		<% for(int i = 0; i<3;i++) {%>
 		<div class="span4 hero-unit">
-			<h2><%= user.SkillName %></h2>
+			<h2><%= skillsList.get(i).SkillName %></h2>
 
 			<p></p>
 			<p>
-				<a class="btn" href="TutorController?sid=<%= user.SkillId%>">
+				<a class="btn" href="TutorController?sid=<%= skillsList.get(i).SkillId%>">
 					Find Tutors &raquo;</a>
 			</p>
 		</div>
-		<% } %>
+		
+		
 	</div>
 	<% } %>
 
