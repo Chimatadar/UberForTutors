@@ -5,4 +5,5 @@ public class UserModel {
 	public String Password;
 	public String Location;
 	public String Email;
+	public String UserName;
 }

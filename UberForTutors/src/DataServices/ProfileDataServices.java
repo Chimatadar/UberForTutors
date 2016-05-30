@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import org.apache.catalina.User;
 import org.apache.jasper.tagplugins.jstl.core.Catch;
 
+import DataContracts.UserModelWithActivity;
 import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
 import Model.SkillsTaught;
