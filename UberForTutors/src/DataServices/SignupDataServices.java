@@ -22,7 +22,7 @@ import Model.SignupUserDetails;
 
 public class SignupDataServices {
 	
-	public int signupUser(String email, String password, String location, List<String> languageList ) throws SQLException{
+	public int signupUser(String email, String password, String location, String userName, List<String> languageList ) throws SQLException{
 		
 		Connection connection=null;
 		ResultSet resultSet=null;
@@ -41,11 +41,12 @@ public class SignupDataServices {
 				return 1;
 			}
 			
-			query = "insert into user (Password, Location, Email) values (?, ?, ?)";
+			query = "insert into user (Password, Location, Email, UserName) values (?, ?, ?, ?)";
 			PreparedStatement preparedStmt2 = connection.prepareStatement(query);
 			preparedStmt2.setString(1, password);
 			preparedStmt2.setString(2, location);
 			preparedStmt2.setString(3, email);
+			preparedStmt2.setString(4, userName);
 			preparedStmt2.executeUpdate();
 			
 			for(int i=0; i< languageList.size(); i++){
