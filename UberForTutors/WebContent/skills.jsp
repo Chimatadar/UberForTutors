@@ -76,59 +76,8 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 	
 //ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 %>
-	<div class="navbar navbar-fixed-bottom">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
+	<%@include file="headerandfooter.jsp" %>
 
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Privacy Policy</a></li>
-						<li><a href="#contact">Log Out</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						Logged in as <a href="profile.jsp" class="badge1 navbar-link"
-							data-badge="1">Username</a>
-					</p>
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-						<li>
-							<form class="navbar-form" action="skillListPage" method="post">
-								<input class="span5" type="text" placeholder="search a skill">
-								<button type="submit" class="btn">Search</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
 	
 	<%int k =0; 
 	for(int i =0; i < Math.ceil(skillsList.size()/3.0);i+=1 ) { %>

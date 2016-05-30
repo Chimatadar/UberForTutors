@@ -52,7 +52,7 @@ public class ProfileController extends HttpServlet {
 		try {
 			
 			if(request.getParameter("userId")==null){
-				int userId = Integer.parseInt((String)session.getAttribute("UserId"));
+				int userId = (int)session.getAttribute("UserId");
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 				skillsLearnt = profileDataServices.getSkillsLearnt(userId);

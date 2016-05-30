@@ -58,82 +58,17 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
+<body style = "background-color: rgba(0, 0, 0, 1);">
 
 <%
 		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
 		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
-<div class="navbar navbar-fixed-bottom">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                </a>
-                <a class="brand" href="#">Uber For Tutors</a>
-                <div class="nav-collapse collapse">
-                    
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#about">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#contact">Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                </a>
-                <a class="brand" href="#">Uber For Tutors</a>
-                <div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">Logged in as                 
-                     <a href="profile.jsp" class="badge1 navbar-link" data-badge="1">Username</a></p>
-                     
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="NotificationController">Notification</a>
-                        </li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                        <li>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-                        <li>
-                        <form class="navbar-form" action="HomeController" method="post">
-                        <input class="span5" type="text" placeholder="search a skill" name="searchSkill">
-                        <button type="submit" class="btn">Search</button>
-                    </form>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-        </div>
-    </div>
+<%@include file="headerandfooter.jsp" %>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span3">
-                <div class="well sidebar-nav" style = "background-color:#17202A;color:white">
+                <div class="well sidebar-nav" style = "border:0px;background-color:#17202A;color:white">
                     <ul class="nav nav-list">
                         <li class="nav-header">Recommended Skills</li>
  					<% if(recommendedSkillModels!=null){ 
@@ -143,6 +78,7 @@
                             <a href="TutorController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
 
                         </li>
+                        <hr>
                         <% } }%>
                     </ul>
                 </div>
@@ -161,57 +97,77 @@
  -->                    
  				<div class="row-fluid">
                     <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-                        <h3><%= categoryModels.get(0).CategoryName %></h3>
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://www.mccormick.northwestern.edu/eecs/computer-science/images/featured-image/detecting-malicious-ads.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(0).CategoryName %></h4>
 
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(0).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(1).CategoryName %></h3>
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(1).CategoryName %></h4>
+
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(1).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(2).CategoryName %></h3>
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(2).CategoryName %></h4>
 
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(2).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
                 </div>
                 <div class="row-fluid">
                     <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-                        <h3><%= categoryModels.get(3).CategoryName %></h3>
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(3).CategoryName %></h4>
 
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(3).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(4).CategoryName %></h3>
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(4).CategoryName %></h4>
+
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(4).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit">
-                        <h3><%= categoryModels.get(5).CategoryName %></h3>
+                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class = "hero-unit" style = 
+                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(5).CategoryName %></h4>
 
                         <p></p>
                         <p>
                             <a class="btn" href="skillsListPage?categoryId=<%= categoryModels.get(5).CategoryId %>">View details &raquo;</a>
                         </p>
+                        </div>
                     </div>
                     <!--/span-->
                 </div>
