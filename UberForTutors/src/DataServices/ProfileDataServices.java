@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import org.apache.catalina.User;
 import org.apache.jasper.tagplugins.jstl.core.Catch;
 
+import DataContracts.UserModelWithActivity;
 import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
 import Model.SkillsTaught;
@@ -185,6 +186,51 @@ public class ProfileDataServices {
 		{
 			ex.printStackTrace();
 			return new ArrayList<Notifications>();
+		}
+		finally {
+			connection.close();
+			
+		}
+	}
+	
+	public List<UserModelWithActivity> getTutorsList(int userId) throws SQLException{
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			List<UserModelWithActivity> rateTutorsList = new ArrayList<UserModelWithActivity>();
+			
+			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId from Activity "
+					+ "inner join User on Activity.FromUser=? and Activity.Status=1 and Activity.IsDeleted=0";
+					
+			
+			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
+			preparedStmt1.setInt(1, userId);
+			resultSet = preparedStmt1.executeQuery();
+			
+			while(resultSet.next()){
+				
+				UserModelWithActivity userModelWithActivity = new UserModelWithActivity();
+				userModelWithActivity.UserId = resultSet.getInt(1);
+				userModelWithActivity.Email = resultSet.getString(2);
+				userModelWithActivity.UserName = resultSet.getString(3);
+				userModelWithActivity.ActivityId = resultSet.getInt(4);
+				
+						
+			}
+			
+			
+			return rateTutorsList;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return new ArrayList<UserModelWithActivity>();
 		}
 		finally {
 			connection.close();

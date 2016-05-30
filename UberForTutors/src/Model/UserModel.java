@@ -35,4 +35,5 @@ public class UserModel {
 	}
 	public String Location;
 	public String Email;
+	public String UserName;
 }
