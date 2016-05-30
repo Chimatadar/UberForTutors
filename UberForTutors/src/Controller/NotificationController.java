@@ -34,12 +34,6 @@ public class NotificationController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			HttpSession session=request.getSession();
 			int userId=(int) session.getAttribute("UserId");
@@ -69,11 +63,19 @@ public class NotificationController extends HttpServlet {
 			finalReqNotification.addAll(rated);
 			finalReqNotification.addAll(rejected);
 			request.setAttribute("activityList", finalReqNotification);
-			 RequestDispatcher rs3=request.getRequestDispatcher("home.jsp");
+			 RequestDispatcher rs3=request.getRequestDispatcher("notification.jsp");
 		     rs3.forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+}
 }
