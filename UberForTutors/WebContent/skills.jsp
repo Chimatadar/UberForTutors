@@ -129,28 +129,31 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 			</div>
 		</div>
 	</div>
-		<% for(int i =0; i < skillsList.size();i+=3 ) { %>
 	
+	<%int k =0; 
+	for(int i =0; i < Math.ceil(skillsList.size()/3.0);i+=1 ) { %>
+
 	<div class="row-fluid">
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
+	<% for(int j =0; j < 3;j+=1 ) { %>
+
 		<div class="span4 hero-unit">
-			<h2><%= skillsList.get(i).SkillName %></h2>
+			<h2><%= skillsList.get(k).SkillName %></h2>
 
 			<p></p>
 			<p>
-				<a class="btn" href="TutorController?sid=<%= skillsList.get(i).SkillId%>">
+				<a class="btn"
+					href="TutorController?sid=<%= skillsList.get(k).SkillId%>">
 					Find Tutors &raquo;</a>
 			</p>
 		</div>
+		<% k++;
+		if (k>=skillsList.size())
+		break;%>
 		
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
+		<% } %>
+
 	</div>
+	
 	<% } %>
 
 

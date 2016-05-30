@@ -68,13 +68,14 @@ body {
 	href="../assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="../assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet" 
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	
+
 </head>
 <body>
 	<%
-		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request.getAttribute("userSkillRatings");
+		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request
+				.getAttribute("userSkillRatings");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
 	<div class="navbar navbar-fixed-bottom">
@@ -132,26 +133,33 @@ body {
 		</div>
 	</div>
 
-	<% for(TutorDataContract user : rankedTutors ) {%>
-
+	<%
+		for (TutorDataContract user : rankedTutors) {
+	%>
 	<div class="row-fluid">
 		<div class="hero-unit">
 			<div class="span5">
-				<a href = "ProfileController?userId=<%=user.UserId %>"><h4><%=user.Email%></h4></a>
+				Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
+				<br> Rating -<%
+					for (int i = 0; i < user.RatingId; i++) {
+				%>
+				<i class="fa fa-star"></i>
+				<%
+					}
+				%>
 			</div>
 			<div class="span5">
-				<% for(int i = 0; i < user.RatingId; i++) { %>
-				<i class="fa fa-star"></i>
-				<% } %>
+				<form method='post' action="">
+					
+						<textarea class = "text" name = "message" placeholder = "hello"></textarea>
+						<a href="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>"
+							class="btn btn-primary btn-medium ">Request</a>
+				</form>
 			</div>
-			<form method='post' action="">
-			<div class="hero-unit" style="background-color: white; padding: 5px;">
-				<a href="ActivityController?userId=<%=user.UserId %>&skillId=<%=user.SkillId %>" class="btn btn-primary btn-medium ">Request</a>
-			</div>
-		</form>
+
 		</div>
 		<!--/span-->
-		
+
 	</div>
 	<%
 		}
