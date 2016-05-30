@@ -46,6 +46,7 @@ public class SkillsListPageDataServices {
 				SkillsModel skillsListRow = new SkillsModel();
 				skillsListRow.SkillId = resultSet.getInt(1);
 				skillsListRow.SkillName = resultSet.getString(2);
+				skillsListRow.image = resultSet.getString("Image");
 				skillsList.add(skillsListRow);
 
 			}
