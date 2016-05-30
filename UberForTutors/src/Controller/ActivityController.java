@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DataServices.ActivityDataServices;
+
 /**
  * Servlet implementation class ActivityController
  */
@@ -30,6 +32,19 @@ public class ActivityController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		HttpSession session=request.getSession();
+		
+		Boolean status=false;
+		int toUserId = Integer.parseInt(request.getParameter("userId"));
+		int fromUserId=(int) session.getAttribute("UserId");
+		int skillId=Integer.parseInt(request.getParameter("skillId"));
+		
+		System.out.println(toUserId+" "+fromUserId+" "+skillId);
+		
+		ActivityDataServices activityDataServices=new ActivityDataServices();
+		activityDataServices.addActivity(skillId,toUserId,fromUserId,status);
 	}
 
 	/**
@@ -37,12 +52,7 @@ public class ActivityController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		HttpSession session=request.getSession();
 		
-		int SkillId = Integer.parseInt(request.getParameter("sid"));
-		int userId=(int) session.getAttribute("UserId");
 	}
 
 }

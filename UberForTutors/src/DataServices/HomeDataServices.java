@@ -17,6 +17,7 @@ import sun.util.BuddhistCalendar;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import Controller.skillsListPage;
 import DataContracts.ReqNotificationDataContract;
 import Model.ActivityModel;
 import Model.CategoriesModel;
@@ -73,8 +74,8 @@ public class HomeDataServices {
 
 
 	
-	public ArrayList<String> searchSkills(String searchSkill) {
-		ArrayList<String> skillList = new ArrayList<String>();
+	public ArrayList<SkillsModel> searchSkills(String searchSkill) {
+		ArrayList<SkillsModel> skillList = new ArrayList<SkillsModel>();
 		System.out.println("in search");
 		Connection connection=null;
 		ResultSet resultSet=null;
@@ -85,26 +86,28 @@ public class HomeDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
-			query="select * from skills where SkillName = ?";
+			query="select * from skills where SkillName like '%"+searchSkill+"%'";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
-			preparedStmt1.setString(1, searchSkill);
+			//preparedStmt1.setString(1, searchSkill);
 			resultSet = preparedStmt1.executeQuery();
 			
 			
 			
-			if(resultSet.next())
+			while(resultSet.next())
 			{
-				skillList.add(resultSet.getString("SkillName"));
-								
+				SkillsModel skillsModel=new SkillsModel();
+				skillsModel.SkillName=resultSet.getString("SkillName");
+				skillsModel.SkillId=resultSet.getInt("SkillId");
+				skillList.add(skillsModel);				
 			}
-			
+			return skillList;
 			//return skillsModel;
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-//			return null;
+			return null;
 		}
 		finally{
 			try {
@@ -114,7 +117,6 @@ public class HomeDataServices {
 				e.printStackTrace();
 			}
 		}
-		return skillList;
 	
 	}
 	

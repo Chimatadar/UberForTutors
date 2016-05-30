@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-
 import javax.sql.DataSource;
+
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
@@ -30,10 +30,9 @@ public class SkillsListPageDataServices {
 
 		try{
 
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 
 			List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 
@@ -70,13 +69,11 @@ public class SkillsListPageDataServices {
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
-
+		
 		try{
-
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 
 			List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 
@@ -117,10 +114,9 @@ public class SkillsListPageDataServices {
 
 		try{
 
-			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/UFTdb");
-			connection=ds.getConnection();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 
 			List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 

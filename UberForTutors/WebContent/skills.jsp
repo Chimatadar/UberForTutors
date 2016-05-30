@@ -72,6 +72,8 @@ body {
 <body>
 	<%
 ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribute("skillsList");
+	
+	
 //ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 %>
 	<div class="navbar navbar-fixed-bottom">
@@ -116,7 +118,7 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 						<li><a href="#contact">Contact</a></li>
 						<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 						<li>
-							<form class="navbar-form" action="SkillController" method="post">
+							<form class="navbar-form" action="skillListPage" method="post">
 								<input class="span5" type="text" placeholder="search a skill">
 								<button type="submit" class="btn">Search</button>
 							</form>
@@ -130,6 +132,10 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 		<% for(int i =0; i < skillsList.size();i+=3 ) { %>
 	
 	<div class="row-fluid">
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 		<div class="span4 hero-unit">
 			<h2><%= skillsList.get(i).SkillName %></h2>
 
@@ -140,7 +146,10 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 			</p>
 		</div>
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> branch 'master' of https://github.com/Chimatadar/UberForTutors.git
 	</div>
 	<% } %>
 
