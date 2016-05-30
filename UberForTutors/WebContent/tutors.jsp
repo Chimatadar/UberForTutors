@@ -136,8 +136,7 @@ body {
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
-	<div class="row-fluid">
-		<div class="hero-unit">
+		<div class="hero-unit" style = "padding-top:10px">
 			<div class="span5">
 				Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
 				<br> Rating -<%
@@ -160,7 +159,6 @@ body {
 		</div>
 		<!--/span-->
 
-	</div>
 	<%
 		}
 	%>
