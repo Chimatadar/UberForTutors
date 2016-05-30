@@ -134,7 +134,7 @@ ArrayList<ReqNotificationDataContract> activityList = (ArrayList<ReqNotification
 	
 	<div class="row-fluid">
 <% if(activity.IsDeleted==0 && activity.Status==0) { %>
-			You received a notification from <h2><%= activity.Email %></h2> 
+			You received a notification from <h2><%= activity.FromUser %></h2> 
 			<form action = "" method="post">
 			<input type='submit' value='Accept' name='update' class="btn btn-primary btn-medium "> 
 			<input type='submit' value='Reject' name='remove' class="btn btn-primary btn-medium ">
@@ -142,7 +142,7 @@ ArrayList<ReqNotificationDataContract> activityList = (ArrayList<ReqNotification
 <% } %>
 <br>
 <% if(activity.IsDeleted==0 && activity.Status==1) { %>
-You have already responded to <h2><%= activity.Email%>'s</h2> request
+You have already responded to <h2><%= activity.FromUser %>'s</h2> request
 <% } %>
 <br>
 <% if(activity.IsDeleted==1 && activity.Status==1) { %>
