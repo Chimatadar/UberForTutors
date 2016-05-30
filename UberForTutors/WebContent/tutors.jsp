@@ -68,93 +68,55 @@ body {
 	href="../assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="../assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet" 
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	
+
 </head>
 <body>
 	<%
-		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request.getAttribute("userSkillRatings");
+	
+		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request
+				.getAttribute("userSkillRatings");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
-	<div class="navbar navbar-fixed-bottom">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
+	<% int sid = 0;
+	if(request.getAttribute("skillId")!=null) {
+	 sid = (int)request.getAttribute("skillId");} %>
+	<%@include file="headerandfooter.jsp" %>
 
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Privacy Policy</a></li>
-						<li><a href="#contact">Log Out</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						Logged in as <a href="profile.jsp" class="badge1 navbar-link"
-							data-badge="1">Username</a>
-					</p>
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-						<li>
-							<form class="navbar-form" action="" method="post">
-								<input class="span5" type="text" placeholder="search a tutor"
-									name="searchTutor">
-								<button type="submit" class="btn">Search</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
-
-	<% for(TutorDataContract user : rankedTutors ) {%>
-
-	<div class="row-fluid">
-		<div class="hero-unit">
+<%if(rankedTutors.size()!=0) { %>
+	<%
+		for (TutorDataContract user : rankedTutors) {
+	%>
+		<div class="hero-unit" style = "padding-top:10px">
 			<div class="span5">
-				<a href = "ProfileController?userId=<%=user.UserId %>"><h4><%=user.Email%></h4></a>
-			</div>
-			<div class="span5">
-				<% for(int i = 0; i < user.RatingId; i++) { %>
+				Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
+				<br> Rating -<%
+					for (int i = 0; i < user.RatingId; i++) {
+				%>
 				<i class="fa fa-star"></i>
-				<% } %>
+				<%
+					}
+				%>
 			</div>
-			<form method='post' action="">
-			<div class="hero-unit" style="background-color: white; padding: 5px;">
-				<a href="ActivityController?userId=<%=user.UserId %>&skillId=<%=user.SkillId %>" class="btn btn-primary btn-medium ">Request</a>
+			<div class="span5">
+				<form method='post' action="">
+					
+						<textarea class = "text" name = "message" placeholder = "hello"></textarea>
+						<a href="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>"
+							class="btn btn-primary btn-medium ">Request</a>
+				</form>
 			</div>
-		</form>
+
 		</div>
+		<% } %>
 		<!--/span-->
-		
-	</div>
+
 	<%
 		}
 	%>
+	<% if(sid!=0) {%>
+	
+	<% } %>
 </body>
 </html>

@@ -82,7 +82,9 @@ public class TutorController extends HttpServlet {
 
 
 		//change functions
-		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);
+		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);//rankedTutors
+		ArrayList<UserModel> alreadyReqRaised=tutorDataServices.getActivityForUserSkill(SkillId,UserId);
+		rankedTutors.remove(alreadyReqRaised);
 		
 		ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
 		ArrayList<TutorDataContract> tutorDataContracts=new ArrayList<TutorDataContract>();

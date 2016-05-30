@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//import com.sun.xml.internal.ws.message.EmptyMessageImpl;
+
+//import javax.servlet.*;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+
+
+
 import DataServices.ActivityDataServices;
+import DataServices.RankingDataServices;
+
 
 /**
  * Servlet implementation class ActivityController
@@ -40,11 +60,63 @@ public class ActivityController extends HttpServlet {
 		int toUserId = Integer.parseInt(request.getParameter("userId"));
 		int fromUserId=(int) session.getAttribute("UserId");
 		int skillId=Integer.parseInt(request.getParameter("skillId"));
+		String message = request.getParameter("message");
 		
 		System.out.println(toUserId+" "+fromUserId+" "+skillId);
 		
 		ActivityDataServices activityDataServices=new ActivityDataServices();
-		activityDataServices.addActivity(skillId,toUserId,fromUserId,status);
+		RankingDataServices rankingDataServices = new RankingDataServices();
+		activityDataServices.addActivity(skillId,toUserId,fromUserId,status,message);
+		
+	
+		String to = rankingDataServices.getUserById(toUserId);
+
+	      String from = "ucicomplaint@gmail.com";
+	      final String username = "ucicomplaint@gmail.com";
+	      final String password = "@uciComplaint1";
+
+	      String host = "smtp.gmail.com";
+
+	      Properties props = new Properties();
+	      props.put("mail.smtp.auth", "true");
+	      props.put("mail.smtp.starttls.enable", "true");
+	      props.put("mail.smtp.host", host);
+	      props.put("mail.smtp.port", "587");
+
+	      Session mail_session = Session.getInstance(props,new javax.mail.Authenticator() {
+	          protected PasswordAuthentication getPasswordAuthentication() {
+	              return new PasswordAuthentication(username, password);
+	           }
+	        });
+
+	      try {
+	         Message mail_message = new MimeMessage(mail_session);
+
+	         mail_message.setFrom(new InternetAddress(from));
+
+	         mail_message.setRecipients(Message.RecipientType.TO,
+	         InternetAddress.parse(to));
+
+	         mail_message.setSubject("Request to teach from Uber for Tutors");
+
+	         mail_message.setText("hello");
+	         mail_message.setText(" "+message);
+	         
+	         Transport.send(mail_message);
+
+//	         out.println("Sent message successfully....");
+	         request.setAttribute("skillId", skillId);
+	         RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
+
+	 		requestDispatcher.include(request, response);
+	 		return;
+
+	      } catch (MessagingException e) {
+	            throw new RuntimeException(e);
+	      }
+		
+		
+		
 	}
 
 	/**

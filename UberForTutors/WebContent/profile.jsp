@@ -176,64 +176,14 @@ body {
 <body>
 	<%
 		ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
-ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
-ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request.getAttribute("skillsLearnt");
-ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
+		ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
+		ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request
+				.getAttribute("skillsLearnt");
+		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
-	<div class="navbar navbar-fixed-bottom">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
+	<%@include file="headerandfooter.jsp" %>
 
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Privacy Policy</a></li>
-						<li><a href="#contact">Log Out</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-
-				</a> <a class="brand" href="#">Uber For Tutors</a>
-				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						Logged in as <a href="profile.jsp" class="badge1 navbar-link"
-							data-badge="1">Username</a>
-					</p>
-
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-						<li>
-							<form class="navbar-form" action="" method="post">
-								<input class="span5" type="text" placeholder="search a skill">
-								<button type="submit" class="btn">Search</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3">
@@ -259,35 +209,22 @@ ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getA
 			</div>
 			<!--/span-->
 			<div class="span9">
-				<div class="hero-unit">
-					<form method='post' action=''>
-						<div class="hero-unit"
-							style="background-color: white; padding: 5px">
-							<span style="width: 300px"> requested to learn for the
-								skill: </span> <input type='submit' value='Accept' name='update'
-								class="btn btn-primary btn-medium "> <input
-								type='submit' value='Reject' name='remove'
-								class="btn btn-primary btn-medium ">
-						</div>
-						<div class="hero-unit"
-							style="background-color: white; padding: 5px">
-							<span style="width: 300px"> requested to learn for the
-								skill: </span> <input type='submit' value='Accept' name='update'
-								class="btn btn-primary btn-medium "> <input
-								type='submit' value='Reject' name='remove'
-								class="btn btn-primary btn-medium ">
-						</div>
-					</form>
-				</div>
+				
 				<div class="row-fluid">
 					<!-- 				ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown"); -->
-					<% if(skillsKnown.size()!=0) { %>
+					<%
+						if (skillsKnown.size() != 0) {
+					%>
 					<div class="span4 hero-unit">
 						<h2>Skills user knows</h2>
 						<ul>
-							<% for(int i = 0; i <skillsKnown.size();i++) { %>
-							<li><%= skillsKnown.get(i)  %>></li>
-							<% } %>
+							<%
+								for (int i = 0; i < skillsKnown.size(); i++) {
+							%>
+							<li><%=skillsKnown.get(i)%></li>
+							<%
+								}
+							%>
 						</ul>
 						<p></p>
 
@@ -302,45 +239,60 @@ ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getA
 							</form>
 						</div>
 					</div>
-					<% } %>
-					<!--/span-->
-					<!-- 					ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request.getAttribute("skillsLearnt");
- -->
-					<% if(skillsLearnt.size()!=0) { %>
+					<%
+						}
+					%>
 					<div class="span4 hero-unit">
-						<h2>Skills user learnt</h2>
-						<ul>
-							<% for(int i = 0; i <skillsLearnt.size();i++) { %>
-							<li><%= skillsLearnt.get(i)  %>></li>
-							<% } %>
-						</ul>
-						<p></p>
 
+						<h2>Skills user learnt</h2>
+						<%
+							if (skillsLearnt.size() != 0) {
+						%>
+						<ul>
+							<%
+								for (int i = 0; i < skillsLearnt.size(); i++) {
+							%>
+							<li><%=skillsLearnt.get(i)%>></li>
+							<%
+								}
+							%>
+						</ul>
+						<%
+							}
+						%>
+						<p></p>
 						<p>
 							<a class="btn" href="skills.jsp"> Learn a new skill &raquo;</a>
 						</p>
 					</div>
-					<% } %>
-					<!--/span-->
-					<!-- 							ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
- -->
-					<% if(rankedTutors.size()!=0) { %>
 
 					<div class="span4 hero-unit">
 						<h2>Skills user taught</h2>
+						<%
+							if (rankedTutors.size() != 0) {
+						%>
+
 						<p></p>
 						<ul>
-						<% for(SkillsTaught user : rankedTutors) { %>
-							<li><%= user.skill %> -</li>
-						<% for(int i = 0; i < user.rating; i++) { %>
-						<i class="fa fa-star"></i>
-						<% } %>
-						<%  } %> 
+							<%
+								for (SkillsTaught user : rankedTutors) {
+							%>
+							<li><%=user.skill%> -</li>
+							<%
+								for (int i = 0; i < user.rating; i++) {
+							%>
+							<i class="fa fa-star"></i>
+							<%
+								}
+							%>
+							<%
+								}
+							%>
 						</ul>
-						
-
+						<%
+							}
+						%>
 					</div>
-					<% } %>
 					<!--/span-->
 				</div>
 
