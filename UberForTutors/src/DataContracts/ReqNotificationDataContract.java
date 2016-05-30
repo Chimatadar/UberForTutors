@@ -4,7 +4,9 @@ public class ReqNotificationDataContract {
 
 	public int FromUser;
 	public int SkillId;
-	public String Time;
+	public int RatingId;
+	public byte Status;
+	public byte IsDeleted;
 	public String SkillName;
 	public String Email;
 }
