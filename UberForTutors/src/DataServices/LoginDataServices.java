@@ -48,6 +48,7 @@ public class LoginDataServices {
 				System.out.println("Entered");
 				userModel.UserId=resultSet.getInt("UserId");
 				userModel.Password=resultSet.getString("Password");
+				userModel.UserName=resultSet.getString("UserName");
 				return userModel;
 			}
 			
