@@ -78,7 +78,7 @@
                             <a href="TutorController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
 
                         </li>
-                        <hr>
+                        <br>
                         <% } }%>
                     </ul>
                 </div>

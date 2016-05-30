@@ -105,11 +105,7 @@ public class ActivityController extends HttpServlet {
 	         Transport.send(mail_message);
 
 //	         out.println("Sent message successfully....");
-	         request.setAttribute("skillId", skillId);
-	         RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
-
-	 		requestDispatcher.include(request, response);
-	 		return;
+	         
 
 	      } catch (MessagingException e) {
 	            throw new RuntimeException(e);
