@@ -74,10 +74,14 @@ body {
 </head>
 <body>
 	<%
+	
 		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request
 				.getAttribute("userSkillRatings");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
+	<% int sid = 0;
+	if(request.getAttribute("skillId")!=null) {
+	 sid = (int)request.getAttribute("skillId");} %>
 	<div class="navbar navbar-fixed-bottom">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -132,7 +136,7 @@ body {
 			</div>
 		</div>
 	</div>
-
+<%if(rankedTutors.size()!=0) { %>
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
@@ -157,10 +161,14 @@ body {
 			</div>
 
 		</div>
+		<% } %>
 		<!--/span-->
 
 	<%
 		}
 	%>
+	<% if(sid!=0) {%>
+	
+	<% } %>
 </body>
 </html>

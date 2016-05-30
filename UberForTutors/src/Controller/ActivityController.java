@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,12 +69,11 @@ public class ActivityController extends HttpServlet {
 		activityDataServices.addActivity(skillId,toUserId,fromUserId,status,message);
 		
 	
-		String to = "pcparikh@uci.edu";
-				//rankingDataServices.getUserById(toUserId);
+		String to = rankingDataServices.getUserById(toUserId);
 
 	      String from = "ucicomplaint@gmail.com";
 	      final String username = "ucicomplaint@gmail.com";
-	      final String password = "ucicomplaint";
+	      final String password = "@uciComplaint1";
 
 	      String host = "smtp.gmail.com";
 
@@ -104,7 +104,12 @@ public class ActivityController extends HttpServlet {
 	         
 	         Transport.send(mail_message);
 
-	         System.out.println("Sent message successfully....");
+//	         out.println("Sent message successfully....");
+	         request.setAttribute("skillId", skillId);
+	         RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
+
+	 		requestDispatcher.include(request, response);
+	 		return;
 
 	      } catch (MessagingException e) {
 	            throw new RuntimeException(e);
