@@ -99,6 +99,48 @@ public class TutorDataServices {
 		}
 		
 	}
+
+	public ArrayList<UserModel> getActivityForUserSkill(int skillId, int userId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		ArrayList<UserModel> users=new ArrayList<UserModel>();
+		try{
+			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			query="select * from activity where SkillId=? and UserId=?";
+			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
+			preparedStmt.setInt(1, skillId);
+			preparedStmt.setInt(2, userId);
+			
+			resultSet = preparedStmt.executeQuery();
+			
+			if(resultSet.next()){
+				resultSet.beforeFirst();
+				
+			while(resultSet.next()){
+				UserModel user=new UserModel();
+				user.UserId=resultSet.getInt("UserId");
+				user.Email=resultSet.getString("Email");
+				users.add(user);
+				
+			}
+			return users;
+		}
+			else 
+				return null;
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
 }
 
 

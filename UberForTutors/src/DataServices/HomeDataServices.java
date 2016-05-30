@@ -134,7 +134,7 @@ public class HomeDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
-			query = "select a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email "
+			query = "select a.ActivityId, a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email "
 					+ "from activity a "
 					+ "Inner Join skills s "
 					+ "on a.SkillId=s.SkillId "
