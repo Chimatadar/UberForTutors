@@ -122,7 +122,7 @@ public class HomeDataServices {
 	
 	
 	
-	public ArrayList<ReqNotificationDataContract> checkNotification(int UserId){
+	public ArrayList<ReqNotificationDataContract> getActivity(int UserId){
 		ArrayList<ReqNotificationDataContract> requests = new ArrayList<>();
 		Connection connection=null;
 		ResultSet resultSet=null;
@@ -134,13 +134,13 @@ public class HomeDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
-			query = "select activity.FromUser,activity.SkillId,activity.Time,skills.SkillName,user.Email "
-					+ "from activity "
-					+ "Inner Join skills"
-					+ "on activity.SkillId=skills.SkillId "
-					+ "Inner Join user"
-					+ "on activity.FromUser=user.UserId"
-					+ "where ToUser=? and Status=0 ";
+			query = "select a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email "
+					+ "from activity a "
+					+ "Inner Join skills s "
+					+ "on a.SkillId=s.SkillId "
+					+ "Inner Join user u "
+					+ "on a.FromUser=u.UserId "
+					+ "where a.ToUser=? and a.Status=0 ";
 			
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -153,7 +153,9 @@ public class HomeDataServices {
 				//ActivityModel activityModel=new ActivityModel();
 				requestDataContract.FromUser = resultSet.getInt("FromUser");
 				requestDataContract.SkillId = resultSet.getInt("SkillId");
-				requestDataContract.Time = resultSet.getString("Time");
+				requestDataContract.RatingId = resultSet.getInt("RatingId");
+				requestDataContract.Status = resultSet.getByte("Status");
+				requestDataContract.IsDeleted = resultSet.getByte("IsDeleted");
 				requestDataContract.SkillName = resultSet.getString("SkillName");
 				requestDataContract.Email = resultSet.getString("Email");
 				requests.add(requestDataContract);

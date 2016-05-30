@@ -114,11 +114,12 @@ public class HomeController extends HttpServlet {
     
         
         //notification
-        ArrayList<ReqNotificationDataContract> notifications = new ArrayList<>();
-        notifications= homeDataServices.checkNotification(UserId);
+/*        ArrayList<ReqNotificationDataContract> notifications = new ArrayList<>();
+        notifications= homeDataServices.checkNotification(UserId);*/
         
-        request.setAttribute("notificationNo", notifications.size());
-        request.setAttribute("notifications", notifications);
+        
+        /*request.setAttribute("notificationNo", notifications.size());
+        request.setAttribute("notifications", notifications);*/
         RequestDispatcher rs3=request.getRequestDispatcher("home.jsp");
         rs3.forward(request, response);
         
