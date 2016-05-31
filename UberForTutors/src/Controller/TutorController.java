@@ -83,6 +83,7 @@ public class TutorController extends HttpServlet {
 
 		//change functions
 		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);//rankedTutors
+		if(rankedTutors!=null){
 		ArrayList<UserModel> alreadyReqRaised=tutorDataServices.getActivityForUserSkill(SkillId,UserId);
 		rankedTutors.remove(alreadyReqRaised);
 
@@ -100,7 +101,10 @@ public class TutorController extends HttpServlet {
 			tutorDataContracts.add(tutorDataContract);
 		}
 		request.setAttribute("userSkillRatings", tutorDataContracts);
-
+		}
+		else{
+			request.setAttribute("userSkillRatings", null);
+		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
 
 		requestDispatcher.include(request, response);
