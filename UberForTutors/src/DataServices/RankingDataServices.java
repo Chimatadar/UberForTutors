@@ -141,7 +141,7 @@ public class RankingDataServices {
 		}
 	}
 
-	public String getUserById(Integer userID) {
+	public String getUserById(int userID) {
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
@@ -151,8 +151,8 @@ public class RankingDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
-		
-			query="select * from user where userId=?";
+			
+			query="select * from user where UserId=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
 			preparedStmt1.setInt(1, userID);
@@ -166,7 +166,7 @@ public class RankingDataServices {
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
+			System.out.println("user");
 			return null;
 		}
 	}
