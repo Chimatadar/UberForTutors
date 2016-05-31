@@ -46,7 +46,7 @@ public class ProfileController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
-		List<String> skillsKnown = new ArrayList<String>();
+		List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 		List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 		List<Notifications> notifications = new ArrayList<Notifications>();
 		List<UserModelWithActivity> rateTutorsList = new ArrayList<UserModelWithActivity>();
@@ -64,6 +64,7 @@ public class ProfileController extends HttpServlet {
 				notifications = profileDataServices.getNotifications(userId);
 				rateTutorsList = profileDataServices.getTutorsList(userId);
 				allSkillsList = profileDataServices.getAllSkillsList();
+				allSkillsList.removeAll(skillsKnown);
 			}else{
 				int userId = Integer.parseInt(request.getParameter("userId"));
 				skillsTaught = profileDataServices.getSkillsTaught(userId);

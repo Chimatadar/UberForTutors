@@ -84,7 +84,9 @@ body {
 	 sid = (int)request.getAttribute("skillId");} %>
 	<%@include file="headerandfooter.jsp"%>
 
-	<%if(rankedTutors.size()!=0) { %>
+	
+	<%if(rankedTutors!=null){ %>
+		<%if(rankedTutors.size()!=0) { %>
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
@@ -114,7 +116,10 @@ body {
 	<!--/span-->
 
 	<%
-		}
+		} }
+	else{
+		out.println("No Tutor Found");
+	}
 	%>
 	<% if(sid!=0) {%>
 
