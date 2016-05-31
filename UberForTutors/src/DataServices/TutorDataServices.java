@@ -124,9 +124,9 @@ public class TutorDataServices {
 			while(resultSet.next()){
 				UserModel user=new UserModel();
 				user.UserId=resultSet.getInt("ToUser");
-				user.Email="rhaji@uci.edu";
+				
 				users.add(user);
-				System.out.println("sdfjkdfj");
+				
 			}
 			
 		}

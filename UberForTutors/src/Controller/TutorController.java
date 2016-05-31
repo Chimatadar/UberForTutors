@@ -88,9 +88,24 @@ public class TutorController extends HttpServlet {
 		if(rankedTutors!=null){
 		ArrayList<UserModel> alreadyReqRaised=tutorDataServices.getActivityForUserSkill(SkillId,UserId);
 		System.out.println(alreadyReqRaised.size());
-		rankedTutors.remove(alreadyReqRaised);
-
-		ArrayList<UserSkillRatingsModel> userSkillRatingsModels=new ArrayList<UserSkillRatingsModel>();
+		ArrayList<UserModel> rt=new ArrayList<UserModel>();
+		for(UserModel alreadyRaised:alreadyReqRaised)
+		{
+			for(UserModel ranktut:rankedTutors)
+			{
+				if(ranktut.UserId!=alreadyRaised.UserId)
+				{
+					rt.add(ranktut);
+				}
+			}
+		}
+		if(rt.size()>0)
+		{
+			rankedTutors=rt;
+		}
+		
+		//rankedTutors.remove(alreadyReqRaised);
+		//System.out.println(rankedTutors.size());
 		ArrayList<TutorDataContract> tutorDataContracts=new ArrayList<TutorDataContract>();
 
 		for(UserModel tutModel:rankedTutors)

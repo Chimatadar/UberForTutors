@@ -28,7 +28,7 @@ public class UserModel {
 			return false;
 		}
 		UserModel other = (UserModel) obj;
-		if (UserId != other.UserId) {
+		if (this.UserId != other.UserId) {
 			return false;
 		}
 		return true;
