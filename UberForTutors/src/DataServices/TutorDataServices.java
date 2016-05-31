@@ -107,14 +107,14 @@ public class TutorDataServices {
 		ArrayList<UserModel> users=new ArrayList<UserModel>();
 		try{
 			
-			
+			System.out.println(userId+" "+skillId);
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
-			query="select * from activity where SkillId=? and UserId=?";
+			query="select * from activity where FromUser=? and SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
-			preparedStmt.setInt(1, skillId);
-			preparedStmt.setInt(2, userId);
+			preparedStmt.setInt(1, userId);
+			preparedStmt.setInt(2, skillId);
 			
 			resultSet = preparedStmt.executeQuery();
 			
@@ -123,22 +123,21 @@ public class TutorDataServices {
 				
 			while(resultSet.next()){
 				UserModel user=new UserModel();
-				user.UserId=resultSet.getInt("UserId");
-				user.Email=resultSet.getString("Email");
+				user.UserId=resultSet.getInt("ToUser");
+				user.Email="rhaji@uci.edu";
 				users.add(user);
-				
+				System.out.println("sdfjkdfj");
 			}
-			return users;
+			
 		}
-			else 
-				return null;
+			return users;
 			
 			
 		}
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-			return null;
+			return users;
 		}
 	}
 }
