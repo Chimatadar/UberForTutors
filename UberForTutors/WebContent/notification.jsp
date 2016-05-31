@@ -78,11 +78,11 @@ body {
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
 	<%@include file="headerandfooter.jsp"%>
-
+<div class = "hero-unit" style = "background:white;padding-bottom:5px">Your Notifications<hr></div>
 	<%
 		for (ReqNotificationDataContract activity : activityList) {
 	%>
-	<div class = "hero-unit" style = "background:white;padding-bottom:5px">Your Notifications<hr></div>
+	
 
 	<div class="hero-unit" style="">
 		<%

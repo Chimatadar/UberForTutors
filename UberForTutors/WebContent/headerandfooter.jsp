@@ -77,7 +77,7 @@
                             <a href="#about">Privacy Policy</a>
                         </li>
                         <li>
-                            <a href="#contact">Log Out</a>
+                            <a href="Index.jsp">Log Out</a>
                         </li>
                     </ul>
                 </div>
