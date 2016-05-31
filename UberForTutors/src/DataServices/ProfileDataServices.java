@@ -78,7 +78,7 @@ public class ProfileDataServices {
 			
 			List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 			
-			query = "select Skills.SkillId, Skills.SkillName, Skill.Image  from UserSkillRatings "
+			query = "select Skills.SkillId, Skills.SkillName, Skills.Image  from UserSkillRatings "
 					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=?";
 					
 			

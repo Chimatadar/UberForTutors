@@ -21,8 +21,41 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <style type="text/css">
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
 
-/* USER PROFILE PAGE */
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
 .card {
 	margin-top: 20px;
 	padding: 30px;
@@ -153,8 +186,7 @@ body {
 }
 
 .scrollable-menu {
-	height: auto;
-	max-height: 200px;
+	height: 300px;
 	overflow-x: hidden;
 }
 </style>
@@ -182,14 +214,14 @@ body {
 <body>
 	<%
 		ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
-	ArrayList<SkillsModel> allskill = (ArrayList<SkillsModel>) request.getAttribute("allSkillsList");
+		ArrayList<SkillsModel> allskill = (ArrayList<SkillsModel>) request.getAttribute("allSkillsList");
 
-		ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
+		ArrayList<SkillsModel> skillsKnown = (ArrayList<SkillsModel>) request.getAttribute("skillsKnown");
 		ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request
 				.getAttribute("skillsLearnt");
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
-		String name = (String)session.getAttribute("userName");
+		String name = (String) session.getAttribute("userName");
 	%>
 	<%@include file="headerandfooter.jsp"%>
 
@@ -205,11 +237,11 @@ body {
 					<div class="useravatar">
 						<img alt=""
 							src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2000px-User_icon_2.svg.png">
-<!--             http://lorempixel.com/100/100/people/9/ -->
-            
+						<!--             http://lorempixel.com/100/100/people/9/ -->
+
 					</div>
 					<div class="card-info">
-						<span class="card-title"><%=name %></span>
+						<span class="card-title"><%=name%></span>
 					</div>
 
 				</div>
@@ -220,38 +252,41 @@ body {
 			<div class="span9">
 
 				<div class="row-fluid">
-					<!-- 				ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown"); -->
-
-					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
-						<h3>Skills user knows</h3>
+					<div class="span4 hero-unit"
+						style="background-color: #17202A; color: white; padding-left: 15px">
+						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user knows</h3>
 						<%
-						if (skillsKnown.size() != 0) {
-					%>
+							if (skillsKnown.size() != 0) {
+						%>
 						<ul>
 							<%
 								for (int i = 0; i < skillsKnown.size(); i++) {
 							%>
-							<li><%=skillsKnown.get(i)%></li>
+							<li style="padding-left: 15px"><%=skillsKnown.get(i).SkillName%></li>
 							<%
 								}
 							%>
 						</ul>
 						<%
-						}
-					%>
-						<p></p>
+							}
+						%>
 
-						<div class="subscribe">
-							<div class="btn">Add a skil</div>
+						<div class="subscribe" style="padding-left: 0px">
+							<div class="btn btn-primary">Add a skill</div>
 							<form class="form2" action="" method="post">
 								<p>
-			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language"">
-			                        	<% for(SkillsModel skill: allskill) { %>
-										  <option style = "background-color:#de615e ;padding-bottom:10px"><%= skill.SkillName %></option>										  
-										  
-									      <% } %>
-										</select>
-									<input class="btn-primary" name="submit" type="submit"
+
+									<select class="form-group col-sm-2 selectpicker"
+										style="height: 300px; width: 300px; padding: 0px" multiple
+										name="skill"">
+										<%
+											for (SkillsModel skill : allskill) {
+										%>
+										<option style="padding: 5px;"><%=skill.SkillName.toUpperCase()%></option>
+										<%
+											}
+										%>
+									</select> <input class="btn-primary" name="submit" type="submit"
 										value="Submit" />
 								</p>
 
@@ -259,7 +294,8 @@ body {
 						</div>
 					</div>
 
-					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+					<div class="span4 hero-unit"
+						style="background-color: #17202A; color: white">
 
 						<h3>Skills user learnt</h3>
 						<%
@@ -284,7 +320,8 @@ body {
 						</p>
 					</div>
 
-					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+					<div class="span4 hero-unit"
+						style="background-color: #17202A; color: white">
 						<h3>Skills user taught</h3>
 						<%
 							if (rankedTutors.size() != 0) {
@@ -313,7 +350,29 @@ body {
 					</div>
 					<!--/span-->
 				</div>
+					<div class="hero-unit " style="background-color: #17202A; color: white">
+									<div class="row-fluid">
+					
+  <div class = "span5">Rating for User X from Skill Y</div>
+  <div class = "span5">
+  <form action="" method = "post">
+  
+    <input class="star star-5" id="star-5" type="radio" name="star"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star"/>
+    <label class="star star-1" for="star-1"></label>
+          <input class="btn btn-primary"  type="submit" name="submit"/>
+    
+  </form></div>
 
+					</div>
+				</div>
 			</div>
 			<!--/span-->
 		</div>

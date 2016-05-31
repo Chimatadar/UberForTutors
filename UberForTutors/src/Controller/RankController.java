@@ -20,7 +20,7 @@ public class RankController {
 public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     //categorise by rating of the skill
 	//int skillId = Integer.parseInt(request.getParameter("skillId"));
-    ArrayList<UserSkillRatingsModel> userSkillRatings=RankingDataServices.getUserSkillRatingsBySkillId(1);
+    ArrayList<UserSkillRatingsModel> userSkillRatings=RankingDataServices.getUserSkillRatingsBySkillId(skillId);
     
     if(userSkillRatings!=null){
     Collections.sort(userSkillRatings, new Comparator<UserSkillRatingsModel>() {

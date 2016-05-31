@@ -74,19 +74,25 @@ body {
 </head>
 <body>
 	<%
-	
 		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request
 				.getAttribute("userSkillRatings");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
-	<% int sid = 0;
-	if(request.getAttribute("skillId")!=null) {
-	 sid = (int)request.getAttribute("skillId");} %>
+	<%
+		int sid = 0;
+		if (request.getAttribute("skillId") != null) {
+			sid = (int) request.getAttribute("skillId");
+		}
+	%>
 	<%@include file="headerandfooter.jsp"%>
 
-	
-	<%if(rankedTutors!=null){ %>
-		<%if(rankedTutors.size()!=0) { %>
+
+	<%
+		if (rankedTutors != null) {
+	%>
+	<%
+		if (rankedTutors.size() != 0) {
+	%>
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
@@ -94,12 +100,12 @@ body {
 		<div class="span5">
 			Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
 			<br> Rating -<%
-					for (int i = 0; i < user.RatingId; i++) {
-				%>
+				for (int i = 0; i < user.RatingId; i++) {
+			%>
 			<i class="fa fa-star"></i>
 			<%
-					}
-				%>
+				}
+			%>
 		</div>
 		<div class="span5">
 			<form method='post' action="">
@@ -112,17 +118,20 @@ body {
 		</div>
 
 	</div>
-	<% } %>
-	<!--/span-->
+	<%
+		}
+	%>
 
 	<%
-		} }
-	else{
-		out.println("No Tutor Found");
-	}
+		}
+		}
 	%>
-	<% if(sid!=0) {%>
+	<%
+		if (sid != 0) {
+	%>
 
-	<% } %>
+	<%
+		}
+	%>
 </body>
 </html>
