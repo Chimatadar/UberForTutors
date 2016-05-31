@@ -259,16 +259,16 @@ body {
 
 				<div class="row-fluid">
 					<div class="span4 hero-unit"
-						style="background-color: #17202A; color: white; padding-left: 15px">
+						style="background-color: #17202A; color: white; padding-left:5px">
 						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user knows</h3>
 						<%
 							if (skillsKnown.size() != 0) {
 						%>
-						<ul>
+						<ul style = "padding-left:60px">
 							<%
 								for (int i = 0; i < skillsKnown.size(); i++) {
 							%>
-							<li style="padding-left: 15px"><%=skillsKnown.get(i).SkillName%></li>
+							<li ><%=skillsKnown.get(i).SkillName%></li>
 							<%
 								}
 							%>
@@ -277,14 +277,14 @@ body {
 							}
 						%>
 
-						<div class="subscribe" style="padding-left: 0px">
-							<div class="btn btn-primary">Add a skill</div>
-							<form class="form2" action="" method="post">
+						<div class="subscribe" style = "padding-left:60px" >
+							<div class="btn btn-primary" style = "padding-left:10px">Add a skill</div>
+							<form class="form2" action="ProfileController?bool=1" method="post">
 								<p>
 
 									<select class="form-group col-sm-2 selectpicker"
-										style="height: 300px; width: 300px; padding: 0px" multiple
-										name="skill"">
+										
+										name="knownSkills"">
 										<%
 											for (SkillsModel skill : allskill) {
 										%>

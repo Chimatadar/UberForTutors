@@ -58,9 +58,11 @@ public class ActivityDataServices {
 				preparedStmt1.setString(1, knownSkillsList.get(i).trim());
 				resultSet = preparedStmt1.executeQuery();
 				
+				
 				if(resultSet.next()){
 					int skillId = resultSet.getInt("SkillId");
-					query="Insert into UserSkillRatings(UserId,SkillId,RatingId,Taught,TotalPeople) Values(?,?,0,0,0)";
+					System.out.println(skillId);
+					query="Insert into UserSkillRatings(UserId,SkillId,RatingId,Taught,TotalPeople) Values(?,?,1,0,0)";
 					PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 					preparedStmt.setInt(1, userId);
 					preparedStmt.setInt(2, skillId);

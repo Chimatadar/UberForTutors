@@ -71,7 +71,7 @@
                     
                     <ul class="nav">
                         <li class="active">
-                            <a href="#">Home</a>
+                            <a href="HomeController">Home</a>
                         </li>
                         <li>
                             <a href="#about">Privacy Policy</a>
@@ -102,7 +102,7 @@
                      
                     <ul class="nav">
                         <li class="active">
-                            <a href="#">Home</a>
+                            <a href="HomeController">Home</a>
                         </li>
                         <li>
                             <a href="ProfileController">Profile</a>

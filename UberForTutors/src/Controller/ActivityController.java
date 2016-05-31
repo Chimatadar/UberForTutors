@@ -103,10 +103,8 @@ public class ActivityController extends HttpServlet {
 	         mail_message.setText(" "+message);
 	         
 	         Transport.send(mail_message);
-	         System.out.println(skillId + "skill id");
 
-	         request.setAttribute("sid1", skillId);
-	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("TutorController");
+	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomeController");
 	            requestDispatcher.forward(request, response);
 				
 

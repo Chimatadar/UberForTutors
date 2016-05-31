@@ -53,22 +53,23 @@ public class HomeController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session=request.getSession();
-		//check the variable for search button
-        //this is value for search text
+		
         String searchSkill = request.getParameter("searchSkill");
         HomeDataServices homeDataServices=new HomeDataServices();
         if(searchSkill!=null){
-        
-        ArrayList<SkillsModel> skillList = homeDataServices.searchSkills(searchSkill);
-        if(skillList!=null){
-        request.setAttribute("skillsList", skillList);
-        }
-        RequestDispatcher rs1=request.getRequestDispatcher("skills.jsp");
-        
-         rs1.forward(request, response);
-         return;
-        
-        
+
+        	ArrayList<SkillsModel> skillList = homeDataServices.searchSkills(searchSkill);
+        	
+        	if(skillList!=null){
+        		request.setAttribute("skillsList", skillList);
+        	}
+
+        	RequestDispatcher rs1=request.getRequestDispatcher("skills.jsp");
+
+        	rs1.forward(request, response);
+        	return;
+
+
         }
         
         

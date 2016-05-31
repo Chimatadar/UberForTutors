@@ -47,6 +47,7 @@ public class ProfileController extends HttpServlet {
 		HttpSession session = request.getSession();
 		int userId = (int)session.getAttribute("UserId");
 		
+		
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 		List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 		List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
@@ -61,8 +62,10 @@ public class ProfileController extends HttpServlet {
 			
 			if(request.getParameter("knownSkills")!=null){
 				String[] knownSkillsArray = request.getParameterValues("knownSkills");
+				System.out.println(knownSkillsArray[0]);
 				List<String> knownSkillsList=new ArrayList<String>(Arrays.asList(knownSkillsArray));
 				activityDataServices.addNewSkill(knownSkillsList, userId);
+				System.out.println("i");
 			}
 			
 			if(request.getParameter("userId")==null){
@@ -73,7 +76,10 @@ public class ProfileController extends HttpServlet {
 				notifications = profileDataServices.getNotifications(userId);
 				rateTutorsList = profileDataServices.getTutorsList(userId);
 				allSkillsList = profileDataServices.getAllSkillsList();
+				System.out.println(allSkillsList.size());
 				allSkillsList.removeAll(skillsKnown);
+				System.out.println(allSkillsList.size());
+				
 			}else{
 				
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
