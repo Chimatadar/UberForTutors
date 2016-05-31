@@ -63,7 +63,7 @@ public class LoginController extends HttpServlet {
         {
         	        	
              session.setAttribute("UserId", userModel.UserId);
-             session.setAttribute("UserName", userModel.UserName);
+             session.setAttribute("userName", userModel.UserName);
         	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
              requestDispatcher.forward(request, response);
         }

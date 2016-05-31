@@ -63,6 +63,8 @@
 <%
 		ArrayList<CategoriesModel> categoryModels = (ArrayList<CategoriesModel>) request.getAttribute("categoryList");
 		ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
+	String name1 = (String)session.getAttribute("userName");
+	
 	%>
 <%@include file="headerandfooter.jsp" %>
     <div class="container-fluid">
@@ -78,7 +80,7 @@
                             <a href="TutorController?sid=<%= user.SkillId%>"><%= user.SkillName %></a>
 
                         </li>
-                        <hr>
+                        <br>
                         <% } }%>
                     </ul>
                 </div>
@@ -87,7 +89,7 @@
             <!--/span-->
             <div class="span9">
                 <div class="hero-unit" style = "background-color:#17202A;color:white">
-                    <h1 >Hello, "Insert user here>!"</h1>
+                    <h1 >Hello, <%=  name1%></h1>
 
                     <p>Brief intro<p>
                         <a class="btn btn-primary btn-large">Learn more &raquo;</a>

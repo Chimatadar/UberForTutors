@@ -82,41 +82,42 @@ body {
 	<% int sid = 0;
 	if(request.getAttribute("skillId")!=null) {
 	 sid = (int)request.getAttribute("skillId");} %>
-	<%@include file="headerandfooter.jsp" %>
+	<%@include file="headerandfooter.jsp"%>
 
-<%if(rankedTutors.size()!=0) { %>
+	<%if(rankedTutors.size()!=0) { %>
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
-		<div class="hero-unit" style = "padding-top:10px">
-			<div class="span5">
-				Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
-				<br> Rating -<%
+	<div class="hero-unit" style="padding-top: 10px">
+		<div class="span5">
+			Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
+			<br> Rating -<%
 					for (int i = 0; i < user.RatingId; i++) {
 				%>
-				<i class="fa fa-star"></i>
-				<%
+			<i class="fa fa-star"></i>
+			<%
 					}
 				%>
-			</div>
-			<div class="span5">
-				<form method='post' action="">
-					
-						<textarea class = "text" name = "message" placeholder = "hello"></textarea>
-						<a href="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>"
-							class="btn btn-primary btn-medium ">Request</a>
-				</form>
-			</div>
-
 		</div>
-		<% } %>
-		<!--/span-->
+		<div class="span5">
+			<form method='post' action="">
+
+				<textarea class="text" name="message" placeholder="hello"></textarea>
+				<a
+					href="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>"
+					class="btn btn-primary btn-medium ">Request</a>
+			</form>
+		</div>
+
+	</div>
+	<% } %>
+	<!--/span-->
 
 	<%
 		}
 	%>
 	<% if(sid!=0) {%>
-	
+
 	<% } %>
 </body>
 </html>

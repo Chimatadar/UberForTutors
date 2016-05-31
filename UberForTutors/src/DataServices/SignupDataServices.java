@@ -31,7 +31,7 @@ public class SignupDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 						
 			query = "select email from user where email=?";
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);

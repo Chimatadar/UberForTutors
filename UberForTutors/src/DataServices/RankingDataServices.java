@@ -27,7 +27,7 @@ public class RankingDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			query="select * from userskillratings where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -68,7 +68,7 @@ public class RankingDataServices {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			query="select * from userskillratings where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -110,7 +110,7 @@ public class RankingDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			query="select * from userlanguage where UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -149,7 +149,7 @@ public class RankingDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 		
 			query="select * from user where userId=?";

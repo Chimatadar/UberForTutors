@@ -97,15 +97,15 @@
                 </a>
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">Logged in as                 
-                     <a href="ProfileController" class="badge1 navbar-link" data-badge="1">Username</a></p>
+                    <p class="navbar-text pull-right">                 
+                     <a href="NotificationController" class="badge1 navbar-link" data-badge="1">Notification</a></p>
                      
                     <ul class="nav">
                         <li class="active">
                             <a href="#">Home</a>
                         </li>
                         <li>
-                            <a href="NotificationController">Notification</a>
+                            <a href="ProfileController">Profile</a>
                         </li>
                         <li>
                             <a href="#contact">Contact</a>
@@ -113,7 +113,7 @@
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                         <li>
-                        <form class="navbar-form" action="HomeController" method="post">
+                        <form class="navbar-form" action="skillsListPage" method="post">
                         <input class="span5" type="text" placeholder="search a skill" name="searchSkill">
                         <button type="submit" class="btn">Search</button>
                     </form>

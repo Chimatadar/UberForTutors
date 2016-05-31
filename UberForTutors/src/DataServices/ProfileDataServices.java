@@ -34,7 +34,7 @@ public class ProfileDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 			
@@ -74,7 +74,7 @@ public class ProfileDataServices {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<String> skillsKnown = new ArrayList<String>();
 			
@@ -111,7 +111,7 @@ public class ProfileDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 			
@@ -156,7 +156,7 @@ public class ProfileDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<Notifications> skillsLearnt = new ArrayList<Notifications>();
 			
@@ -202,7 +202,7 @@ public class ProfileDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<UserModelWithActivity> rateTutorsList = new ArrayList<UserModelWithActivity>();
 			

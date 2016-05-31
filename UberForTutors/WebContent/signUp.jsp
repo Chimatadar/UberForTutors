@@ -55,20 +55,27 @@
                             </div>
                             <div class="form-bottom">
 			                    <form role="form" action="SignupController" method="post" class="login-form">
-			                    	<div class="form-group">
+			                    <div class="form-group">
 			                    		<label class="sr-only">Username</label>
-			                        	<input type="text" name="email" placeholder="Username..." class="form-control" >
+			                        	<input type="text" name="userName" placeholder="Username..." class="form-control" >
+			                        </div>
+			                    	<div class="form-group">
+			                    		<label class="sr-only">Email</label>
+			                        	<input type="text" name="email" placeholder="Email..." class="form-control" >
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" >Password</label>
 			                        	<input type="password" name="password" placeholder="Password..." class="form-control" >
 			                        </div>
 			                        <div class="form-group" style = "padding-left:0px">
-			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language" >
+			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language"">
 										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>
-										  <option style = "background-color:#de615e;padding-bottom:10px">Gujurathi</option>
+										  <option style = "background-color:#de615e;padding-bottom:10px">Gujarati</option>
 										  <option style = "background-color:#de615e ;padding-bottom:10px">Hindi</option>
 									      <option style = "background-color:#de615e ;padding-bottom:10px">Kannada</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Chinese</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Spanish</option>
+									      
 										</select>
 										</div>
 			                        <div class="form-group">
