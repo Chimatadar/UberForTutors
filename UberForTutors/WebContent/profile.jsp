@@ -364,7 +364,7 @@ body {
 					<% for(UserModelWithActivity tutor:rateTutor) { %>
 					
 					<div class="row-fluid">
-						<div class="span5">Rating for User <%= tutor.UserName %>> from Skill Y</div>
+						<div class="span5">Rating for User <%= tutor.UserName %>> from Skill <%= tutor.SkillName %>></div>
 						<div class="span5">
 							<form action="RateController" method="post">
 
