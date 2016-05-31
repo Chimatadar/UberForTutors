@@ -84,7 +84,9 @@ public class RecoController {
 		            }
 		        } );
 		        
-		        
+		       /* for(Map.Entry<Integer, Integer> entry:list){
+		        	System.out.println(entry.getKey()+" "+entry.getValue());
+		        }*/
 		        
 		        
 		        TreeMap<Integer, Integer> weightedCharacteristics=new TreeMap<Integer, Integer>();
@@ -94,6 +96,7 @@ public class RecoController {
 		            //System.out.println(weightedCharacteristics.get(entry.getKey()));
 		        }
 		        
+		       
 		      //Rank the characteristics
 		        ArrayList<Integer> removeSkills=new ArrayList<Integer>();
 		        for(RecoCategoryDataContract skillList:skillsList)
@@ -108,13 +111,12 @@ public class RecoController {
 		        	
 		        	
 		        	
-		        	
-		        	
 		        	HashMap<Integer, Integer> rankSkills=new HashMap<Integer, Integer>();
 			        for(Integer skill:skills)
 			        {
 			        	int sum=0;
 			        	ArrayList<Integer> chaArrayList=recommendationDataServices.getCharacteristicsBySkill(skill);
+			        	if(chaArrayList!=null){
 			        	for(Integer charcterisitic: chaArrayList)
 			        	{
 			        		if(weightedCharacteristics.containsKey(charcterisitic))
@@ -122,8 +124,12 @@ public class RecoController {
 			        			sum+=weightedCharacteristics.get(charcterisitic);
 			        		}
 			        	}
+			        	}
+			        	else {
+							sum=0;
+						}
 			        	rankSkills.put(skill, sum);
-			        	
+			        	System.out.println(skill+" "+sum);
 			        	
 			        }
 			        
@@ -138,9 +144,11 @@ public class RecoController {
 			            }
 			        } );
 			        
+			        
 			        ArrayList<Integer> recommendedSkillIds=new ArrayList<Integer>();
 			        for(Map.Entry<Integer, Integer> entry:list1){
 			        	recommendedSkillIds.add(entry.getKey());
+			        	//System.out.println(entry.getKey()+" "+entry.getValue());
 			        }
 			        
 			        ArrayList<SkillsModel> recommendedSkills=new ArrayList<SkillsModel>();

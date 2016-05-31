@@ -37,7 +37,7 @@ public class HomeDataServices {
 
 						
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
 			query="select * from categories";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
@@ -86,7 +86,7 @@ public class HomeDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select * from skills where SkillName like '%"+searchSkill+"%'";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -133,7 +133,7 @@ public class HomeDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select a.ActivityId, a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email "
 					+ "from activity a "
@@ -195,7 +195,7 @@ public class HomeDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
 			query = "select * from skills where SkillId=?";
 			
@@ -238,7 +238,7 @@ public class HomeDataServices {
 
 						
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
 			query="select count(*) from Activity where status=0";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
