@@ -15,6 +15,7 @@ import DataContracts.UserModelWithActivity;
 import DataServices.ProfileDataServices;
 import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
+import Model.SkillsModel;
 import Model.SkillsTaught;
 import Model.UserModel;
 import Model.UserSkillRatingsModel;
@@ -49,6 +50,7 @@ public class ProfileController extends HttpServlet {
 		List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 		List<Notifications> notifications = new ArrayList<Notifications>();
 		List<UserModelWithActivity> rateTutorsList = new ArrayList<UserModelWithActivity>();
+		List<SkillsModel> allSkillsList = new ArrayList<SkillsModel>();
 		
 		ProfileDataServices profileDataServices = new ProfileDataServices();
 		
@@ -61,6 +63,7 @@ public class ProfileController extends HttpServlet {
 				skillsLearnt = profileDataServices.getSkillsLearnt(userId);
 				notifications = profileDataServices.getNotifications(userId);
 				rateTutorsList = profileDataServices.getTutorsList(userId);
+				allSkillsList = profileDataServices.getAllSkillsList();
 			}else{
 				int userId = Integer.parseInt(request.getParameter("userId"));
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
@@ -72,9 +75,12 @@ public class ProfileController extends HttpServlet {
 			if(request.getAttribute("userId")==null){
 				request.setAttribute("skillsLearnt", skillsLearnt);
 				request.setAttribute("rateTutorsList", rateTutorsList);
+				request.setAttribute("allSkillsList", allSkillsList);
+				
 			}else{
 				request.setAttribute("skillsLearnt", new ArrayList<SkillsLearntWithActivityId>());
 				request.setAttribute("rateTutorsList", new ArrayList<UserModelWithActivity>());
+				request.setAttribute("allSkillsList", new ArrayList<SkillsModel>());
 			}
 			
 			request.setAttribute("notifications", notifications);
