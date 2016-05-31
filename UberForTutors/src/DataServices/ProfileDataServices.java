@@ -79,11 +79,14 @@ public class ProfileDataServices {
 			List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 			
 			query = "select Skills.SkillId, Skills.SkillName, Skill.Image  from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=?";
+					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId and UserSkillRatings.UserId=?"
+					+ " and UserSkillRatings.Taught=? and UserSkillRatings.Taught=?";
 					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
+			preparedStmt1.setInt(2, 0);
+			preparedStmt1.setInt(3, 2);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
@@ -126,7 +129,7 @@ public class ProfileDataServices {
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
-			preparedStmt1.setInt(2, 3);
+			preparedStmt1.setInt(2, 2);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){

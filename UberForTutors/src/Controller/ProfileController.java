@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DataContracts.UserModelWithActivity;
+import DataServices.ActivityDataServices;
 import DataServices.ProfileDataServices;
 import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
@@ -44,6 +45,7 @@ public class ProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
+		int userId = (int)session.getAttribute("UserId");
 		
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 		List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
@@ -53,11 +55,18 @@ public class ProfileController extends HttpServlet {
 		List<SkillsModel> allSkillsList = new ArrayList<SkillsModel>();
 		
 		ProfileDataServices profileDataServices = new ProfileDataServices();
+		ActivityDataServices activityDataServices = new ActivityDataServices();
 		
 		try {
 			
+			if(request.getParameter("knownSkills")!=null){
+				String[] knownSkillsArray = request.getParameterValues("knownSkills");
+				List<String> knownSkillsList=new ArrayList<String>(Arrays.asList(knownSkillsArray));
+				activityDataServices.addNewSkill(knownSkillsList, userId);
+			}
+			
 			if(request.getParameter("userId")==null){
-				int userId = (int)session.getAttribute("UserId");
+				
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 				skillsLearnt = profileDataServices.getSkillsLearnt(userId);
@@ -66,10 +75,9 @@ public class ProfileController extends HttpServlet {
 				allSkillsList = profileDataServices.getAllSkillsList();
 				allSkillsList.removeAll(skillsKnown);
 			}else{
-				int userId = Integer.parseInt(request.getParameter("userId"));
+				
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
-				notifications = profileDataServices.getNotifications(userId);
 			}
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
