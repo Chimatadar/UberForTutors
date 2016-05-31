@@ -49,6 +49,7 @@ public class HomeDataServices {
 				CategoriesModel categoriesModel=new CategoriesModel();
 				categoriesModel.CategoryName=resultSet.getString("CategoryName");
 				categoriesModel.CategoryId=resultSet.getInt("CategoryId");
+				
 				categoryList.add(categoriesModel);
 				
 			}
@@ -228,5 +229,44 @@ public class HomeDataServices {
 		
 	}
 	
+	public int getNoOfNotifications(int userId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		try{
+			
+
+						
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+
+			query="select count(*) from Activity where status=0";
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+			
+			resultSet = preparedStmt1.executeQuery();
+			int count=0;
+			while(resultSet.next()){
+				resultSet.getInt(1);
+			}
+			
+			return count;
+		
+			
+			//return skillsModel;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return 0;
+		}
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
 }
