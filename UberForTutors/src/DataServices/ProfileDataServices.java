@@ -67,7 +67,7 @@ public class ProfileDataServices {
 		}
 	}
 	
-	public List<String> getSkillsKnown(int userId) throws SQLException{
+	public List<SkillsModel> getSkillsKnown(int userId) throws SQLException{
 		Connection connection=null;
 		ResultSet resultSet=null;
 		String query=null;
@@ -76,9 +76,9 @@ public class ProfileDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
-			List<String> skillsKnown = new ArrayList<String>();
+			List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 			
-			query = "select Skills.SkillName from UserSkillRatings "
+			query = "select Skills.SkillId, Skills.SkillName, Skill.Image  from UserSkillRatings "
 					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=?";
 					
 			
@@ -87,7 +87,11 @@ public class ProfileDataServices {
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
-				skillsKnown.add(resultSet.getString(1));
+				SkillsModel skillsKnownRow = new SkillsModel();
+				skillsKnownRow.SkillId = resultSet.getInt("SkillId");
+				skillsKnownRow.SkillName = resultSet.getString("SkillName");
+				skillsKnownRow.image = resultSet.getString("Image");
+				skillsKnown.add(skillsKnownRow);
 			}
 			
 			return skillsKnown;
@@ -95,7 +99,7 @@ public class ProfileDataServices {
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-			return new ArrayList<String>();
+			return new ArrayList<SkillsModel>();
 		}
 		finally {
 			connection.close();
@@ -221,7 +225,6 @@ public class ProfileDataServices {
 				userModelWithActivity.Email = resultSet.getString(2);
 				userModelWithActivity.UserName = resultSet.getString(3);
 				userModelWithActivity.ActivityId = resultSet.getInt(4);
-				
 						
 			}
 			
