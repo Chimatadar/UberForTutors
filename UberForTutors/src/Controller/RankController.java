@@ -32,7 +32,9 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     });
     
     
-    ArrayList<UserSkillRatingsModel> topUsers= new ArrayList<UserSkillRatingsModel>(userSkillRatings.subList(0, 5));
+    
+    //ArrayList<UserSkillRatingsModel> topUsers= new ArrayList<UserSkillRatingsModel>(userSkillRatings.subList(0, userSkillRatings.size()));
+    ArrayList<UserSkillRatingsModel> topUsers=userSkillRatings;
 
     //categorise by rating of the common skill set and language
     ArrayList<UserSkillRatingsModel> userSkillRatingsCurrentUser=RankingDataServices.getUserSkillRatingsByUserId(userId);
@@ -42,9 +44,11 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     {
     	ArrayList<UserSkillRatingsModel> userSkillRatingsUser=RankingDataServices.getUserSkillRatingsByUserId(topUsers.get(i).UserId);
     	int count=1;
-    	if(userSkillRatingsUser!=null){
+    	if(userSkillRatingsUser!=null && userSkillRatingsCurrentUser!=null){
     	for(UserSkillRatingsModel userSkill:userSkillRatingsUser)
     	{
+    		
+    		
     		if(userSkillRatingsCurrentUser.contains(userSkill))
     		{
     			count=count*10;
@@ -53,7 +57,7 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     	}
     	}
     	ArrayList<UserLanguageModel> userLanguages=RankingDataServices.getUserLanguage(topUsers.get(i).UserId);
-    	if(userLanguages!=null){
+    	if(userLanguages!=null && currentUserLanguage!=null){
     	for(UserLanguageModel userLanguage:userLanguages)
     	{
     		if(currentUserLanguage.contains(userLanguage))
