@@ -108,12 +108,12 @@ body {
 			%>
 		</div>
 		<div class="span5">
-			<form method='post' action="">
+			<form method='post' action="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>">
 
-				<textarea class="text" name="message" placeholder="hello"></textarea>
-				<a
-					href="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>"
-					class="btn btn-primary btn-medium ">Request</a>
+				<input type="text" name="message" placeholder="hello">
+				
+					<input class="btn-primary" name="submit" type="submit"
+										value="Submit" />
 			</form>
 		</div>
 

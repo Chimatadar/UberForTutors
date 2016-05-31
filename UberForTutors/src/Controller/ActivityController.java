@@ -61,8 +61,8 @@ public class ActivityController extends HttpServlet {
 		int fromUserId=(int) session.getAttribute("UserId");
 		int skillId=Integer.parseInt(request.getParameter("skillId"));
 		String message = request.getParameter("message");
-		
 		System.out.println(toUserId+" "+fromUserId+" "+skillId);
+		System.out.println("message is:" + message);
 		
 		ActivityDataServices activityDataServices=new ActivityDataServices();
 		RankingDataServices rankingDataServices = new RankingDataServices();
@@ -99,10 +99,16 @@ public class ActivityController extends HttpServlet {
 
 	         mail_message.setSubject("Request to teach from Uber for Tutors");
 
-	         mail_message.setText("hello");
+	         //mail_message.setText("hello");
 	         mail_message.setText(" "+message);
 	         
 	         Transport.send(mail_message);
+	         System.out.println(skillId + "skill id");
+
+	         request.setAttribute("sid1", skillId);
+	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("TutorController");
+	            requestDispatcher.forward(request, response);
+				
 
 //	         out.println("Sent message successfully....");
 	         
@@ -119,7 +125,8 @@ public class ActivityController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub'
+		doGet(request, response);
 		
 	}
 
