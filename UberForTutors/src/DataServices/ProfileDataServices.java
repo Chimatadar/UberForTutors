@@ -213,8 +213,9 @@ public class ProfileDataServices {
 			
 			List<UserModelWithActivity> rateTutorsList = new ArrayList<UserModelWithActivity>();
 			
-			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId from Activity "
-					+ "inner join User on Activity.FromUser=? and Activity.Status=1 and Activity.IsDeleted=0";
+			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId, Skills.SkillName from Activity "
+					+ "inner join User on Activity.FromUser=? and Activity.Status=1 and Activity.IsDeleted=0 inner join skills on"
+					+ " Activity.SkillId=Skills.skillId";
 					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
@@ -228,6 +229,7 @@ public class ProfileDataServices {
 				userModelWithActivity.Email = resultSet.getString(2);
 				userModelWithActivity.UserName = resultSet.getString(3);
 				userModelWithActivity.ActivityId = resultSet.getInt(4);
+				userModelWithActivity.SkillName = resultSet.getString(5);
 						
 			}
 			

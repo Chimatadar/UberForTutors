@@ -5,4 +5,5 @@ public class UserModelWithActivity {
 	public String Email;
 	public String UserName;
 	public int ActivityId;
+	public String SkillName;
 }
