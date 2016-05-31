@@ -78,12 +78,15 @@ public class ProfileDataServices {
 			
 			List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
 			
-			query = "select Skills.SkillId, Skills.SkillName, Skills.Image  from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=?";
+			query = "select Skills.SkillId, Skills.SkillName, Skill.Image  from UserSkillRatings "
+					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId and UserSkillRatings.UserId=?"
+					+ " and UserSkillRatings.Taught=? and UserSkillRatings.Taught=?";
 					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
+			preparedStmt1.setInt(2, 0);
+			preparedStmt1.setInt(3, 2);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
@@ -126,7 +129,7 @@ public class ProfileDataServices {
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
-			preparedStmt1.setInt(2, 3);
+			preparedStmt1.setInt(2, 2);
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
@@ -250,11 +253,11 @@ public class ProfileDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
 			
 			List<SkillsModel> allSkillsList = new ArrayList<SkillsModel>();
 			
-			query = "select * from skills";
+			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId from Activity";
 					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
