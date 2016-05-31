@@ -228,6 +228,9 @@ body {
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 		String name = (String) session.getAttribute("userName");
+		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
+
+		
 	%>
 	<%@include file="headerandfooter.jsp"%>
 
@@ -279,7 +282,7 @@ body {
 
 						<div class="subscribe" style = "padding-left:60px" >
 							<div class="btn btn-primary" style = "padding-left:10px">Add a skill</div>
-							<form class="form2" action="ProfileController?bool=1" method="post">
+							<form class="form2" action="ProfileController" method="post">
 								<p>
 
 									<select class="form-group col-sm-2 selectpicker"
@@ -358,11 +361,12 @@ body {
 				</div>
 				<div class="hero-unit "
 					style="background-color: #17202A; color: white">
+					<% for(UserModelWithActivity tutor:rateTutor) { %>
+					
 					<div class="row-fluid">
-
-						<div class="span5">Rating for User X from Skill Y</div>
+						<div class="span5">Rating for User <%= tutor.UserName %>> from Skill Y</div>
 						<div class="span5">
-							<form action="" method="post">
+							<form action="RateController" method="post">
 
 								<input class="star star-5" id="star-5" type="radio" name="star" />
 								<label class="star star-5" for="star-5"></label> <input
@@ -379,6 +383,7 @@ body {
 						</div>
 
 					</div>
+					<%} %>
 				</div>
 			</div>
 			<!--/span-->
