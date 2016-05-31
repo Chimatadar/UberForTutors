@@ -20,6 +20,7 @@ import org.apache.jasper.tagplugins.jstl.core.Catch;
 import DataContracts.UserModelWithActivity;
 import Model.Notifications;
 import Model.SkillsLearntWithActivityId;
+import Model.SkillsModel;
 import Model.SkillsTaught;
 import Model.UserSkillRatingsModel;
 
@@ -231,6 +232,48 @@ public class ProfileDataServices {
 		{
 			ex.printStackTrace();
 			return new ArrayList<UserModelWithActivity>();
+		}
+		finally {
+			connection.close();
+			
+		}
+	}
+	
+	public List<SkillsModel> getAllSkillsList() throws SQLException{
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			
+			List<SkillsModel> allSkillsList = new ArrayList<SkillsModel>();
+			
+			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId from Activity";
+					
+			
+			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
+			resultSet = preparedStmt1.executeQuery();
+			
+			while(resultSet.next()){
+				
+				SkillsModel skillsModelRow = new SkillsModel();
+				skillsModelRow.SkillId = resultSet.getInt("SkillId");
+				skillsModelRow.SkillName = resultSet.getString("SkillName");
+				skillsModelRow.image = resultSet.getString("Image");
+				allSkillsList.add(skillsModelRow);
+						
+			}
+			
+			
+			return allSkillsList;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return new ArrayList<SkillsModel>();
 		}
 		finally {
 			connection.close();
