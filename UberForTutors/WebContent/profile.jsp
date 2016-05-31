@@ -151,6 +151,11 @@ body {
 .subscribe:hover>form {
 	display: block;
 }
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
 </style>
 <!-- TODO: make sure bootstrap-responsive.min.css points to BootTheme
         generated file -->
@@ -239,7 +244,10 @@ body {
 									<input type="text" class="email_field" name="skill" size="18"
 										placeholder="enter a skill" /> <input class="email_btn"
 										name="submit" type="submit" value="Enter" />
+						
+										
 								</p>
+								
 							</form>
 						</div>
 					</div>

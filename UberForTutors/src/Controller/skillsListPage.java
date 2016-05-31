@@ -44,6 +44,8 @@ public class skillsListPage extends HttpServlet {
 		if(request.getParameter("fromProfilePage")!=null){
 			try {
 				skillsList = skillsListPageDataServices.getAllSkills();
+				System.out.println("1");
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -53,6 +55,8 @@ public class skillsListPage extends HttpServlet {
 			System.out.println(categoryId);
 			try {
 				skillsList = skillsListPageDataServices.getAllSkillsByCategoryId(categoryId);
+				System.out.println("2");
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,12 +65,14 @@ public class skillsListPage extends HttpServlet {
 			String searchSkill = (String)request.getParameter("searchSkill");
 			try {
 				skillsList = skillsListPageDataServices.getAllSkillsBySearch(searchSkill);
+				System.out.println("3");
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("akad");
 		request.setAttribute("skillsList", skillsList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("skills.jsp");
         requestDispatcher.forward(request, response);

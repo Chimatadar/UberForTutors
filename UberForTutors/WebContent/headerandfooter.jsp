@@ -113,7 +113,7 @@
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                         <li>
-                        <form class="navbar-form" action="HomeController" method="post">
+                        <form class="navbar-form" action="skillsListPage" method="post">
                         <input class="span5" type="text" placeholder="search a skill" name="searchSkill">
                         <button type="submit" class="btn">Search</button>
                     </form>

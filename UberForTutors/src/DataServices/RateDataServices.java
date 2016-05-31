@@ -20,7 +20,7 @@ public class RateDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select RatingId,TotalPeople from userSkillRatings where UserId= ? and SkillId = ?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, UserId);
@@ -79,7 +79,7 @@ public class RateDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select Status,IsDeleted from activity where ActivityId= ?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, activityId);
@@ -125,7 +125,7 @@ public class RateDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="update userSkillRatings set Taught=3 where UserId= ? and SkillId = ?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, UserId);

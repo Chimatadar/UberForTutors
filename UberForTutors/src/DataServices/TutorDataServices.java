@@ -24,7 +24,7 @@ public class TutorDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select UserId from user where Email like '%"+searchTutor+"%'";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -68,7 +68,7 @@ public class TutorDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			query="select * from userskillratings where SkillId=? and UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
@@ -109,7 +109,7 @@ public class TutorDataServices {
 			
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			query="select * from activity where SkillId=? and UserId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);

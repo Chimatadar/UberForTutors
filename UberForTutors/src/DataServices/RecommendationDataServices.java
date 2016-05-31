@@ -23,7 +23,7 @@ public class RecommendationDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select userskillratings.UserId,userskillratings.SkillId,userskillratings.RatingId,skills.SkillName,skills.CategoryId "
 					+ "from userskillratings "
 					+ "Inner Join skills "
@@ -67,7 +67,7 @@ public class RecommendationDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select * from skillcharacteristics where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, skillId);
@@ -102,7 +102,7 @@ public class RecommendationDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select * from skills where CategoryId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, categoryId);
@@ -136,7 +136,7 @@ public class RecommendationDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="select * from skills where SkillId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, recoSkillId);

@@ -18,7 +18,7 @@ public class ActivityDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			query="Insert into activity(FromUser,ToUser,SkillId,Status,Message,IsDeleted) Values(?,?,?,?,?,?)";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, fromUserId);

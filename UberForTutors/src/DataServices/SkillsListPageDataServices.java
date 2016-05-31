@@ -74,7 +74,7 @@ public class SkillsListPageDataServices {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
 			List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 
@@ -89,6 +89,7 @@ public class SkillsListPageDataServices {
 				SkillsModel skillsListRow = new SkillsModel();
 				skillsListRow.SkillId = resultSet.getInt(1);
 				skillsListRow.SkillName = resultSet.getString(2);
+				skillsListRow.image = resultSet.getString("Image");
 				skillsList.add(skillsListRow);
 
 			}
@@ -117,7 +118,7 @@ public class SkillsListPageDataServices {
 
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
 			List<SkillsModel> skillsList = new ArrayList<SkillsModel>();
 
@@ -131,6 +132,7 @@ public class SkillsListPageDataServices {
 				SkillsModel skillsListRow = new SkillsModel();
 				skillsListRow.SkillId = resultSet.getInt(1);
 				skillsListRow.SkillName = resultSet.getString(2);
+				skillsListRow.image = resultSet.getString("Image");
 				skillsList.add(skillsListRow);
 
 			}

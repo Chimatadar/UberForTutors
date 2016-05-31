@@ -85,21 +85,22 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 	<div class="row-fluid">
 		<% for(int j =0; j < 3;j+=1 ) { %>
 
-		<div class="span4 hero-unit" >
-		<div class = "hero-unit" style = 
-                    "background-image:url()"></div>
-                        
-			<div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit">
-			<h2><%= skillsList.get(k).SkillName.toUpperCase() %></h2>
+		
+		
+		 <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class = "hero-unit" style = 
+                    "background-position: center;    background-repeat: no-repeat;
+                    ;height:200px;background-image:url(<%= skillsList.get(k).image%>)"></div>
+                        <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= skillsList.get(k).SkillName.toUpperCase() %></h4>
 
-			<p></p>
-			<p>
-				<a class="btn"
-					href="TutorController?sid=<%= skillsList.get(k).SkillId%>">
-					Find Tutors &raquo;</a>
-			</p>
-			</div>
-		</div>
+                        <p></p>
+                        <p>
+                            <a class="btn" href="TutorController?sid=<%= skillsList.get(k).SkillId%>">View details &raquo;</a>
+                        </p>
+                        </div>
+                    </div>
+		
+		
 		<% k++;
 		if (k>=skillsList.size())
 		break;%>
