@@ -247,11 +247,11 @@ public class ProfileDataServices {
 		try{
 
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb","root","admin");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<SkillsModel> allSkillsList = new ArrayList<SkillsModel>();
 			
-			query = "select user.UserId, user.Email, user.UserName, Activity.ActivityId from Activity";
+			query = "select * from skills";
 					
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);

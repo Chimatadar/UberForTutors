@@ -182,6 +182,8 @@ body {
 <body>
 	<%
 		ArrayList<SkillsTaught> rankedTutors = (ArrayList<SkillsTaught>) request.getAttribute("skillsTaught");
+	ArrayList<SkillsModel> allskill = (ArrayList<SkillsModel>) request.getAttribute("allSkillsList");
+
 		ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown");
 		ArrayList<SkillsLearntWithActivityId> skillsLearnt = (ArrayList<SkillsLearntWithActivityId>) request
 				.getAttribute("skillsLearnt");
@@ -244,13 +246,10 @@ body {
 							<form class="form2" action="" method="post">
 								<p>
 			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language"">
-										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>										  
-										  <option style = "background-color:#de615e;padding-bottom:10px">Gujarati</option>
-										  <option style = "background-color:#de615e ;padding-bottom:10px">Hindi</option>
-									      <option style = "background-color:#de615e ;padding-bottom:10px">Kannada</option>
-									      <option style = "background-color:#de615e ;padding-bottom:10px">Chinese</option>
-									      <option style = "background-color:#de615e ;padding-bottom:10px">Spanish</option>
-									      
+			                        	<% for(SkillsModel skill: allskill) { %>
+										  <option style = "background-color:#de615e ;padding-bottom:10px"><%= skill.SkillName %></option>										  
+										  
+									      <% } %>
 										</select>
 									<input class="btn-primary" name="submit" type="submit"
 										value="Submit" />
