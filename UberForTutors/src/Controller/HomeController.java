@@ -72,11 +72,16 @@ public class HomeController extends HttpServlet {
         }
         
         
+        
         //String notification = request.getParameter("notification");
         int UserId = (int) session.getAttribute("UserId");
         //logout is a button if it si true...i.e pressed
         boolean logout = true;
         RecoController recoController=new RecoController();
+        
+        int count=0;
+        count = homeDataServices.getNoOfNotifications(UserId);
+        
         
         ArrayList<CategoriesModel> categoryList = homeDataServices.allCategories();
         
@@ -120,7 +125,9 @@ public class HomeController extends HttpServlet {
         
         /*request.setAttribute("notificationNo", notifications.size());
         request.setAttribute("notifications", notifications);*/
+        request.setAttribute("notificationCount", count);
         RequestDispatcher rs3=request.getRequestDispatcher("home.jsp");
+       
         rs3.forward(request, response);
         
         
