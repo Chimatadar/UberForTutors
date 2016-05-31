@@ -151,10 +151,11 @@ body {
 .subscribe:hover>form {
 	display: block;
 }
+
 .scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
+	height: auto;
+	max-height: 200px;
+	overflow-x: hidden;
 }
 </style>
 <!-- TODO: make sure bootstrap-responsive.min.css points to BootTheme
@@ -186,8 +187,9 @@ body {
 				.getAttribute("skillsLearnt");
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
+		String name = (String)session.getAttribute("userName");
 	%>
-	<%@include file="headerandfooter.jsp" %>
+	<%@include file="headerandfooter.jsp"%>
 
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -200,12 +202,12 @@ body {
 					</div>
 					<div class="useravatar">
 						<img alt=""
-							src="
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2000px-User_icon_2.svg.png">
 <!--             http://lorempixel.com/100/100/people/9/ -->
-            ">
+            
 					</div>
 					<div class="card-info">
-						<span class="card-title">Username</span>
+						<span class="card-title"><%=name %></span>
 					</div>
 
 				</div>
@@ -214,12 +216,12 @@ body {
 			</div>
 			<!--/span-->
 			<div class="span9">
-				
+
 				<div class="row-fluid">
 					<!-- 				ArrayList<String> skillsKnown = (ArrayList<String>) request.getAttribute("skillsKnown"); -->
-					
-					<div class="span4 hero-unit">
-						<h2>Skills user knows</h2>
+
+					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+						<h3>Skills user knows</h3>
 						<%
 						if (skillsKnown.size() != 0) {
 					%>
@@ -241,20 +243,26 @@ body {
 							<div class="btn">Add a skil</div>
 							<form class="form2" action="" method="post">
 								<p>
-									<input type="text" class="email_field" name="skill" size="18"
-										placeholder="enter a skill" /> <input class="email_btn"
-										name="submit" type="submit" value="Enter" />
-						
-										
+			                        	<select class="form-group col-sm-12 selectpicker" multiple name="language"">
+										  <option style = "background-color:#de615e ;padding-bottom:10px">English</option>										  
+										  <option style = "background-color:#de615e;padding-bottom:10px">Gujarati</option>
+										  <option style = "background-color:#de615e ;padding-bottom:10px">Hindi</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Kannada</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Chinese</option>
+									      <option style = "background-color:#de615e ;padding-bottom:10px">Spanish</option>
+									      
+										</select>
+									<input class="btn-primary" name="submit" type="submit"
+										value="Submit" />
 								</p>
-								
+
 							</form>
 						</div>
 					</div>
-					
-					<div class="span4 hero-unit">
 
-						<h2>Skills user learnt</h2>
+					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+
+						<h3>Skills user learnt</h3>
 						<%
 							if (skillsLearnt.size() != 0) {
 						%>
@@ -272,12 +280,13 @@ body {
 						%>
 						<p></p>
 						<p>
-							<a class="btn" href="skillsListPage?fromProfilePage=1"> Learn a new skill &raquo;</a>
+							<a class="btn" href="skillsListPage?fromProfilePage=1"> Learn
+								a new skill &raquo;</a>
 						</p>
 					</div>
 
-					<div class="span4 hero-unit">
-						<h2>Skills user taught</h2>
+					<div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+						<h3>Skills user taught</h3>
 						<%
 							if (rankedTutors.size() != 0) {
 						%>
