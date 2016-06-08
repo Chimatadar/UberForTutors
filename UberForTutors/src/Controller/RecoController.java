@@ -12,6 +12,8 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import DataContracts.RecoCategoryDataContract;
 import DataServices.RecommendationDataServices;
 import Model.SkillsModel;
@@ -22,6 +24,7 @@ public class RecoController {
 			RecommendationDataServices recommendationDataServices=new RecommendationDataServices();
 			
 			//find category in which he has learnt maximum skills
+			ArrayList<SkillsModel> resultSkills=new ArrayList<SkillsModel>();
 			ArrayList<RecoCategoryDataContract> skillsList=recommendationDataServices.getSkillsAndCategories(userId);
 			ArrayList<RecoCategoryDataContract> skillsWithCategory=new ArrayList<RecoCategoryDataContract>();
 			if(skillsList!=null)
@@ -49,10 +52,40 @@ public class RecoController {
 						skillsWithCategory.add(skilllist);
 					}
 				}
+				
+				
+				int lastCategoryId=skillsList.get(skillsList.size()-1).categoryId;
+				int secondLastCategoryId=skillsList.get(skillsList.size()-2).categoryId;
+				int thirdLastCategoryId=skillsList.get(skillsList.size()-3).categoryId;
+				
+				if(lastCategoryId!=highestCategoryId && secondLastCategoryId!=highestCategoryId && thirdLastCategoryId!=highestCategoryId && lastCategoryId==secondLastCategoryId && secondLastCategoryId==thirdLastCategoryId)
+				{
+					ArrayList<SkillsModel> temp=recommendSkillsBasedOnCategory(userId,skillsList,skillsWithCategory,lastCategoryId);
+					resultSkills.addAll(temp.size()>3?temp.subList(0, 3):temp);
+				}
+				System.out.println("Highest Category: "+highestCategoryId);
+				resultSkills.addAll(recommendSkillsBasedOnCategory(userId,skillsList,skillsWithCategory,highestCategoryId));
+				
 				//System.out.println(skillsWithCategory.size());//1
 				
 				//Get the characteristics weight
 				
+				return (ArrayList<SkillsModel>) resultSkills;
+			}
+			return null;
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+			
+			
+		private ArrayList<SkillsModel> recommendSkillsBasedOnCategory(int userId, ArrayList<RecoCategoryDataContract> skillsList,
+			ArrayList<RecoCategoryDataContract> skillsWithCategory, int highestCategoryId) {
+			try{
+			RecommendationDataServices recommendationDataServices=new RecommendationDataServices();
 				ArrayList<Integer> characteristicsList=new ArrayList<Integer>();
 				
 				for(RecoCategoryDataContract skillWithCategory:skillsWithCategory){
@@ -162,17 +195,16 @@ public class RecoController {
 			        return recommendedSkills;
 			        
 		        }
-		        
-		        
+			
+		        return null;
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex.getMessage());
+				return null;
+			}
+		}
 		        		
 		        
-			}
-			return null;
-		}
-		catch(Exception ex)
-		{
-			System.out.println(ex.getMessage());
-			return null;
-		}
-	}
+		
 }

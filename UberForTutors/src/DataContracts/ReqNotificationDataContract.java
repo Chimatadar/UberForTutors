@@ -2,6 +2,7 @@ package DataContracts;
 
 public class ReqNotificationDataContract {
 
+	public int activityId;
 	public int FromUser;
 	public int SkillId;
 	public int RatingId;

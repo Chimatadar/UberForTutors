@@ -90,10 +90,12 @@ body {
 		%>
 		<div class = "span5">You received a notification from
 		<%=activity.Email%></div>
-		<div class = "span5"><form action="" method="post">
+		<div class = "span5"><form action="AcceptRejectController?ActivityId=<%=activity.activityId%>" method="post">
 			<input type='submit' value='Accept' name='update'
-				class="btn btn-primary btn-medium "> <input type='submit'
+				class="btn btn-primary btn-medium "> 
+				<input type='submit'
 				value='Reject' name='remove' class="btn btn-primary btn-medium ">
+				
 		</form></div>
 		<%
 			}

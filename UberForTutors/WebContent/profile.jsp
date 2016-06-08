@@ -314,7 +314,7 @@ body {
 							<%
 								for (int i = 0; i < skillsLearnt.size(); i++) {
 							%>
-							<li><%=skillsLearnt.get(i)%>></li>
+							<li><%=skillsLearnt.get(i).skill%></li>
 							<%
 								}
 							%>

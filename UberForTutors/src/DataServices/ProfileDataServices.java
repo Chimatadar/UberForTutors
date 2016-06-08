@@ -116,29 +116,41 @@ public class ProfileDataServices {
 		String query=null;
 		
 		try{
-
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			
 			List<SkillsLearntWithActivityId> skillsLearnt = new ArrayList<SkillsLearntWithActivityId>();
 			
-			query = "select user.UserId, activity.ActivityId, skills.SkillName, user.Email  from userskillratings "
-					+ "inner join skills on userskillratings.SkillId=skills.SkillId and UserSkillRatings.UserId=? "
+			query ="select a.ActivityId, a.ToUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.UserName "
+					+ "from activity a "
+					+ "Inner Join skills s "
+					+ "on a.SkillId=s.SkillId "
+					+ "Inner Join user u "
+					+ "on a.ToUser=u.UserId "
+					+ "where a.FromUser=? and a.Status!=2";
+					
+					
+					/*"select user.UserId, activity.ActivityId, skills.SkillName, user.Email  from userskillratings "
+					+ "inner join skills on userskillratings.SkillId=skills.SkillId where UserSkillRatings.UserId=? "
 					+ "and UserSkillRatings.taught=? inner join Activity on UserSkillRatings.UserId=Activity.FromUser "
-					+ "inner join User on Activity.ToUser=User.UserId";
+					+ "inner join User on Activity.ToUser=User.UserId";*/
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
-			preparedStmt1.setInt(2, 2);
+			
 			resultSet = preparedStmt1.executeQuery();
 			
 			while(resultSet.next()){
 				SkillsLearntWithActivityId skillsLearntWithActivityId = new SkillsLearntWithActivityId();
-				skillsLearntWithActivityId.tutorId=resultSet.getInt(1);
-				skillsLearntWithActivityId.activityId=resultSet.getInt(2);
-				skillsLearntWithActivityId.skill=resultSet.getString(3);
-				skillsLearntWithActivityId.tutorEmail=resultSet.getString(4);
-						
+				skillsLearntWithActivityId.tutorId=resultSet.getInt("ToUser");
+				skillsLearntWithActivityId.activityId=resultSet.getInt("ActivityId");
+				skillsLearntWithActivityId.skill=resultSet.getString("SkillName");
+				skillsLearntWithActivityId.skillId=resultSet.getInt("SkillId");
+				skillsLearntWithActivityId.RatingId=resultSet.getInt("RatingId");
+				skillsLearntWithActivityId.status=resultSet.getByte("Status");
+				skillsLearntWithActivityId.isDeleted=resultSet.getByte("IsDeleted");
+				skillsLearntWithActivityId.tutorEmail=resultSet.getString("UserName");
+				skillsLearnt.add(skillsLearntWithActivityId);	
 			}
 			
 			

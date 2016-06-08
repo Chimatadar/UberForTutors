@@ -50,9 +50,9 @@ public class AcceptRejectController extends HttpServlet {
         HttpSession session=request.getSession();
 	
         int ActivityId = Integer.parseInt(request.getParameter("ActivityId"));
-        String Accept = request.getParameter("Accept");
-        String Reject = request.getParameter("Reject");
-        
+        String Accept = request.getParameter("update");
+        String Reject = request.getParameter("remove");
+        System.out.println(ActivityId+" "+ Accept+" "+ Reject);
         
         AcceptRejectDataServices acceptRejectDataServices = new AcceptRejectDataServices();
         

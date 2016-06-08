@@ -84,7 +84,7 @@ public class TutorController extends HttpServlet {
 		//change functions
 		
 		ArrayList<UserModel> rankedTutors= rankController.RankUsersBySkills(SkillId,UserId);//rankedTutors
-		System.out.println(rankedTutors.size());
+		
 		if(rankedTutors!=null){
 		ArrayList<UserModel> alreadyReqRaised=tutorDataServices.getActivityForUserSkill(SkillId,UserId);
 		System.out.println(alreadyReqRaised.size());

@@ -152,6 +152,7 @@ public class HomeDataServices {
 			{
 				ReqNotificationDataContract requestDataContract = new ReqNotificationDataContract();
 				//ActivityModel activityModel=new ActivityModel();
+				requestDataContract.activityId=resultSet.getInt("ActivityId");
 				requestDataContract.FromUser = resultSet.getInt("FromUser");
 				requestDataContract.SkillId = resultSet.getInt("SkillId");
 				requestDataContract.RatingId = resultSet.getInt("RatingId");

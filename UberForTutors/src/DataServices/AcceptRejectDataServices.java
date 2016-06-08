@@ -18,7 +18,7 @@ public class AcceptRejectDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
-			query="update activity set Status=? where ActicityId=?";
+			query="update activity set Status=? where ActivityId=?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, AcceptReject);
 			preparedStmt.setInt(2, ActivityId);

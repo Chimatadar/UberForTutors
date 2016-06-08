@@ -76,9 +76,9 @@ public class ProfileController extends HttpServlet {
 				notifications = profileDataServices.getNotifications(userId);
 				rateTutorsList = profileDataServices.getTutorsList(userId);
 				allSkillsList = profileDataServices.getAllSkillsList();
-				System.out.println(allSkillsList.size());
+				//System.out.println(allSkillsList.size());
 				allSkillsList.removeAll(skillsKnown);
-				System.out.println(allSkillsList.size());
+				//System.out.println(allSkillsList.size());
 				
 			}else{
 				
@@ -87,6 +87,7 @@ public class ProfileController extends HttpServlet {
 			}
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
+			
 			if(request.getAttribute("userId")==null){
 				request.setAttribute("skillsLearnt", skillsLearnt);
 				request.setAttribute("rateTutorsList", rateTutorsList);
