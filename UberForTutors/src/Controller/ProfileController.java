@@ -81,7 +81,7 @@ public class ProfileController extends HttpServlet {
 				//System.out.println(allSkillsList.size());
 				
 			}else{
-				
+				userId = Integer.parseInt(request.getParameter("userId"));
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 			}
