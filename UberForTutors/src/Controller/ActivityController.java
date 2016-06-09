@@ -58,6 +58,7 @@ public class ActivityController extends HttpServlet {
 		
 		Boolean status=false;
 		int toUserId = Integer.parseInt(request.getParameter("userId"));
+		//session.setAttribute("emailedUser", toUserId);
 		int fromUserId=(int) session.getAttribute("UserId");
 		int skillId=Integer.parseInt(request.getParameter("skillId"));
 		String message = request.getParameter("message");

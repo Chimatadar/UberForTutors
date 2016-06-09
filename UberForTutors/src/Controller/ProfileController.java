@@ -46,7 +46,7 @@ public class ProfileController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		int userId = (int)session.getAttribute("UserId");
-		
+		String userName = "";
 		
 		List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 		List<SkillsModel> skillsKnown = new ArrayList<SkillsModel>();
@@ -69,7 +69,7 @@ public class ProfileController extends HttpServlet {
 			}
 			
 			if(request.getParameter("userId")==null){
-				
+				userName = profileDataServices.getUserName(userId);
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 				skillsLearnt = profileDataServices.getSkillsLearnt(userId);
@@ -82,11 +82,13 @@ public class ProfileController extends HttpServlet {
 				
 			}else{
 				userId = Integer.parseInt(request.getParameter("userId"));
+				userName = profileDataServices.getUserName(userId);
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 			}
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
+			request.setAttribute("userName", userName);
 			
 			if(request.getAttribute("userId")==null){
 				request.setAttribute("skillsLearnt", skillsLearnt);

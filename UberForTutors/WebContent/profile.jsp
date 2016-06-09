@@ -227,7 +227,7 @@ body {
 				.getAttribute("skillsLearnt");
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
-		String name = (String) session.getAttribute("userName");
+		String name = (String)request.getAttribute("userName");
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
 
 		
