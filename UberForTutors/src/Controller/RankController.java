@@ -21,6 +21,8 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     //categorise by rating of the skill
 	//int skillId = Integer.parseInt(request.getParameter("skillId"));
     ArrayList<UserSkillRatingsModel> userSkillRatings=RankingDataServices.getUserSkillRatingsBySkillId(skillId);
+    if(userSkillRatings==null) return null;
+    
     
     if(userSkillRatings!=null){
     Collections.sort(userSkillRatings, new Comparator<UserSkillRatingsModel>() {
@@ -31,7 +33,7 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
         }
     });
     
-    
+   
     
     //ArrayList<UserSkillRatingsModel> topUsers= new ArrayList<UserSkillRatingsModel>(userSkillRatings.subList(0, userSkillRatings.size()));
     ArrayList<UserSkillRatingsModel> topUsers=userSkillRatings;
@@ -51,7 +53,7 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     		
     		if(userSkillRatingsCurrentUser.contains(userSkill))
     		{
-    			count=count*10;
+    			count=count*3;
     			
     		}
     	}
@@ -62,10 +64,14 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     	{
     		if(currentUserLanguage.contains(userLanguage))
     		{
-    			count=count*5;
+    			count=count*2;
     			
     		}
     	}
+    	}
+    	if(userSkillRatingsUser!=null)
+    	{
+    		count=count*topUsers.get(i).RatingId*topUsers.get(i).RatingId*topUsers.get(i).RatingId;
     	}
     	//System.out.println(topUsers.get(i).UserId+" "+count);
     	userRank.put(topUsers.get(i).UserId, count);
@@ -86,6 +92,9 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
     for(Map.Entry<Integer, Integer> entry:list1){
     	userIds.add(entry.getKey());
     }
+    if(userIds.contains(userId))
+    userIds.remove(new Integer(userId));
+   
     RankingDataServices rankingDataServices=new RankingDataServices();
     ArrayList<UserModel> users=new ArrayList<UserModel>();
     for (Integer userID : userIds) {
@@ -94,6 +103,7 @@ public ArrayList<UserModel> RankUsersBySkills(int skillId, int userId){
 		user.UserId=userID;
 		users.add(user);
 	}
+    
     return users;
 }
     return null;

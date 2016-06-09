@@ -90,7 +90,7 @@ public class ProfileController extends HttpServlet {
 			request.setAttribute("skillsKnown", skillsKnown);
 			request.setAttribute("userName", userName);
 			
-			if(request.getAttribute("userId")==null){
+			if(request.getParameter("userId")==null){
 				request.setAttribute("skillsLearnt", skillsLearnt);
 				request.setAttribute("rateTutorsList", rateTutorsList);
 				request.setAttribute("allSkillsList", allSkillsList);
