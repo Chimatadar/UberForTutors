@@ -28,7 +28,7 @@ public class skillsListPage extends HttpServlet {
     public skillsListPage() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    } 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
