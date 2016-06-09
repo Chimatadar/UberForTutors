@@ -71,6 +71,43 @@ public class ProfileDataServices {
 		}
 	}
 	
+	
+public String getUserName(int userId) throws SQLException{
+		
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
+			
+			String userName = "";
+			
+			query = "select * from user where UserId=?";
+			
+			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
+			preparedStmt1.setInt(1, userId);
+			resultSet = preparedStmt1.executeQuery();
+			
+			while(resultSet.next()){
+				userName=resultSet.getString("UserName");
+			}
+			
+			return userName;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return "";
+		}
+		finally {
+			connection.close();
+			
+		}
+	}
+	
 	public List<SkillsModel> getSkillsKnown(int userId) throws SQLException{
 		Connection connection=null;
 		ResultSet resultSet=null;

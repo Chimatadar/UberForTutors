@@ -32,7 +32,7 @@ public class RateDataServices {
 
 				int rating = resultSet.getInt("RatingId");
 				int people = resultSet.getInt("TotalPeople");
-				
+			
 				int x = (rating *people) + currRating;
 				people++;
 			    double y = x/(float)people;
@@ -41,7 +41,7 @@ public class RateDataServices {
 				
 				if(z<=0.5){
 					newRating = (int) Math.floor(y);
-					System.out.println("IN if -0.5"+newRating);
+					System.out.println("IN if -0.5"+newRating);		
 				}else{
 					newRating = (int) Math.floor(y)+1;
 					System.out.println(""+newRating);
