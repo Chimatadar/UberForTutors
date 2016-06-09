@@ -85,7 +85,14 @@ body {
 		}
 	%>
 	<%@include file="headerandfooter.jsp"%>
-
+<%
+		if (rankedTutors == null || rankedTutors.size() == 0) {
+	%>
+	<div class="hero-unit" style="padding-top: 10px">
+	No tutors found
+	</div>
+		<% } %>
+	
 
 	<%
 		if (rankedTutors != null) {
@@ -113,7 +120,7 @@ body {
 				<input type="text" name="message" placeholder="hello">
 				
 					<input class="btn-primary" name="submit" type="submit"
-										value="Submit" />
+										value=Request />
 			</form>
 		</div>
 
@@ -135,3 +142,4 @@ body {
 	%>
 </body>
 </html>
+

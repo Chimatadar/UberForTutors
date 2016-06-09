@@ -30,7 +30,22 @@
 </head>
 
 <body>
-
+<%
+String str=request.getParameter("logout");
+if(str!=null){
+	
+	HttpSession session1 = request.getSession(false);
+	
+	if(session1!=null){
+		session1.removeAttribute("UserId");
+		session1.removeAttribute("notificationCount");
+		session1.invalidate();
+		response.sendRedirect("Index.jsp");
+	return;	
+	}
+	
+}
+%>
 	<!-- Top content -->
 	<div class="top-content">
 

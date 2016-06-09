@@ -67,6 +67,9 @@ public class AcceptRejectController extends HttpServlet {
         	
         	acceptRejectDataServices.updateActivity(ActivityId, 2);
         }
+        RequestDispatcher rs3=request.getRequestDispatcher("NotificationController");
+        
+        rs3.forward(request, response);
 		
 	}
 

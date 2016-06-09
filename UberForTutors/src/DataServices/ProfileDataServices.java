@@ -38,9 +38,13 @@ public class ProfileDataServices {
 			
 			List<SkillsTaught> skillsTaught = new ArrayList<SkillsTaught>();
 			
-			query = "select Skills.SkillName, UserSkillRatings.RatingId from UserSkillRatings "
-					+ "inner join Skills on UserSkillRatings.SkillId=Skills.SkillId where UserSkillRatings.UserId=? "
-					+ "and UserSkillRatings.taught=?";
+			query =  "select a.FromUser, a.ToUser, a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.UserName "
+					+ "from activity a "
+					+ "Inner Join skills s "
+					+ "on a.SkillId=s.SkillId "
+					+ "Inner Join user u "
+					+ "on a.FromUser=u.UserId "
+					+ "where a.ToUser=? and status=? ";
 			
 			PreparedStatement preparedStmt1 = connection.prepareStatement(query);
 			preparedStmt1.setInt(1, userId);
@@ -49,8 +53,8 @@ public class ProfileDataServices {
 			
 			while(resultSet.next()){
 				SkillsTaught skillsTaughtRow = new SkillsTaught();
-				skillsTaughtRow.skill = resultSet.getString(1);
-				skillsTaughtRow.rating = resultSet.getInt(2);
+				skillsTaughtRow.skill = resultSet.getString("SkillName");
+				skillsTaughtRow.rating = resultSet.getInt("RatingId");
 				skillsTaught.add(skillsTaughtRow);
 			}
 			

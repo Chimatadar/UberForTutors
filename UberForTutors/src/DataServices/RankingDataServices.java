@@ -159,6 +159,36 @@ public class RankingDataServices {
 			resultSet = preparedStmt1.executeQuery();
 			if(resultSet.next())
 			{
+				return resultSet.getString("UserName");
+			}
+			
+			return null;
+		}
+		catch(Exception ex)
+		{
+			System.out.println("user");
+			return null;
+		}
+	}
+	
+	public String getUserEmailById(int userID) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
+			
+			
+			query="select * from user where UserId=?";
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+			
+			preparedStmt1.setInt(1, userID);
+			resultSet = preparedStmt1.executeQuery();
+			if(resultSet.next())
+			{
 				return resultSet.getString("Email");
 			}
 			

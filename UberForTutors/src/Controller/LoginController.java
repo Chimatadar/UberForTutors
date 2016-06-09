@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import javax.servlet.http.HttpSession;
-import DataServices.LoginDataServices;
 
+import DataServices.HomeDataServices;
+import DataServices.LoginDataServices;
 import Model.UserModel;
 
 /**
@@ -64,13 +65,20 @@ public class LoginController extends HttpServlet {
         	        	
              session.setAttribute("UserId", userModel.UserId);
              session.setAttribute("userName", userModel.UserName);
+             HomeDataServices homeDataServices=new HomeDataServices();
+             int count=0;
+             count = homeDataServices.getNoOfNotifications(userModel.UserId);
+             session.setAttribute("notificationCount", count);
         	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("HomeController");
              requestDispatcher.forward(request, response);
         }
         }
         else
         {
-        	out.println("<p>User name or Password is incorrect</p>");  
+        	request.setAttribute("LoginFailed", 1);
+        	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Index.jsp");
+             requestDispatcher.forward(request, response);
+        	 
 
         }
 

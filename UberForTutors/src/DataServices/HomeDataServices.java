@@ -141,7 +141,7 @@ public class HomeDataServices {
 					+ "on a.SkillId=s.SkillId "
 					+ "Inner Join user u "
 					+ "on a.FromUser=u.UserId "
-					+ "where a.ToUser=? and a.Status=0 ";
+					+ "where a.ToUser=? ";
 			
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
 			
@@ -241,13 +241,14 @@ public class HomeDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 
-			query="select count(*) from Activity where status=0";
+			query="select count(*) from Activity where status=? and ToUser=?";
 			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
-			
+			preparedStmt1.setInt(1, 0);
+			preparedStmt1.setInt(2, userId);
 			resultSet = preparedStmt1.executeQuery();
 			int count=0;
 			while(resultSet.next()){
-				resultSet.getInt(1);
+				count=resultSet.getInt(1);
 			}
 			
 			return count;

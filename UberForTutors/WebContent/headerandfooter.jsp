@@ -58,6 +58,11 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
+<%
+	
+		int notificationCount = (int)session.getAttribute("notificationCount");
+	
+	%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -71,7 +76,7 @@
                     
                     <ul class="nav">
                         <li class="active">
-                            <a href="HomeController">Home</a>
+                            <a href="AboutUsController">About Us</a>
                         </li>
                         <li>
                             <a href="#about">Privacy Policy</a>
@@ -98,7 +103,7 @@
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
                     <p class="navbar-text pull-right">                 
-                     <a href="NotificationController" class="badge1 navbar-link" data-badge="1">Notification</a></p>
+                     <a href="NotificationController" class="badge1 navbar-link" data-badge=<%=notificationCount%>>Notification</a></p>
                      
                     <ul class="nav">
                         <li class="active">
@@ -108,7 +113,7 @@
                             <a href="ProfileController">Profile</a>
                         </li>
                         <li>
-                            <a href="#contact">Contact</a>
+                            <a href="Index.jsp?logout=logout">Log Out</a>
                         </li>
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>

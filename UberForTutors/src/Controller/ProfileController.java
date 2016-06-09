@@ -85,6 +85,8 @@ public class ProfileController extends HttpServlet {
 				skillsTaught = profileDataServices.getSkillsTaught(userId);
 				skillsKnown = profileDataServices.getSkillsKnown(userId);
 			}
+			
+			System.out.println("SkillsTaught "+skillsTaught.size());
 			request.setAttribute("skillsTaught", skillsTaught);
 			request.setAttribute("skillsKnown", skillsKnown);
 			

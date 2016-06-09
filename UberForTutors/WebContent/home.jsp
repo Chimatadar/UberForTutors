@@ -18,6 +18,7 @@
         -->
     <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
+    
         body {
             padding-top: 60px;
             padding-bottom: 40px;
@@ -88,19 +89,37 @@
             </div>
             <!--/span-->
             <div class="span9">
-                <div class="hero-unit" style = "background-color:#17202A;color:white">
-                    <h1 >Hello, <%=  name1%></h1>
-
-                    <p>Brief intro<p>
-                        <a class="btn btn-primary btn-large">Learn more &raquo;</a>
-                    </p>
+                <div id="myCarousel1" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="http://mogxi.com/wp-content/uploads/2016/02/education-quotes-wallpaper-education-quote-wallpaper-hd-5.jpg" alt="">
+                <div class="container-fluid">
+                    
                 </div>
+            </div>
+            <div class="item">
+                <img src="http://blog.management.utm.my/umar/wp-content/uploads/sites/140/2016/05/Mahatma-Gandhi-quotes.jpg" alt="">
+                <div class="container-fluid">
+                    
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://wouterdeheij.files.wordpress.com/2013/04/einsteinquotes.jpg" alt="" >
+                <div class="container-fluid">
+                    
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel1" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel1" data-slide="next">&rsaquo;</a>
+    </div>
+    <hr>
 <!--                 <div class="row-fluid">
  -->                    
  				<div class="row-fluid">
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://www.mccormick.northwestern.edu/eecs/computer-science/images/featured-image/detecting-malicious-ads.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(http://www.mccormick.northwestern.edu/eecs/computer-science/images/featured-image/detecting-malicious-ads.jpg)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(0).CategoryName %></h4>
 
                         <p></p>
@@ -110,9 +129,9 @@
                         </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(1).CategoryName %></h4>
 
                         <p></p>
@@ -122,9 +141,9 @@
                         </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(./business.png)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(2).CategoryName %></h4>
 
                         <p></p>
@@ -136,9 +155,9 @@
                     <!--/span-->
                 </div>
                 <div class="row-fluid">
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(http://www.lifesciencesontario.ca/_designs/home/imgIVUgRVydVx.jpg)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(3).CategoryName %></h4>
 
                         <p></p>
@@ -148,9 +167,9 @@
                         </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(http://www.free-clep-prep.com/images/Social-Sciences-and-History-CLEP.jpg)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(4).CategoryName %></h4>
 
                         <p></p>
@@ -160,9 +179,9 @@
                         </div>
                     </div>
                     <!--/span-->
-                    <div class="span4 hero-unit" style = "background-color:#17202A;color:white">
+                    <div class="span4 hero-unit" style = "padding:30px;background-color:#17202A;color:white">
                     <div class = "hero-unit" style = 
-                    "background-image:url(http://chs.conroeisd.net/25C872A0-00870B2F.0/arts%20and%20humanities.jpg)"></div>
+                    "height:150px;width:150px;background-image:url(http://www.ihsnola.org/wp-content/uploads/WL.jpg)"></div>
                         <div  style = "padding:0px;background-color:#17202A;color:white" class = "hero-unit"><h4><%= categoryModels.get(5).CategoryName %></h4>
 
                         <p></p>
@@ -194,7 +213,16 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
     </script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script>
+        ! function($) {
+            $(function() {
+                // carousel demo
+                $('#myCarousel1').carousel()
+            })
+        }(window.jQuery)
+    </script>
 </body>
 
 
 </html>
+

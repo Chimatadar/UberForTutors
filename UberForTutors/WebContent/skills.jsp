@@ -95,7 +95,7 @@ ArrayList<SkillsModel> skillsList = (ArrayList<SkillsModel>) request.getAttribut
 
                         <p></p>
                         <p>
-                            <a class="btn" href="TutorController?sid=<%= skillsList.get(k).SkillId%>">View details &raquo;</a>
+                            <a class="btn" href="TutorController?sid=<%= skillsList.get(k).SkillId%>">View Tutors &raquo;</a>
                         </p>
                         </div>
                     </div>

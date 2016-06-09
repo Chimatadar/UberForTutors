@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 //import javax.servlet.*;
 
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -28,7 +29,9 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
 import DataServices.ActivityDataServices;
+import DataServices.HomeDataServices;
 import DataServices.RankingDataServices;
 
 
@@ -69,7 +72,7 @@ public class ActivityController extends HttpServlet {
 		activityDataServices.addActivity(skillId,toUserId,fromUserId,status,message);
 		
 	
-		String to = rankingDataServices.getUserById(toUserId);
+		String to = rankingDataServices.getUserEmailById(toUserId);
 
 	      String from = "ucicomplaint@gmail.com";
 	      final String username = "ucicomplaint@gmail.com";
@@ -96,10 +99,11 @@ public class ActivityController extends HttpServlet {
 
 	         mail_message.setRecipients(Message.RecipientType.TO,
 	         InternetAddress.parse(to));
-
-	         mail_message.setSubject("Request to teach from Uber for Tutors");
+	         HomeDataServices homeDataServices=new HomeDataServices();
+	         mail_message.setSubject("Request to teach from Uber for Tutors sent by "+rankingDataServices.getUserById(fromUserId)+ "for skill "+ homeDataServices.getSkillName(skillId));
 
 	         //mail_message.setText("hello");
+	         
 	         mail_message.setText(" "+message);
 	         
 	         Transport.send(mail_message);

@@ -263,7 +263,7 @@ body {
 				<div class="row-fluid">
 					<div class="span4 hero-unit"
 						style="background-color: #17202A; color: white; padding-left:5px">
-						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user knows</h3>
+						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user know</h3>
 						<%
 							if (skillsKnown.size() != 0) {
 						%>
@@ -280,9 +280,11 @@ body {
 							}
 						%>
 
-						<div class="subscribe" style = "padding-left:60px" >
-							<div class="btn btn-primary" style = "padding-left:10px">Add a skill</div>
-							<form class="form2" action="ProfileController" method="post">
+						<div class="" style = "padding-left:60px" >
+						<p></p>
+							<div class="" style = "padding-left:10px">Add a skill</div>
+							<p></p>
+							<form class="" action="ProfileController" method="post">
 								<p>
 
 									<select class="form-group col-sm-2 selectpicker"
@@ -314,7 +316,25 @@ body {
 							<%
 								for (int i = 0; i < skillsLearnt.size(); i++) {
 							%>
-							<li><%=skillsLearnt.get(i).skill%></li>
+							<li>Skillname - <%=skillsLearnt.get(i).skill%>  Tutor: <%=skillsLearnt.get(i).tutorEmail%>
+							<% if(skillsLearnt.get(i).status ==1 && skillsLearnt.get(i).isDeleted==0 ) { %> 
+							<form action="RatingController?skillsLearnt=<%=skillsLearnt.get(i) %>" method="post">
+
+								<input class="star star-5" id="star-5" type="radio" name="star" />
+								<label class="star star-5" for="star-5"></label> <input
+									class="star star-4" id="star-4" type="radio" name="star" /> <label
+									class="star star-4" for="star-4"></label> <input
+									class="star star-3" id="star-3" type="radio" name="star" /> <label
+									class="star star-3" for="star-3"></label> <input
+									class="star star-2" id="star-2" type="radio" name="star" /> <label
+									class="star star-2" for="star-2"></label> <input
+									class="star star-1" id="star-1" type="radio" name="star" /> <label
+									class="star star-1" for="star-1"></label> <input
+									class="btn-primary " name="submit" type="submit" value="Submit" />
+							</form>
+							<% } %>
+							
+							</li>
 							<%
 								}
 							%>
@@ -324,7 +344,7 @@ body {
 						%>
 						<p></p>
 						<p>
-							<a class="btn" href="skillsListPage?fromProfilePage=1"> Learn
+							<a class="btn btn-primary" href="skillsListPage?fromProfilePage=1"> Learn
 								a new skill &raquo;</a>
 						</p>
 					</div>
@@ -405,3 +425,4 @@ body {
 </body>
 
 </html>
+
