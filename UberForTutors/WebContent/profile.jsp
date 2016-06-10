@@ -231,7 +231,8 @@ body {
 		String name = (String) request.getAttribute("userName");
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
 		
-		int userId = (int)session.getAttribute("UserId");
+		String userId1 = session.getAttribute("UserId").toString();
+		int userId= Integer.parseInt(userId1);
 		int diffUserId=userId;
 		if(request.getAttribute("userId")!=null){
 		 String s = request.getAttribute("userId").toString();
