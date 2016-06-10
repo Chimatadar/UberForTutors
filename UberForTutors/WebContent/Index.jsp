@@ -31,20 +31,8 @@
 
 <body>
 <%
-String str=request.getParameter("logout");
-if(str!=null){
-	
-	HttpSession session1 = request.getSession(false);
-	
-	if(session1!=null){
-		session1.removeAttribute("UserId");
-		session1.removeAttribute("notificationCount");
-		session1.invalidate();
-		response.sendRedirect("Index.jsp");
-	return;	
-	}
-	
-}
+String login1 = (String)request.getAttribute("LoginFailed");
+
 %>
 	<!-- Top content -->
 	<div class="top-content">
@@ -88,6 +76,12 @@ if(str!=null){
 								</div>
 								<button type="submit" class="btn">Sign in!</button>
 							</form>
+							<% if(login1!=null) { %>
+							<div style = "color:white">
+								<h3 style = "color:white">Wrong username/password</h3>
+								<p> Please enter your correct credentials</p>
+							</div>
+							<% }%>
 						</div>
 					</div>
 				</div>
@@ -119,3 +113,4 @@ if(str!=null){
 </body>
 
 </html>
+

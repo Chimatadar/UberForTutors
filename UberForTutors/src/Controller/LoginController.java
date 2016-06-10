@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
         }
         else
         {
-        	request.setAttribute("LoginFailed", 1);
+        	request.setAttribute("LoginFailed", "1");
         	 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Index.jsp");
              requestDispatcher.forward(request, response);
         	 
