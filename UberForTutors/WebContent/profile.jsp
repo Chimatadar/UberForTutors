@@ -228,7 +228,7 @@ body {
 				.getAttribute("skillsLearnt");
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
-		String name = (String) request.getAttribute("userName");
+		
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
 		
 		String userId1 = session.getAttribute("UserId").toString();
@@ -238,6 +238,11 @@ body {
 		 String s = request.getAttribute("userId").toString();
 		 diffUserId= Integer.parseInt(s);
 		}
+		String name;
+		if(request.getAttribute("userName")!=null)
+		name = (String) request.getAttribute("userName");
+		else
+		name=session.getAttribute("UserId").toString();
 	%>
 	<%@include file="headerandfooter.jsp"%>
 

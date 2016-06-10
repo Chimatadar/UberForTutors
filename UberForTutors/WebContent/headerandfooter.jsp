@@ -59,11 +59,13 @@
 </head>
 <body>
 <%
-String points = session.getAttribute("Points").toString();
-if(points==null) {
-	points = "0";
+String points;
+if(session.getAttribute("Points")!=null) {
+	 points = session.getAttribute("Points").toString();
 }
-
+else
+	points="0";
+int notificationCount = (int)session.getAttribute("notificationCount");
 %>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
@@ -111,7 +113,7 @@ if(points==null) {
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
                     <p class="navbar-text pull-right">                 
-                     <a href="NotificationController" class="badge1 navbar-link" data-badge="1">Notification</a></p>
+                     <a href="NotificationController" class="badge1 navbar-link" data-badge=<%=notificationCount%>>Notification</a></p>
                      
                     <ul class="nav">
                         <li class="active">
