@@ -69,6 +69,8 @@ body {
 	href="../assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="../assets/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 	<%
@@ -105,7 +107,7 @@ body {
 			if (activity.IsDeleted == 0 && activity.Status == 1) {
 		%>
 		<div class = "span5">You have already responded to
-		<%=activity.Email%>'s
+		<%=activity.userName%>'s
 		
 		request</div>
 		<%
@@ -115,7 +117,7 @@ body {
 		<%
 			if (activity.IsDeleted == 1 && activity.Status == 1) {
 		%>
-		<div class = "span5">You have been rated -
+		<div class = "span5">You have been rated for <%=activity.SkillName %> by <%=activity.userName %> 
 		<%
 			for (int i = 0; i < activity.RatingId; i++) {
 		%>
@@ -131,7 +133,7 @@ body {
 			if (activity.IsDeleted == 1 && activity.Status == 2) {
 		%>
 		<div class = "span5">You have rejected
-		<%=activity.Email%>
+		<%=activity.userName%>
 		's request</div>
 		<%
 			}

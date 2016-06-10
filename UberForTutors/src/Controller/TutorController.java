@@ -127,7 +127,20 @@ public class TutorController extends HttpServlet {
 		
 		FriendRankingController friendRankingController=new FriendRankingController();
 		
-		ArrayList<UserModel> friendsTutors=friendRankingController.getTutorsByFriends(SkillId,UserId);	
+		ArrayList<UserModel> friendsTutors=friendRankingController.getTutorsByFriends(SkillId,UserId);
+		ArrayList<TutorDataContract> friendsTutorDataContracts=new ArrayList<TutorDataContract>();
+		for(UserModel friendsTutor:friendsTutors)
+		{
+			TutorDataContract frTutorDataContract=new TutorDataContract();
+			frTutorDataContract.RatingId=tutorDataServices.getUserSkillRating(friendsTutor.UserId, SkillId).RatingId;
+			frTutorDataContract.SkillId=SkillId;
+			frTutorDataContract.UserId=friendsTutor.UserId;
+			frTutorDataContract.Email=friendsTutor.UserName;
+			frTutorDataContract.SkillName=homeDataServices.getSkillName(SkillId);
+			friendsTutorDataContracts.add(frTutorDataContract);
+			
+		}
+		request.setAttribute("friendsTutors", friendsTutorDataContracts);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
 

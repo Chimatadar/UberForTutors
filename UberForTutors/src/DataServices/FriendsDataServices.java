@@ -77,4 +77,32 @@ public class FriendsDataServices {
 		}
 	}
 
+	public void addFriend(int userId, int friendUserId) {
+		Connection connection=null;
+		ResultSet resultSet=null;
+		String query=null;
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
+
+			query="insert into userfriends values(?,?)";
+			PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query);
+
+			preparedStmt1.setInt(1, userId);
+			preparedStmt1.setInt(2, friendUserId);
+			int id = preparedStmt1.executeUpdate();
+			if(id<0)
+			{
+				System.out.println("Addition Unsuccessful");
+			}
+
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
+	}
+
 }

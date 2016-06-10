@@ -59,30 +59,38 @@
 </head>
 <body>
 <%
-	
-		int notificationCount = (int)session.getAttribute("notificationCount");
-	
-	%>
+String points = session.getAttribute("Points").toString();
+if(points==null) {
+	points = "0";
+}
+
+%>
 <div class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-
+	
                 </a>
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
                     
                     <ul class="nav">
                         <li class="active">
-                            <a href="AboutUsController">About Us</a>
+                            <a href="HomeController">Home</a>
                         </li>
                         <li>
                             <a href="#about">Privacy Policy</a>
                         </li>
                         <li>
                             <a href="Index.jsp">Log Out</a>
+                        </li>
+                        <% for(int i=0;i<190;i++) {%>
+                        <li>&nbsp</li>
+                        <%} %>
+                        <li class = "pull-right" >
+                            <a href=""><span style = "color:red">Virtual Money : <%=points %></span></a>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +111,7 @@
                 <a class="brand" href="#">Uber For Tutors</a>
                 <div class="nav-collapse collapse">
                     <p class="navbar-text pull-right">                 
-                     <a href="NotificationController" class="badge1 navbar-link" data-badge=<%=notificationCount%>>Notification</a></p>
+                     <a href="NotificationController" class="badge1 navbar-link" data-badge="1">Notification</a></p>
                      
                     <ul class="nav">
                         <li class="active">
@@ -113,7 +121,7 @@
                             <a href="ProfileController">Profile</a>
                         </li>
                         <li>
-                            <a href="Index.jsp?logout=logout">Log Out</a>
+                            <a href="#contact">Contact</a>
                         </li>
                         <li>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
@@ -131,3 +139,4 @@
     </div>
 </body>
 </html>
+

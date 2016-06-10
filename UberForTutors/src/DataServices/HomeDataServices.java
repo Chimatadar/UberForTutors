@@ -135,7 +135,7 @@ public class HomeDataServices {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
 			//query="select FromUser,SkillId,Time from activity where ToUser = ? and Status = 2 ";
-			query = "select a.ActivityId, a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email "
+			query = "select a.ActivityId, a.FromUser,a.SkillId,a.RatingId,a.Status,a.IsDeleted,s.SkillName,u.Email, u.UserName "
 					+ "from activity a "
 					+ "Inner Join skills s "
 					+ "on a.SkillId=s.SkillId "
@@ -160,6 +160,7 @@ public class HomeDataServices {
 				requestDataContract.IsDeleted = resultSet.getByte("IsDeleted");
 				requestDataContract.SkillName = resultSet.getString("SkillName");
 				requestDataContract.Email = resultSet.getString("Email");
+				requestDataContract.userName = resultSet.getString("UserName");
 				requests.add(requestDataContract);
 		
 			}

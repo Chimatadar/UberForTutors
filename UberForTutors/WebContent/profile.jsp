@@ -1,3 +1,4 @@
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.*"%>
 <%@page import="DataContracts.*"%>
@@ -32,8 +33,8 @@ input.star {
 
 label.star {
 	float: right;
-	padding: 10px;
-	font-size: 36px;
+	padding: 5px;
+	font-size: 18px;
 	color: #444;
 	transition: all .2s;
 }
@@ -227,10 +228,11 @@ body {
 				.getAttribute("skillsLearnt");
 		ArrayList<Notifications> notifications = (ArrayList<Notifications>) request.getAttribute("notifications");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
-		String name = (String)request.getAttribute("userName");
+		String name = (String) request.getAttribute("userName");
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
 		int diffUserId = (int)request.getAttribute("userId");
 		
+		int userId = (int)session.getAttribute("UserId");
 	%>
 	<%@include file="headerandfooter.jsp"%>
 
@@ -254,6 +256,12 @@ body {
 					</div>
 
 				</div>
+				<%if(diffUserId!=userId) {%>
+				<br>
+				<div>
+				<a class = "btn btn-primary"  href ="FriendController?friendUserId=<%=diffUserId%>">Add a friend</a>
+				</div>
+				<%} %>
 
 				<!--/.well -->
 			</div>
@@ -261,13 +269,13 @@ body {
 			<div class="span9">
 
 				<div class="row-fluid">
-					<div class="span4 hero-unit"
-						style="background-color: #17202A; color: white; padding-left:5px">
-						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user know</h3>
+					<div class="span4 hero-unit" 
+						style="background-color: #17202A; color: white; padding:10px">
+						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user knows</h3>
 						<%
 							if (skillsKnown.size() != 0) {
 						%>
-						<ul style = "padding-left:60px">
+						<ul>
 							<%
 								for (int i = 0; i < skillsKnown.size(); i++) {
 							%>
@@ -280,7 +288,7 @@ body {
 							}
 						%>
 
-						<div class="" style = "padding-left:60px" >
+						<div class="">
 						<p></p>
 							<div class="" style = "padding-left:10px">Add a skill</div>
 							<p></p>
@@ -297,7 +305,7 @@ body {
 										<%
 											}
 										%>
-									</select> <input class="btn-primary" name="submit" type="submit"
+									</select><br> <input class="btn-primary" name="submit" type="submit"
 										value="Submit" />
 								</p>
 
@@ -306,9 +314,9 @@ body {
 					</div>
 
 					<div class="span4 hero-unit"
-						style="background-color: #17202A; color: white">
+						style="padding:10px;background-color: #17202A; color: white">
 
-						<h3>Skills user learnt</h3>
+						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user learnt</h3>
 						<%
 							if (skillsLearnt.size() != 0) {
 						%>
@@ -316,7 +324,8 @@ body {
 							<%
 								for (int i = 0; i < skillsLearnt.size(); i++) {
 							%>
-							<li>Skillname - <%=skillsLearnt.get(i).skill%>  Tutor: <%=skillsLearnt.get(i).tutorEmail%>
+							<li>Skillname - <%=skillsLearnt.get(i).skill%>
+							<br>  Tutor: <%=skillsLearnt.get(i).tutorEmail%>
 							<% if(skillsLearnt.get(i).status ==1 && skillsLearnt.get(i).isDeleted==0 ) { SkillsLearntWithActivityId skillsLearntWithActivityId1= skillsLearnt.get(i);%>
 							<%int activityId=skillsLearntWithActivityId1.activityId; %>
 							<%int tutorId=skillsLearntWithActivityId1.tutorId; %>
@@ -325,6 +334,7 @@ body {
 								<input type=hidden name="activityId" value=<%= activityId%>>
 								<input type=hidden name="tutorId" value=<%= tutorId%>>
 								<input type=hidden name="skillId" value=<%= skillId%>>
+								
 								<input class="star star-5" id="star-5" type="radio" name="star" value="5" />
 								<label class="star star-5" for="star-5"></label> <input
 									class="star star-4" id="star-4" type="radio" name="star" value="4"/> <label
@@ -334,7 +344,8 @@ body {
 									class="star star-2" id="star-2" type="radio" name="star" value="2"/> <label
 									class="star star-2" for="star-2"></label> <input
 									class="star star-1" id="star-1" type="radio" name="star" value="1"/> <label
-									class="star star-1" for="star-1"></label> <input
+									class="star star-1" for="star-1"></label> 
+									<br><input
 									class="btn-primary " name="submit" type="submit" value="Submit" />
 							</form>
 							<% } %>
@@ -355,8 +366,8 @@ body {
 					</div>
 
 					<div class="span4 hero-unit"
-						style="background-color: #17202A; color: white">
-						<h3>Skills user taught</h3>
+						style="padding:10px;background-color: #17202A; color: white">
+						<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Skills user taught</h3>
 						<%
 							if (rankedTutors.size() != 0) {
 						%>
@@ -384,32 +395,7 @@ body {
 					</div>
 					<!--/span-->
 				</div>
-				<div class="hero-unit "
-					style="background-color: #17202A; color: white">
-					<% for(UserModelWithActivity tutor:rateTutor) { %>
-					
-					<div class="row-fluid">
-						<div class="span5">Rating for User <%= tutor.UserName %>> from Skill <%= tutor.SkillName %>></div>
-						<div class="span5">
-							<form action="RateController" method="post">
-
-								<input class="star star-5" id="star-5" type="radio" name="star" />
-								<label class="star star-5" for="star-5"></label> <input
-									class="star star-4" id="star-4" type="radio" name="star" /> <label
-									class="star star-4" for="star-4"></label> <input
-									class="star star-3" id="star-3" type="radio" name="star" /> <label
-									class="star star-3" for="star-3"></label> <input
-									class="star star-2" id="star-2" type="radio" name="star" /> <label
-									class="star star-2" for="star-2"></label> <input
-									class="star star-1" id="star-1" type="radio" name="star" /> <label
-									class="star star-1" for="star-1"></label> <input
-									class="btn-primary " name="submit" type="submit" value="Submit" />
-							</form>
-						</div>
-
-					</div>
-					<%} %>
-				</div>
+				
 			</div>
 			<!--/span-->
 		</div>

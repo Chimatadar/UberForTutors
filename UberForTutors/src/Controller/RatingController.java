@@ -45,7 +45,7 @@ public class RatingController extends HttpServlet {
 		
 		int ToUser=Integer.parseInt(request.getParameter("tutorId"));
 		int SkillId=Integer.parseInt(request.getParameter("skillId"));
-		int rating=Integer.parseInt(request.getParameter("star"));
+		int rating= 4;/*Integer.parseInt(request.getParameter("star"));*/
 		int ActivityId=Integer.parseInt(request.getParameter("activityId"));
 		int FromUser=(int) session.getAttribute("UserId");
 		

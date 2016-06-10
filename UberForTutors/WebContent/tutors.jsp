@@ -72,10 +72,12 @@ body {
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
 </head>
-<body>
+<body style = "background:black;padding-top:0px">
 	<%
 		ArrayList<TutorDataContract> rankedTutors = (ArrayList<TutorDataContract>) request
 				.getAttribute("userSkillRatings");
+	ArrayList<TutorDataContract> friendsTutor = (ArrayList<TutorDataContract>) request
+			.getAttribute("friendsTutors");
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 	%>
 	<%
@@ -88,36 +90,46 @@ body {
 <%
 		if (rankedTutors == null || rankedTutors.size() == 0) {
 	%>
-	<div class="hero-unit" style="padding-top: 10px">
-	No tutors found
-	</div>
+	
+	
+	<div class = "hero-unit" style = "background:transparent"></div>
+	   <div class="hero-unit" style = "background-color:#17202A">
+	   <hr>
+	   		<div style="color:white;text-align:center">No tutors found</div>
+	   <hr>
+	   </div>
 		<% } %>
 	
-
+<div class = "hero-unit span5" style = "background:transparent;width:500px">
 	<%
 		if (rankedTutors != null) {
 	%>
 	<%
 		if (rankedTutors.size() != 0) {
 	%>
+	<h2 style = "color:white"> Tutors recommended by us</h2>
 	<%
 		for (TutorDataContract user : rankedTutors) {
 	%>
-	<div class="hero-unit" style="padding-top: 10px">
-		<div class="span5">
-			Name:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
-			<br> Rating -<%
+	
+	<div class="hero-unit" style="background-color:rgba(255,255,255,0.1);padding-top: 10px;">
+		<div class="">
+			<span style = "color:white">Name:  </span>:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
+			<br> <span style = "color:white">Rating -</span>
+			
+			<span style = "color:yellow"><%
 				for (int i = 0; i < user.RatingId; i++) {
 			%>
 			<i class="fa fa-star"></i>
 			<%
 				}
 			%>
+			</span>
 		</div>
-		<div class="span5">
+		<div class="">
 			<form method='post' action="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>">
 
-				<input type="text" name="message" placeholder="hello">
+				<textarea style="width: 300px; height: 150px;" type="text" name="message" placeholder="Please enter the message for tutor here"></textarea>
 				
 					<input class="btn-primary" name="submit" type="submit"
 										value=Request />
@@ -133,13 +145,60 @@ body {
 		}
 		}
 	%>
+	
+	
+		</div>
+	
+	
+	
+	<div class = "hero-unit span5" style = "background:transparent;width:500px">
 	<%
-		if (sid != 0) {
+		if (friendsTutor != null) {
+	%>
+	<%
+		if (friendsTutor.size() != 0) {
+	%>
+	<h2 style = "color:white"> Tutors recommended by friends</h2>
+	<%
+		for (TutorDataContract user : friendsTutor) {
+	%>
+	
+	<div class="hero-unit" style="background-color:rgba(255,255,255,0.1);padding-top: 10px;">
+		<div class="">
+			<span style = "color:white">Name:  </span>:<a href="ProfileController?userId=<%=user.UserId%>"><%=user.Email%></a>
+			<br> <span style = "color:white">Rating -</span>
+			
+			<span style = "color:yellow"><%
+				for (int i = 0; i < user.RatingId; i++) {
+			%>
+			<i class="fa fa-star"></i>
+			<%
+				}
+			%>
+			</span>
+		</div>
+		<div class="">
+			<form method='post' action="ActivityController?userId=<%=user.UserId%>&skillId=<%=user.SkillId%>">
+
+				<textarea style="width: 300px; height: 150px;" type="text" name="message" placeholder="Please enter the message for tutor here"></textarea>
+				
+					<input class="btn-primary" name="submit" type="submit"
+										value=Request />
+			</form>
+		</div>
+
+	</div>
+	<%
+		}
 	%>
 
 	<%
 		}
+		}
 	%>
+	
+	
+		</div>
 </body>
 </html>
 

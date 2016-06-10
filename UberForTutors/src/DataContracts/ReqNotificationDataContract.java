@@ -10,4 +10,5 @@ public class ReqNotificationDataContract {
 	public byte IsDeleted;
 	public String SkillName;
 	public String Email;
+	public String userName;
 }
