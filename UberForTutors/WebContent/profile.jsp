@@ -234,7 +234,8 @@ body {
 		int userId = (int)session.getAttribute("UserId");
 		int diffUserId=userId;
 		if(request.getAttribute("userId")!=null){
-		 diffUserId = (int)request.getAttribute("userId");
+		 String s = request.getAttribute("userId").toString();
+		 diffUserId= Integer.parseInt(s);
 		}
 	%>
 	<%@include file="headerandfooter.jsp"%>
