@@ -83,7 +83,8 @@ body {
 	<%
 		int sid = 0;
 		if (request.getAttribute("skillId") != null) {
-			sid = (int) request.getAttribute("skillId");
+			String s = request.getAttribute("skillId").toString();
+			sid=Integer.parseInt(s);
 		}
 	%>
 	<%@include file="headerandfooter.jsp"%>

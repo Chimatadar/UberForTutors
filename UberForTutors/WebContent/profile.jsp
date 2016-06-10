@@ -230,9 +230,12 @@ body {
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 		String name = (String) request.getAttribute("userName");
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
-		int diffUserId = (int)request.getAttribute("userId");
 		
 		int userId = (int)session.getAttribute("UserId");
+		int diffUserId=userId;
+		if(request.getAttribute("userId")!=null){
+		 diffUserId = (int)request.getAttribute("userId");
+		}
 	%>
 	<%@include file="headerandfooter.jsp"%>
 
