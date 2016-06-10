@@ -123,6 +123,12 @@ public class TutorController extends HttpServlet {
 		else{
 			request.setAttribute("userSkillRatings", null);
 		}
+		
+		
+		FriendRankingController friendRankingController=new FriendRankingController();
+		
+		ArrayList<UserModel> friendsTutors=friendRankingController.getTutorsByFriends(SkillId,UserId);	
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("tutors.jsp");
 
 		requestDispatcher.include(request, response);

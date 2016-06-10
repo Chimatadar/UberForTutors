@@ -229,7 +229,7 @@ body {
 		//ArrayList<SkillsModel> recommendedSkillModels = (ArrayList<SkillsModel>) request.getAttribute("recommendedSkills");
 		String name = (String)request.getAttribute("userName");
 		ArrayList<UserModelWithActivity> rateTutor = (ArrayList<UserModelWithActivity>) request.getAttribute("rateTutorsList");
-
+		int diffUserId = (int)request.getAttribute("userId");
 		
 	%>
 	<%@include file="headerandfooter.jsp"%>
@@ -317,18 +317,23 @@ body {
 								for (int i = 0; i < skillsLearnt.size(); i++) {
 							%>
 							<li>Skillname - <%=skillsLearnt.get(i).skill%>  Tutor: <%=skillsLearnt.get(i).tutorEmail%>
-							<% if(skillsLearnt.get(i).status ==1 && skillsLearnt.get(i).isDeleted==0 ) { %> 
-							<form action="RatingController?skillsLearnt=<%=skillsLearnt.get(i) %>" method="post">
-
-								<input class="star star-5" id="star-5" type="radio" name="star" />
+							<% if(skillsLearnt.get(i).status ==1 && skillsLearnt.get(i).isDeleted==0 ) { SkillsLearntWithActivityId skillsLearntWithActivityId1= skillsLearnt.get(i);%>
+							<%int activityId=skillsLearntWithActivityId1.activityId; %>
+							<%int tutorId=skillsLearntWithActivityId1.tutorId; %>
+							<%int skillId=skillsLearntWithActivityId1.skillId; %>
+							<form action="RatingController" method="post">
+								<input type=hidden name="activityId" value=<%= activityId%>>
+								<input type=hidden name="tutorId" value=<%= tutorId%>>
+								<input type=hidden name="skillId" value=<%= skillId%>>
+								<input class="star star-5" id="star-5" type="radio" name="star" value="5" />
 								<label class="star star-5" for="star-5"></label> <input
-									class="star star-4" id="star-4" type="radio" name="star" /> <label
+									class="star star-4" id="star-4" type="radio" name="star" value="4"/> <label
 									class="star star-4" for="star-4"></label> <input
-									class="star star-3" id="star-3" type="radio" name="star" /> <label
+									class="star star-3" id="star-3" type="radio" name="star" value="3"/> <label
 									class="star star-3" for="star-3"></label> <input
-									class="star star-2" id="star-2" type="radio" name="star" /> <label
+									class="star star-2" id="star-2" type="radio" name="star" value="2"/> <label
 									class="star star-2" for="star-2"></label> <input
-									class="star star-1" id="star-1" type="radio" name="star" /> <label
+									class="star star-1" id="star-1" type="radio" name="star" value="1"/> <label
 									class="star star-1" for="star-1"></label> <input
 									class="btn-primary " name="submit" type="submit" value="Submit" />
 							</form>

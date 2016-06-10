@@ -37,4 +37,5 @@ public class UserSkillRatingsModel {
 	}
 	public int RatingId;
 	public byte Taught;
+	
 }

@@ -49,6 +49,7 @@ public class LoginDataServices {
 				userModel.UserId=resultSet.getInt("UserId");
 				userModel.Password=resultSet.getString("Password");
 				userModel.UserName=resultSet.getString("UserName");
+				userModel.Points=resultSet.getInt("Points");
 				return userModel;
 			}
 

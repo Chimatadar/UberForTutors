@@ -16,7 +16,7 @@ public class RateDataServices {
 		ResultSet resultSet=null;
 		String query=null;
 		String query1=null;
-		
+		String query2=null;
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -47,17 +47,28 @@ public class RateDataServices {
 					System.out.println(""+newRating);
 				}
 				
-				 
-				query1="update userSkillRatings set RatingId=newRating,TotalPeople=people,Taught=1 where UserId= ? and SkillId = ?";
+				
+				query1="update userSkillRatings set RatingId=?,TotalPeople=?,Taught=? where UserId= ? and SkillId = ?";
 				PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query1);
-				preparedStmt.setInt(1, UserId);
-				preparedStmt.setInt(2, SkillId);
+				preparedStmt1.setInt(1, newRating);
+				preparedStmt1.setInt(2, people);
+				preparedStmt1.setInt(3, 1);
+				preparedStmt1.setInt(4, UserId);
+				preparedStmt1.setInt(5, SkillId);
 				
 				int id =preparedStmt1.executeUpdate();
 				
 				if(id<0)
 					System.out.println("update Unsuccesful");
+				 int points=people*10;
+				query2="update user set points=? where UserId= ?";
+				PreparedStatement preparedStmt2 = (PreparedStatement) connection.prepareStatement(query1);
+				preparedStmt2.setInt(1, points);
+				preparedStmt2.setInt(2, UserId);
+				int id1 =preparedStmt1.executeUpdate();
 				
+				if(id1<0)
+					System.out.println("update Unsuccesful");
 			}	
 			
 		}
@@ -80,31 +91,16 @@ public class RateDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
-			query="select Status,IsDeleted from activity where ActivityId= ?";
+			query="update activity set RatingId=?,IsDeleted=? where ActivityId= ?";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
-			preparedStmt.setInt(1, activityId);
+			preparedStmt.setInt(1, rating);
+			preparedStmt.setInt(2, 1);
+			preparedStmt.setInt(3, activityId);
 						
-			resultSet =preparedStmt.executeQuery();	
+			int id =preparedStmt.executeUpdate();	
 			
-			if(resultSet.next()){
-
-				int Status = resultSet.getInt("Status");
-				int IsDeleted = resultSet.getInt("IsDeleted");
-				
-				if(Status ==1 && IsDeleted==0){
-					
-					query1="update userSkillRatings set RatingId=rating,IsDeleted=1 where ActivityId= ?";	
-					PreparedStatement preparedStmt1 = (PreparedStatement) connection.prepareStatement(query1);
-					preparedStmt.setInt(1, activityId);
-										
-					int id =preparedStmt1.executeUpdate();
-					
-					if(id<0)
-						System.out.println("update Unsuccesful");
-					
-				}	
-				
-			}	
+			if(id<0)
+				System.out.println("update Unsuccesful");	
 			
 		}
 		catch(Exception ex)
@@ -126,10 +122,13 @@ public class RateDataServices {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/uftdb2","root","admin");
-			query="update userSkillRatings set Taught=3 where UserId= ? and SkillId = ?";
+			query="Insert into userSkillRatings(UserId,SkillId,RatingId,Taught,TotalPeople) values(?,?,?,?,?)";
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			preparedStmt.setInt(1, UserId);
 			preparedStmt.setInt(2, SkillId);
+			preparedStmt.setInt(3, 1);
+			preparedStmt.setInt(4, 3);
+			preparedStmt.setInt(5, 0);
 			
 			int id =preparedStmt.executeUpdate();
 			if(id<0)

@@ -65,6 +65,7 @@ public class LoginController extends HttpServlet {
         	        	
              session.setAttribute("UserId", userModel.UserId);
              session.setAttribute("userName", userModel.UserName);
+             session.setAttribute("Points", userModel.Points);
              HomeDataServices homeDataServices=new HomeDataServices();
              int count=0;
              count = homeDataServices.getNoOfNotifications(userModel.UserId);

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.connector.Request;
 
@@ -39,10 +40,18 @@ public class RatingController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String rateString=(String) request.getAttribute("star");
+		HttpSession session=request.getSession();
 		
-		SkillsLearntWithActivityId skillsLearntWithActivityId=(SkillsLearntWithActivityId) request.getAttribute("skillsLearnt");
+		int ToUser=Integer.parseInt(request.getParameter("tutorId"));
+		int SkillId=Integer.parseInt(request.getParameter("skillId"));
+		int rating=Integer.parseInt(request.getParameter("star"));
+		int ActivityId=Integer.parseInt(request.getParameter("activityId"));
+		int FromUser=(int) session.getAttribute("UserId");
 		
-		System.out.println(skillsLearntWithActivityId);
+		RateController rateController=new RateController();
+		rateController.updateTutor(ToUser, SkillId, rating, ActivityId);
+		rateController.updateTutee(FromUser, SkillId);
 //		int ToUser = skillsLearntWithActivityId.tutorId
 //		int SkillId = , int rating, int ActivityId
 		
